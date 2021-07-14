@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import search from '../../assets/icon/search.svg';
 import './index.scss';
 
-const AdminFilter = ({ products, setProducts, initialState }) => {
-  const [query, setQuery] = useState('')
+const AdminSearch = ({ products, setProducts, initialState }) => {
+  const [query, setQuery] = useState('');
   const handleChange = (e) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
   useEffect(() => {
-  
     if (query.trim() === '') {
       setProducts(initialState);
     } else {
@@ -20,21 +19,20 @@ const AdminFilter = ({ products, setProducts, initialState }) => {
       );
       setProducts(results);
     }
-  },[query,setProducts, initialState])
+  }, [query, setProducts, initialState]);
 
   return (
-    <div className="admin-filter">
-        
-          <input
-            type="text"
-            placeholder="Search ..."
-            onChange={handleChange}
-            autoFocus
-          />
-      
-      <img className="search-icon" src={search} alt="search icon" />
+    <div className='admin-search'>
+      <input
+        type='text'
+        placeholder='Search ...'
+        onChange={handleChange}
+        autoFocus
+      />
+
+      <img className='search-icon' src={search} alt='search icon' />
     </div>
   );
 };
 
-export default AdminFilter;
+export default AdminSearch;

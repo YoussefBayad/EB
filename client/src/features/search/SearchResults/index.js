@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const FilterResults = ({
+const SearchResults = ({
   searchResults,
   setShowSearchResults,
   showSearchResults,
@@ -22,26 +22,24 @@ const FilterResults = ({
           exit={{ opacity: 0, x: 400 }}
           transition={{ duration: 0.4 }}
           ref={ref}
-          className="search-results"
-          onClick={handleClick}
-        >
+          className='search-results'
+          onClick={handleClick}>
           {searchResults.map((product) => (
             <Link
               key={product.documentID}
-              to={`/shop/product/${product.documentID}`}
-            >
-              <div className="search-product">
+              to={`/shop/product/${product.documentID}`}>
+              <div className='search-product'>
                 <img
-                  className="search-img"
+                  className='search-img'
                   src={
                     product.photoURL
                       ? product.photoURL
                       : ` /img/${product.name.replace(/\s/g, '')}.webp`
                   }
-                  alt="product img"
+                  alt='product img'
                 />
-                <div className="text">
-                  <p className="search-product-name">{product.name}</p>
+                <div className='text'>
+                  <p className='search-product-name'>{product.name}</p>
                   <p>${product.price}</p>
                 </div>
               </div>
@@ -58,4 +56,4 @@ const FilterResults = ({
   );
 };
 
-export default FilterResults;
+export default SearchResults;

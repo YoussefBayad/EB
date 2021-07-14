@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import FilterInput from '../FilterInput/index.js';
-import FilterResults from '../FilterResults/index.js';
+import SearchInput from '../SearchInput/index.js';
+import SearchResults from '../SearchResults/index.js';
 import search from '../../assets/icon/search.svg';
 import './index.scss';
 
-const Filter = ({ ...props }) => {
+const Search = ({ ...props }) => {
   const products = useSelector((state) => state.products.data);
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const handleChange = (e) => {
     setShowSearchResults(true);
     if (e.target.value.trim() === '') {
       setSearchResults(products);
     } else {
-      const results = products.filter((product) =>
+      const results = products.search((product) =>
         product.name
           .replace(/\s/g, '')
           .toLowerCase()
@@ -26,31 +26,31 @@ const Filter = ({ ...props }) => {
     }
   };
   const handleClick = () => {
-    setShowFilter(!showFilter);
+    setShowsearch(!showsearch);
   };
 
   return (
-    <div className="filter" {...props}>
-      <div className="filter-flex">
-        <FilterInput
+    <div className='search' {...props}>
+      <div className='search-flex'>
+        <searchInput
           handleChange={handleChange}
           handleClick={handleClick}
-          showFilter={showFilter}
+          showsearch={showsearch}
         />
-        <FilterResults
+        <SearchResults
           searchResults={searchResults}
           showSearchResults={showSearchResults}
           setShowSearchResults={setShowSearchResults}
         />
       </div>
       <img
-        className="search-icon"
+        className='search-icon'
         src={search}
-        alt="search icon"
+        alt='search icon'
         onClick={handleClick}
       />
     </div>
   );
 };
 
-export default Filter;
+export default Search;

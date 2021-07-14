@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Filter from '../Filter';
+import Search from '../Search';
 import User from '../User';
 import CartIcon from '../CartIcon';
 import './index.scss';
@@ -10,21 +10,21 @@ import Burger from './Burger';
 const Header = () => {
   return (
     <nav>
-      <div className="nav-container">
-        <div className="left-nav">
+      <div className='nav-container'>
+        <div className='left-nav'>
           <Burger />
-          <Link to="/" className="logo">
+          <Link to='/' className='logo'>
             EB
           </Link>
-          <Link className="shop-link" to="/shop">
+          <Link className='shop-link' to='/shop'>
             Shop
           </Link>
-          <Link className="about-link" to="/">
+          <Link className='about-link' to='/'>
             About
           </Link>
         </div>
-        <div className="right-nav">
-          <Filter />
+        <div className='right-nav'>
+          <Search />
           <User />
           <CartIcon />
         </div>
