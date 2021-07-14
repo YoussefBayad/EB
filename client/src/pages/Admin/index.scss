@@ -1,0 +1,74 @@
+@import '../../default';
+.admin {
+  padding: 0 10px;
+
+  .call-to-actions {
+    display: inline-block;
+    width: 50%;
+    margin: 5.5rem auto;
+    margin-top: 3rem;
+    & button {
+      background: #3f4c96;
+      &:hover {
+        color: white;
+        background: darken(#3f4c96, 10%);
+      }
+    }
+  }
+}
+
+.manageProducts {
+  text-align: center;
+  h1 {
+    margin: 1.5rem;
+    font-size: 3rem;
+  }
+
+  .admin-products {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 4rem;
+    .admin-product {
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      & h2:last-of-type {
+        margin-top: 1rem;
+      }
+      .error {
+        color: #c93131;
+      }
+      .image {
+        position: relative;
+      }
+      .thumb {
+        width: 10rem;
+        margin: 1rem auto;
+      }
+      .edit {
+        width: 2.5rem;
+        position: absolute;
+        top: 2rem;
+        right: -4.5rem;
+        @include transition;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      & button {
+        margin-top: 3rem;
+        width: 20rem;
+        background-color: #9b3f3f;
+        &:hover {
+          color: white;
+          background: darken(#9b3f3f, 10%);
+        }
+      }
+    }
+  }
+}

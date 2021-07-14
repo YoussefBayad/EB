@@ -1,0 +1,15 @@
+.error {
+  color: #b93838;
+  margin-left: 2rem;
+  font-size: 1.7rem;
+  outline-color: #9b3f3f;
+  border-color: #9b3f3f;
+}
+
+.contact-information {
+  margin: 10rem 0;
+
+  & h1 {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../default';
+.payment-completed {
+  h1 {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  img {
+    width: 15rem;
+  }
+
+  .go-back-btn {
+    display: block;
+    width: 23rem;
+    margin: 3rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      width: 2rem;
+    }
+  }
+}

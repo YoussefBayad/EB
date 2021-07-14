@@ -1,0 +1,47 @@
+@import '../../default.scss';
+.login {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign-in {
+  margin-top: 5rem;
+  width: 50%;
+  padding: 3rem;
+  border: 2px solid black;
+
+  h1 {
+    margin-bottom: 5rem;
+    font-size: 4rem;
+  }
+  button {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin: 1rem auto;
+    width: 100%;
+  }
+  .btn-login-as-admin {
+    background: rgb(30, 80, 145);
+    width: 20ch;
+  }
+  input {
+    // display: block;
+    width: 100%;
+    margin: 1rem auto;
+  }
+  form .btn {
+    margin-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .sign-in {
+    width: 90%;
+  }
+  h1 {
+    margin-bottom: 4rem;
+    font-size: 3rem !important;
+  }
+}

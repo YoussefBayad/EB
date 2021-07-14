@@ -1,0 +1,52 @@
+@import '../../default.scss';
+
+.payment {
+  margin-top: 4rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  .payment-title {
+    font-size: 4rem;
+    padding: 3rem;
+    border-bottom: 1px solid grey;
+    margin-bottom: 7rem;
+  }
+}
+.payment-products,
+.products {
+  margin-top: 0rem;
+  display: grid;
+  grid-template-columns: repeat(auto, minmax(5rem, 0.3fr));
+  grid-gap: 2rem;
+}
+
+.contact-information {
+  text-align: left;
+
+  h1 {
+    margin: 2rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+      margin: 3rem;
+      margin-left: 1.5rem;
+      background-color: black;
+      border-radius: 0.5rem;
+      color: white;
+      border: none;
+      outline: none;
+      padding: 2rem;
+      font-size: 1.7rem;
+      width: 30rem;
+      cursor: pointer;
+      @include transition;
+
+      &:hover {
+        color: black;
+        background-color: rgb(211, 207, 207);
+      }
+    }
+  }
+}

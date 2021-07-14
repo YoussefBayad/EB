@@ -1,0 +1,28 @@
+.user-image {
+  border-radius: 50%;
+}
+.user {
+  position: relative;
+}
+.log {
+  position: absolute;
+  right: -3rem;
+  width: 15rem;
+  text-align: center;
+  padding: 1rem;
+  color: black;
+  background-color: white;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  border: 2px solid black;
+  h3 {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
+  }
+  button,
+  a {
+    display: inline-block;
+    padding: 1rem;
+    margin: 1rem 0 !important;
+  }
+}

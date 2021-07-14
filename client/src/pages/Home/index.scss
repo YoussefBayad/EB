@@ -1,0 +1,142 @@
+@import '../../default.scss';
+
+.showcase {
+  width: 100%;
+  height: 75vh;
+  padding-left: 6rem;
+  padding-top: 5rem;
+  margin-bottom: 8rem;
+  background: url('/img/homebg.webp') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+  & .text {
+    color: white;
+
+    height: 100%;
+    float: left;
+    text-align: left;
+  }
+  & h1 {
+    font-size: 4.5rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+  }
+  & p {
+    line-height: 1.5;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 8rem;
+  }
+  & a {
+    font-weight: bold;
+    padding: 1rem;
+    border: none;
+    box-shadow: 1px 1px 8px 0.5px black;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.cards {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  & h1 {
+    font-size: 3rem;
+  }
+
+  .flex {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 4rem;
+    margin: 10rem 0;
+  }
+  .earbuds-card {
+    background: url('/img/earbuds-home-page.webp') no-repeat center center;
+  }
+  .headphones-card {
+    background: url('/img/headphones-home-page.webp') no-repeat center center;
+  }
+
+  .card {
+    position: relative;
+    height: 60rem;
+    display: flex;
+    align-items: flex-end;
+    text-align: left;
+    background-color: lightgrey;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 4rem;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    @include transition;
+
+    &::after {
+      content: '';
+      border-radius: 1rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0.5;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 1px 1px 15px black;
+    }
+
+    .text {
+      z-index: 1;
+      & h1 {
+        font-size: 3rem;
+        font-weight: bolder;
+        margin-bottom: 3.5rem;
+      }
+    }
+    & button {
+      box-shadow: 2px 2px 10px 1px black;
+      font-size: 1.7rem;
+      padding: 1.4rem;
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .showcase {
+    padding: 3rem;
+  }
+  .cards {
+    & h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .showcase {
+    background-position: left bottom;
+  }
+}
+@media screen and (min-width: 500px) {
+  .showcase {
+    .text {
+      max-width: 40rem;
+      min-width: 30rem;
+    }
+  }
+}

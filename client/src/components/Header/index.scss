@@ -1,0 +1,169 @@
+@import '../../default';
+
+nav {
+  background-color: black;
+  padding: 1rem;
+  border-bottom: 1px solid #636262;
+  position: sticky !important;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  .nav-container {
+    @extend .container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6rem;
+  }
+
+  .left-nav {
+    display: flex;
+    .burger {
+      height: 2.3rem;
+      width: 3rem;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+
+      &:hover > span {
+        background-color: $accent;
+      }
+      .burger-child {
+        display: inline-block;
+        height: 0.4rem;
+        width: 100%;
+        border-radius: 3rem;
+        background-color: white;
+        @include transition;
+      }
+    }
+    .logo {
+      color: white;
+      font-size: 3rem;
+      margin: 0 3rem;
+    }
+    & a {
+      @extend .hover;
+      font-size: 1.7rem;
+      margin: 0;
+      align-self: center;
+      margin-right: 3rem;
+    }
+  }
+
+  .right-nav {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    & img {
+      height: 3rem;
+      width: 3rem;
+      margin-right: 3rem;
+      @include transition;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .responsive-nav {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 3rem;
+    font-size: 3rem;
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.267);
+    text-align: left;
+    z-index: 10;
+    & > * {
+      padding-left: 2rem;
+      color: black;
+      width: 100%;
+      font-size: 2rem !important;
+      font-weight: bold;
+    }
+
+    & a {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid black;
+    }
+    &:hover > * {
+      @extend .hover;
+    }
+
+    & .close-nav {
+      width: 5rem;
+      position: absolute;
+      top: 1rem;
+      right: 3rem;
+      cursor: pointer;
+      &:hover {
+        transform: scale(0.9);
+      }
+    }
+  }
+  .cart-icon,
+  .user {
+    position: relative;
+  }
+
+  .user-image {
+    border-radius: 50%;
+  }
+
+  .cart-icon img {
+    margin-right: 0;
+  }
+  .cart-items-number {
+    position: absolute;
+    text-align: center;
+    padding: 0.1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    top: -0.5rem;
+    right: -1.5rem;
+    background-color: $accent;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .left-nav {
+    .burger {
+      display: inline-block !important;
+    }
+    & .shop-link,
+    .about-link {
+      display: none;
+    }
+    .logo {
+      display: block;
+    }
+  }
+
+  .cart-icon,
+  .filter {
+    & img {
+      height: 4rem;
+      width: 4rem;
+    }
+  }
+  .right-nav {
+    .user {
+      display: none;
+    }
+  }
+}
