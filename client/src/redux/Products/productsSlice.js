@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { firestore } from '../../Firebase/utils';
 
 const initialState = {
- data: [],
+  data: [],
 
   status: 'succeeded',
   error: null,
@@ -59,50 +58,21 @@ const initialState = {
 // },],
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async () => {
-    let productsRef = firestore.collection('products');
-    let productsCollection = await productsRef
-      .orderBy('createdAt', 'desc')
-      .get();
-    let products = [];
-    for (const doc of productsCollection.docs) {
-      products.push({ ...doc.data(), documentID: doc.id });
-    }
-    return products;
-  }
+  async () => {}
 );
 
 export const addProduct = createAsyncThunk(
   'products/addProduct',
-  async (product) => {
-    var response = await firestore.collection('products').add(product);
-
-    return response;
-  }
+  async (product) => {}
 );
 export const editProduct = createAsyncThunk(
   'products/editProduct',
-  async (values) => {
-    console.log("edditing",values)
-    var response = await firestore
-      .collection('products')
-      .doc(values.documentID)
-      .update(values);
-
-    return response;
-  }
+  async (values) => {}
 );
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (documentID) => {
-    var response = await firestore
-      .collection('products')
-      .doc(documentID)
-      .delete();
-
-    return response;
-  }
+  async (documentID) => {}
 );
 
 const productsSlice = createSlice({
@@ -136,7 +106,7 @@ const productsSlice = createSlice({
       }
     },
     [fetchProducts.rejected]: (state, action) => {
-      if (state.status === 'loading' ) {
+      if (state.status === 'loading') {
         state.status = 'failed';
         state.error = 'Failed Reload';
       }

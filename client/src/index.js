@@ -6,9 +6,6 @@ import { Provider } from 'react-redux';
 import store from './redux/createStore';
 // App
 import App from './App';
-import { fetchProducts } from './redux/Products/productsSlice';
-
-store.dispatch(fetchProducts());
 
 ReactDOM.render(
   <React.StrictMode>
