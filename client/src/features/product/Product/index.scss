@@ -1,11 +1,11 @@
-@import '../../default';
+@import '../../../default.scss';
 
 .product {
   margin-bottom: 5rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
 
   & img {

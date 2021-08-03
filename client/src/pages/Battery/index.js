@@ -10,9 +10,9 @@ const Battery = () => {
   const { data, status } = useSelector((state) => state.products);
 
   return (
-    <div className="shop">
+    <div className='shop'>
       <h1>Batteries</h1>
-      <Links filter="Battery" />
+      <Links filter='Battery' />
       <Products
         data={data.filter((product) => product.category === 'Battery')}
         status={status}

@@ -12,13 +12,13 @@ import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
-import Admin from './pages/Admin';
+// import Admin from './pages/Admin';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
 import Wired from './pages/Earbuds/Wired';
 import Headphones from './pages/Headphones';
 import Battery from './pages/Battery';
-import ProductPage from './pages/ProductPage';
+import ProductDetails from './pages/ProductDetails';
 import NoMatch from './pages/404/NoMatch.js';
 
 // HOC
@@ -44,7 +44,7 @@ const App = () => {
         )}
       />
 
-      <Route
+      {/* <Route
         exact
         path='/admin'
         render={() => (
@@ -54,13 +54,13 @@ const App = () => {
             </AdminLayout>
           </WithAdminAuth>
         )}
-      />
+      /> */}
       <Route
         exact
         path='/shop/product/:id'
         render={() => (
           <HomeLayout>
-            <ProductPage />
+            <ProductDetails />
           </HomeLayout>
         )}
       />

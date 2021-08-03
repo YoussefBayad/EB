@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLocalStorageItems, openCart } from '../../redux/cart/cartSlice';
-import CartHeader from '../CartHeader';
-import CartMain from '../CartMain';
-import CartFooter from '../CartFooter';
+import Header from '../Header';
+import Footer from '../Footer';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
 import './index.scss';
 import { AnimatePresence, motion } from 'framer-motion';
+import CartProduct from '../CartProduct';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const Cart = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             exit={{ opacity: 0 }}
-            className="overlay"
+            className='overlay'
           />
           <motion.div
             initial={{ opacity: 0, x: 1000 }}
@@ -47,11 +47,16 @@ const Cart = () => {
             exit={{ opacity: 1, x: 1000 }}
             transition={{ duration: 0.5 }}
             ref={ref}
-            className="cart"
-          >
-            <CartHeader openCart={openCart} />
-            <CartMain products={products} />
-            <CartFooter products={products} openCart={openCart} />
+            className='cart'>
+            <Header openCart={openCart} />
+            <div className='cart-main'>
+              <AnimatePresence>
+                {products.map((product) => (
+                  <CartProduct key={product.documentID} product={product} />
+                ))}
+              </AnimatePresence>
+            </div>{' '}
+            <Footer products={products} openCart={openCart} />
           </motion.div>
         </>
       )}

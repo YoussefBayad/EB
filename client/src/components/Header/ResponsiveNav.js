@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { auth } from '../../Firebase/utils';
 import Button from '../forms/Button';
 import deleteIcon from '../../assets/icon/delete.svg';
 
@@ -20,7 +19,7 @@ const ResponsiveNav = ({ open, setOpen }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             exit={{ opacity: 0 }}
-            className="overlay"
+            className='overlay'
           />
           <motion.div
             initial={{ x: -1000, opacity: 0 }}
@@ -28,56 +27,52 @@ const ResponsiveNav = ({ open, setOpen }) => {
             exit={{ x: -1000, opacity: 0 }}
             transition={{ duration: 0.5 }}
             ref={ref}
-            className="responsive-nav"
-          >
+            className='responsive-nav'>
             <img
               src={deleteIcon}
-              alt="close cart"
-              className="close-nav"
+              alt='close cart'
+              className='close-nav'
               onClick={() => setOpen(false)}
             />
 
-            <Link to="/" onClick={() => setOpen(false)}>
+            <Link to='/' onClick={() => setOpen(false)}>
               Home
             </Link>
-            <Link to="/shop" onClick={() => setOpen(false)}>
+            <Link to='/shop' onClick={() => setOpen(false)}>
               Shop
             </Link>
-            <Link to="/shop/headphones" onClick={() => setOpen(false)}>
+            <Link to='/shop/headphones' onClick={() => setOpen(false)}>
               Headphones
             </Link>
-            <Link to="/shop/earbuds" onClick={() => setOpen(false)}>
+            <Link to='/shop/earbuds' onClick={() => setOpen(false)}>
               Earbuds
             </Link>
-            <Link to="/" onClick={() => setOpen(false)}>
+            <Link to='/' onClick={() => setOpen(false)}>
               About Us
             </Link>
             {currentUser ? (
               <Button
                 style={{ color: 'white' }}
                 onClick={() => {
-                  auth.signOut();
+                  // auth.signOut();
                   setOpen(false);
-                }}
-              >
+                }}>
                 Logout
               </Button>
             ) : (
               <>
                 <Link
-                  className="btn"
+                  className='btn'
                   style={{ color: 'white', textAlign: 'center' }}
-                  to="/login"
-                  onClick={() => setOpen(false)}
-                >
+                  to='/login'
+                  onClick={() => setOpen(false)}>
                   Login
                 </Link>
                 <Link
-                  className="btn"
+                  className='btn'
                   style={{ color: 'white', textAlign: 'center' }}
-                  to="/register"
-                  onClick={() => setOpen(false)}
-                >
+                  to='/register'
+                  onClick={() => setOpen(false)}>
                   Register
                 </Link>
               </>

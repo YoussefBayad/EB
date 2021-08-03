@@ -9,8 +9,6 @@ import { useSelector } from 'react-redux';
 
 // auth
 
-import { auth } from '../../Firebase/utils.js';
-
 // click outside
 
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
@@ -29,9 +27,8 @@ const User = () => {
 
   return (
     <div
-      className="user"
-      title={currentUser ? currentUser.displayName : 'Login'}
-    >
+      className='user'
+      title={currentUser ? currentUser.displayName : 'Login'}>
       <img
         src={
           currentUser
@@ -40,50 +37,46 @@ const User = () => {
               : person
             : person
         }
-        alt="user"
-        className="user-image"
+        alt='user'
+        className='user-image'
         onClick={() => setOpen((prev) => !prev)}
       />
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ y: -50, scale:0.5 }}
-            animate={{ y: 0 , scale:1 }}
-            exit={{ y: 20, scale:0.5  }}
+            initial={{ y: -50, scale: 0.5 }}
+            animate={{ y: 0, scale: 1 }}
+            exit={{ y: 20, scale: 0.5 }}
             transition={{ duration: 0.4 }}
             ref={ref}
-            className="log"
-          >
+            className='log'>
             {currentUser ? (
               <>
                 <h3>{currentUser.displayName}</h3>
                 <Button
                   onClick={() => {
-                    auth.signOut();
+                    // auth.signOut();
                     setOpen(false);
-                  }}
-                >
+                  }}>
                   Logout
                 </Button>
               </>
             ) : (
               <>
                 <Link
-                  to="/registration"
-                  className="btn"
+                  to='/registration'
+                  className='btn'
                   onClick={() => {
                     setOpen(false);
-                  }}
-                >
+                  }}>
                   Register
                 </Link>
                 <Link
-                  to="/login"
-                  className="btn"
+                  to='/login'
+                  className='btn'
                   onClick={() => {
                     setOpen(false);
-                  }}
-                >
+                  }}>
                   login
                 </Link>
               </>

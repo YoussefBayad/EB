@@ -16,7 +16,7 @@ import eitherBudSolo from '../../assets/icon/either-bud-solo.webp';
 import hour40 from '../../assets/icon/40hour.webp';
 // style
 import './index.scss';
-import AddToCart from '../../components/AddToCart';
+import AddToCart from '../../features/cart/AddToCart';
 import getProductData from './gatProductData';
 import Spinner from '../../components/Spinner';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -37,13 +37,12 @@ const ProductPage = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
-        className="product-showcase"
-      >
+        className='product-showcase'>
         <Spinner status={status} style={{ margin: '20rem 50%' }} />
         {status === 'succeeded' && (
           <>
-            <div className="product-intro">
-              <div className="product-description">
+            <div className='product-intro'>
+              <div className='product-description'>
                 <h1>{product.name} </h1>
                 <h2>${product.price} usd </h2>
                 <div>
@@ -52,7 +51,7 @@ const ProductPage = () => {
                 </div>
               </div>
               <img
-                className="product-img"
+                className='product-img'
                 src={
                   product.photoURL
                     ? product.photoURL
@@ -61,43 +60,43 @@ const ProductPage = () => {
                 alt={product.name}
               />
             </div>
-            <div className="product-info">
-              <div className="product-info-container">
+            <div className='product-info'>
+              <div className='product-info-container'>
                 {product.wirelessCharging && (
-                  <div className="product-icon">
-                    <img src={wirelessCharging} alt="wireless charging icon" />
+                  <div className='product-icon'>
+                    <img src={wirelessCharging} alt='wireless charging icon' />
                     <h2>Wireless Charging Case</h2>
                   </div>
                 )}
                 {product.totalCharge && (
-                  <div className="product-icon">
-                    <img src={hour40} alt="battery icon" />
+                  <div className='product-icon'>
+                    <img src={hour40} alt='battery icon' />
                     <h2>
                       {product.totalCharge} Hours Total Battery + Rapid Charge
                     </h2>
                   </div>
                 )}
                 {product.waterProof && (
-                  <div className="product-icon">
-                    <img src={waterProof} alt="waterProof icon" />
+                  <div className='product-icon'>
+                    <img src={waterProof} alt='waterProof icon' />
                     <h2>Water and Dust Resistant</h2>
                   </div>
                 )}
                 {product.fullControl && (
-                  <div className="product-icon">
-                    <img src={fullControl} alt=" control icon" />
+                  <div className='product-icon'>
+                    <img src={fullControl} alt=' control icon' />
                     <h2> Full Media Controls on Each Bud</h2>
                   </div>
                 )}
                 {product.eitherBudSolo && (
-                  <div className="product-icon">
-                    <img src={eitherBudSolo} alt="bud icon" />
+                  <div className='product-icon'>
+                    <img src={eitherBudSolo} alt='bud icon' />
                     <h2>Use Either Bud Solo</h2>
                   </div>
                 )}
                 {product.tile && (
-                  <div className="product-icon">
-                    <img src={tile} alt="wireless charging icon" />
+                  <div className='product-icon'>
+                    <img src={tile} alt='wireless charging icon' />
                     <h2>Find your Earbuds with Tile™</h2>
                   </div>
                 )}

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import Search from '../Search';
 import './index.scss';
 import Button from '../forms/Button';
-import { auth } from '../../Firebase/utils';
 
 const VerticalNav = ({ children }) => {
   const currentUser = useSelector((state) => state.currentUser);
@@ -27,7 +26,7 @@ const VerticalNav = ({ children }) => {
           </Link>
           <li
             onClick={() => {
-              auth.signOut();
+              // auth.signOut();
             }}>
             <h2>Logout</h2>
           </li>
