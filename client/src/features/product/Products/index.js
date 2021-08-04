@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Product from '../Product';
-import Spinner from '../Spinner';
+import Spinner from '../../../components/Spinner';
 
 import './index.scss';
 
 const Products = ({ data: products, status }) => {
   return (
-    <div className="products">
+    <div className='products'>
       {status === 'succeeded' &&
         products.map((product) => (
           <Product product={product} key={product.documentID} />

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocalStorageItems, openCart } from '../../redux/cart/cartSlice';
+import { setLocalStorageItems, openCart } from '../../../redux/cart/cartSlice';
 import Header from '../Header';
 import Footer from '../Footer';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';

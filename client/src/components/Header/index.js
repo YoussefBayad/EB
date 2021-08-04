@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import Search from '../Search';
+import CartIcon from '../../features/cart/CartIcon';
+// import Search from '../../Search';
 import User from '../User';
-import CartIcon from '../CartIcon';
 import './index.scss';
 import Burger from './Burger';
 
@@ -24,7 +23,7 @@ const Header = () => {
           </Link>
         </div>
         <div className='right-nav'>
-          <Search />
+          {/* <Search /> */}
           <User />
           <CartIcon />
         </div>

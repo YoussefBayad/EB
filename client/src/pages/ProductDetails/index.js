@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // component
 
-import Count from '../../components/ProductCount';
+import Count from '../../features/product/ProductCount';
 
 // svg
 import wirelessCharging from '../../assets/icon/wirless-charging.webp';

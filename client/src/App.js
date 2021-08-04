@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // layout
-import AdminLayout from './layouts/AdminLayout';
+// import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout.js';
 import HomeLayout from './layouts/HomeLayout.js';
 
@@ -13,11 +13,11 @@ import Registration from './pages/Registration';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
 // import Admin from './pages/Admin';
-import Earbuds from './pages/Earbuds';
-import Wireless from './pages/Earbuds/Wireless';
-import Wired from './pages/Earbuds/Wired';
-import Headphones from './pages/Headphones';
-import Battery from './pages/Battery';
+// import Earbuds from './pages/Earbuds';
+// import Wireless from './pages/Earbuds/Wireless';
+// import Wired from './pages/Earbuds/Wired';
+// import Headphones from './pages/Headphones';
+// import Battery from './pages/Battery';
 import ProductDetails from './pages/ProductDetails';
 import NoMatch from './pages/404/NoMatch.js';
 
@@ -27,11 +27,8 @@ import WithAuth from './hoc/withAuth';
 
 // style
 import './default.scss';
-import useAuthListener from './hooks/useAuthListener';
 
 const App = () => {
-  useAuthListener();
-
   return (
     <Switch>
       <Route
@@ -96,7 +93,7 @@ const App = () => {
           </WithAuth>
         )}
       />
-      <Route
+      {/* <Route
         exact
         path='/shop/headphones'
         render={() => (
@@ -113,8 +110,8 @@ const App = () => {
             <Earbuds />
           </MainLayout>
         )}
-      />
-      <Route
+      /> */}
+      {/* <Route
         exact
         path='/shop/earbuds/wireless'
         render={() => (
@@ -140,7 +137,7 @@ const App = () => {
             <Battery />
           </MainLayout>
         )}
-      />
+      /> */}
       <Route
         exact
         path='/payment'

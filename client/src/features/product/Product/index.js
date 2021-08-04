@@ -1,19 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import AddToCart from '../AddToCart';
 import './index.scss';
+import AddToCart from '../../cart/AddToCart';
 
 const Product = ({ product }) => {
   return (
     <motion.div
-    layout
+      layout
       initial={{ scale: 0, y: 400 }}
       animate={{ scale: 1, y: 0 }}
       transition={{ duration: 1 }}
       whileTap={{ scale: 0.9 }}
-      className="product"
-    >
+      className='product'>
       <Link to={`/shop/product/${product.documentID}`}>
         <img
           src={
@@ -24,7 +23,7 @@ const Product = ({ product }) => {
           alt={product.name.replace(/\s/g, '')}
         />
         <p>{product.name}</p>
-        <p className="price">${product.price}</p>
+        <p className='price'>${product.price}</p>
       </Link>
       <AddToCart product={product} />
     </motion.div>
