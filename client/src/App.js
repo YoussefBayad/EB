@@ -10,20 +10,21 @@ import HomeLayout from './layouts/HomeLayout.js';
 import HomePage from './pages/Home';
 import Login from './pages/Login';
 import Registration from './pages/Registration';
-import Shop from './pages/Shop';
-import Payment from './pages/Payment';
+// import Shop from './pages/Shop';
+// import Payment from './pages/Payment';
 // import Admin from './pages/Admin';
 // import Earbuds from './pages/Earbuds';
 // import Wireless from './pages/Earbuds/Wireless';
 // import Wired from './pages/Earbuds/Wired';
 // import Headphones from './pages/Headphones';
 // import Battery from './pages/Battery';
-import ProductDetails from './pages/ProductDetails';
-import NoMatch from './pages/404/NoMatch.js';
+// import ProductDetails from './pages/ProductDetails';
+import NoMatch from './pages/error/NoMatch.js';
 
 // HOC
-import WithAdminAuth from './hoc/withAdminAuth.js';
+// import WithAdminAuth from './hoc/withAdminAuth.js';
 import WithAuth from './hoc/withAuth';
+import WithNoAuth from './hoc/withNoAuth';
 
 // style
 import './default.scss';
@@ -31,15 +32,11 @@ import './default.scss';
 const App = () => {
   return (
     <Switch>
-      <Route
-        exact
-        path='/'
-        render={() => (
-          <HomeLayout>
-            <HomePage />
-          </HomeLayout>
-        )}
-      />
+      <WithNoAuth exact path='/'>
+        <HomeLayout>
+          <HomePage />
+        </HomeLayout>
+      </WithNoAuth>
 
       {/* <Route
         exact
@@ -52,7 +49,7 @@ const App = () => {
           </WithAdminAuth>
         )}
       /> */}
-      <Route
+      {/* <Route
         exact
         path='/shop/product/:id'
         render={() => (
@@ -60,9 +57,9 @@ const App = () => {
             <ProductDetails />
           </HomeLayout>
         )}
-      />
+      /> */}
 
-      <Route
+      {/* <Route
         exact
         path='/shop'
         render={() => (
@@ -70,7 +67,7 @@ const App = () => {
             <Shop />
           </MainLayout>
         )}
-      />
+      /> */}
       <Route
         exact
         path='/login'
@@ -138,7 +135,7 @@ const App = () => {
           </MainLayout>
         )}
       /> */}
-      <Route
+      {/* <Route
         exact
         path='/payment'
         render={() => (
@@ -146,15 +143,12 @@ const App = () => {
             <Payment />
           </MainLayout>
         )}
-      />
-      <Route
-        path='*'
-        render={() => (
-          <MainLayout>
-            <NoMatch />
-          </MainLayout>
-        )}
-      />
+      /> */}
+      <WithNoAuth path='*'>
+        <MainLayout>
+          <NoMatch />
+        </MainLayout>
+      </WithNoAuth>
     </Switch>
   );
 };

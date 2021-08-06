@@ -1,11 +1,125 @@
-//variables
-$accent: #cc5c43;
+/* variables */
 
-//mixins
+// colors
+
+$white: white;
+$black: #1a1210;
+$grey: #bdbbbd;
+$lightgrey: #f3f3f3;
+$darkgrey: #80757d;
+$accent: #cc5c43;
+$accent2: #fcac46;
+$blue: #2ba7f3;
+$error: #e63d3d;
+$success: #4ac75b;
+$sidebar: #f9f9f9;
+// $swatch_1: #e6e6e7;
+// $swatch_2: #bdbbbd;
+// $swatch_3: #1a1210;
+// $swatch_4: #61a3b5;
+// $swatch_5: #a75327;
+// $swatch_6: #5b5049;
+// $swatch_7: #80757d;
+
+// typography
+
+$title: 4rem;
+$medium: 2.4rem;
+$normal: 1.8rem;
+$small: 1.4rem;
+$smallest: 1rem;
+
+// screen size
+$tablet: 768;
+$laptop: 1024;
+$desktop: 1280;
+
+/* mixin */
 
 @mixin transition {
   transition: all 0.4s ease;
 }
+
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin cover-background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin hover($color: $blue) {
+  @include transition;
+  &:hover {
+    background: darken($color, 10%);
+  }
+}
+.hover {
+  @include transition;
+  &:hover {
+    color: $accent;
+  }
+}
+@mixin text-hover($color: $blue) {
+  @include transition();
+  &:hover {
+    color: $color;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: $tablet * 1px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media only screen and (min-width: $laptop * 1px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop * 1px) {
+    @content;
+  }
+}
+
+@mixin background-transition($initial, $hover, $inversed: false) {
+  background: linear-gradient(
+    45deg,
+    $hover 0%,
+    $hover 35%,
+    $initial 75%,
+    $initial 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  background-position: right bottom;
+  @if $inversed {
+    background-position: left bottom;
+  }
+  transition: background-position 0.25s ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    @if $inversed {
+      background-position: right bottom;
+    }
+  }
+}
+
+@mixin flex($direction: 'row', $align: 'center', $justify: 'space-between') {
+  display: flex;
+  flex-direction: unquote($direction);
+  align-items: unquote($align);
+  justify-content: unquote($justify);
+}
+// default
 
 * {
   margin: 0;
@@ -20,19 +134,36 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden !important;
 }
-
+body {
+  font-size: $normal;
+}
 a {
   text-decoration: none;
-  color: white;
+  color: $white;
 }
 
 ul {
   list-style: none;
 }
 
-//container
+img {
+  width: 100%;
+}
+*:hover {
+  @include transition;
+}
+svg {
+  @include box(3rem);
+  cursor: pointer;
+
+  &:hover {
+    fill: $accent;
+  }
+}
+//layouts
+
 .container {
-  width: 80%;
+  min-width: 35rem;
   max-width: 1300px;
   margin: auto;
 }
@@ -43,56 +174,44 @@ ul {
   @include transition;
   height: 100%;
   width: 100%;
-
   cursor: pointer;
-  background-color: rgb(15, 15, 15);
+  background-color: $black;
   opacity: 0.7;
-  z-index: 3;
-}
-
-// hover
-.hover {
-  @include transition;
-  &:hover {
-    color: $accent;
-  }
+  z-index: 2;
 }
 
 // btns
 .btn {
-  background-color: black;
-  color: white;
+  color: $white;
+  background-color: $black;
   border: none;
   outline: none;
   padding: 1rem;
-  font-size: 1.7rem;
+  margin-top: 1.5rem;
+  font-size: $normal;
   width: 80%;
   cursor: pointer;
   border-radius: 0.5rem;
-  @include transition;
-  &:hover {
-    color: black;
-    background-color: rgb(211, 207, 207);
+  @include background-transition($accent, $accent2);
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
   }
 }
-.primary-btn {
-  background-color: black;
-  color: white;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  width: 80%;
-  font-size: 1.7rem;
-  cursor: pointer;
-  @include transition;
-  span {
-    margin-right: 1.5rem;
-  }
 
-  &:hover {
-    color: black;
-    background-color: rgb(211, 207, 207);
-  }
+// Forms
+input,
+select,
+textarea {
+  margin: 0;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.6rem;
+  font-size: $normal;
+  border-radius: 0.5rem;
+  display: inline-block;
+  border: $grey 2px solid;
+  background-color: $white;
+  outline-color: $accent;
 }
 
 .buy-button {
@@ -125,17 +244,6 @@ ul {
   }
 }
 
-// input
-input,
-select {
-  margin: 1.5rem;
-  padding: 1rem 1.6rem;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-  display: inline-block;
-  border: grey 2px solid;
-}
-
 // scroll down
 
 .scroll-down {
@@ -155,5 +263,65 @@ select {
       transform: translateY(50%);
       box-shadow: none;
     }
+  }
+}
+
+//useful classes
+.label {
+  text-align: left;
+  margin: 1rem 0 0.5rem 0;
+  padding: 0;
+}
+.error {
+  color: #c93131;
+  margin-bottom: 1.5rem;
+}
+.circle img {
+  object-fit: cover;
+  background-color: lightblue;
+  height: 12rem;
+  width: 12rem;
+  border-radius: 50%;
+}
+
+.notifications-count {
+  @include flex(row, center, center);
+  @include box(3rem);
+  border-radius: 50%;
+  background-color: $accent;
+  color: $white !important;
+}
+
+// media quires
+
+@include tablet {
+  .main-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 10rem 1fr 10rem;
+    min-height: 100vh;
+  }
+  .page-shadow {
+    margin-top: 3rem;
+    padding: 1.5rem !important;
+    padding: 0;
+    box-shadow: none;
+    border-radius: none;
+    z-index: 0;
+  }
+  .sidebar {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+    .mobile-nav-inner {
+      @include flex(row, center, space-around);
+    }
+  }
+
+  .top-mobile-nav {
+    display: block;
+  }
+  .notifications-icon {
+    display: none;
   }
 }
