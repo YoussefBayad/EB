@@ -313,7 +313,7 @@ textarea {
     border-radius: 50%;
     @include transition;
     &:hover {
-      transform: translateY(50%);
+      transform: translateY(40%);
       box-shadow: none;
     }
   }

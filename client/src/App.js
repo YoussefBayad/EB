@@ -28,17 +28,19 @@ import WithNoAuth from './hoc/withNoAuth';
 
 // style
 import './default.scss';
+import ScrollToTop from './hoc/ScrollToTop.js';
 
 const App = () => {
   return (
-    <Switch>
-      <Route exact path='/'>
-        <HomeLayout>
-          <HomePage />
-        </HomeLayout>
-      </Route>
+    <ScrollToTop>
+      <Switch>
+        <Route exact path='/'>
+          <HomeLayout>
+            <HomePage />
+          </HomeLayout>
+        </Route>
 
-      {/* <Route
+        {/* <Route
         exact
         path='/admin'
         render={() => (
@@ -49,87 +51,88 @@ const App = () => {
           </WithAdminAuth>
         )}
       /> */}
-      <Route exact path='/shop/product/:id'>
-        <HomeLayout>
-          <ProductDetails />
-        </HomeLayout>
-      </Route>
+        <Route exact path='/shop/product/:id'>
+          <HomeLayout>
+            <ProductDetails />
+          </HomeLayout>
+        </Route>
 
-      <Route exact path='/shop'>
-        <MainLayout>
-          <Shop />
-        </MainLayout>
-      </Route>
-      <WithNoAuth exact path='/login'>
-        <MainLayout>
-          <Login />
-        </MainLayout>
-      </WithNoAuth>
-      <WithNoAuth exact path='/registration'>
-        <MainLayout>
-          <Registration />
-        </MainLayout>
-      </WithNoAuth>
-      <Route
-        exact
-        path='/shop/headphones'
-        render={() => (
+        <Route exact path='/shop'>
           <MainLayout>
-            <Headphones />
+            <Shop />
           </MainLayout>
-        )}
-      />
-      <Route
-        exact
-        path='/shop/earbuds'
-        render={() => (
+        </Route>
+        <WithNoAuth exact path='/login'>
           <MainLayout>
-            <Earbuds />
+            <Login />
           </MainLayout>
-        )}
-      />
-      <Route
-        exact
-        path='/shop/earbuds/wireless'
-        render={() => (
+        </WithNoAuth>
+        <WithNoAuth exact path='/registration'>
           <MainLayout>
-            <Wireless />
+            <Registration />
           </MainLayout>
-        )}
-      />
-      <Route
-        exact
-        path='/shop/earbuds/wired'
-        render={() => (
+        </WithNoAuth>
+        <Route
+          exact
+          path='/shop/headphones'
+          render={() => (
+            <MainLayout>
+              <Headphones />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path='/shop/earbuds'
+          render={() => (
+            <MainLayout>
+              <Earbuds />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path='/shop/earbuds/wireless'
+          render={() => (
+            <MainLayout>
+              <Wireless />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path='/shop/earbuds/wired'
+          render={() => (
+            <MainLayout>
+              <Wired />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path='/shop/batteries'
+          render={() => (
+            <MainLayout>
+              <Battery />
+            </MainLayout>
+          )}
+        />
+        <Route
+          exact
+          path='/payment'
+          render={() => (
+            <MainLayout>
+              <Payment />
+            </MainLayout>
+          )}
+        />
+        <Route path='*'>
           <MainLayout>
-            <Wired />
+            <NoMatch />
           </MainLayout>
-        )}
-      />
-      <Route
-        exact
-        path='/shop/batteries'
-        render={() => (
-          <MainLayout>
-            <Battery />
-          </MainLayout>
-        )}
-      />
-      <Route
-        exact
-        path='/payment'
-        render={() => (
-          <MainLayout>
-            <Payment />
-          </MainLayout>
-        )}
-      />
-      <Route path='*'>
-        <MainLayout>
-          <NoMatch />
-        </MainLayout>
-      </Route>
-    </Switch>
+        </Route>
+      </Switch>
+    </ScrollToTop>
   );
 };
 

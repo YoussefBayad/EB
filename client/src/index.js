@@ -9,7 +9,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router onUpdate={() => window.scrollTo(0, 0)}>
       <Provider store={store}>
         <App />
       </Provider>
