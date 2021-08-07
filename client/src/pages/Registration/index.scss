@@ -1,7 +1,8 @@
+@import '../../default.scss';
 .error {
   color: #b93838;
   margin-left: 2rem;
-  font-size: 1.7rem;
+  font-size: $normal;
   outline-color: #9b3f3f;
   border-color: #9b3f3f;
 }
@@ -10,6 +11,6 @@
   margin: 10rem 0;
 
   & h1 {
-    font-size: 3rem;
+    font-size: $medium;
   }
 }

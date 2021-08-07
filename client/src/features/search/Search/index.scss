@@ -16,9 +16,9 @@
   border-radius: 0.5rem;
   border: none;
   margin-right: 1rem;
-  font-size: 1.5rem;
+  font-size: $small;
   &::placeholder {
-    font-size: 1.5rem;
+    font-size: $small;
   }
 }
 .search-results {
@@ -39,7 +39,7 @@
 .search-product {
   display: flex;
   margin-bottom: 1.5rem;
-  font-size: 1.4rem;
+  font-size: $small;
   .search-img {
     width: 6rem;
     height: 6rem;
@@ -68,7 +68,7 @@
     left: 11.5%;
     margin: 0;
     padding: 2rem;
-    font-size: 2rem;
+    font-size: $normal;
     z-index: 2;
     border-left: 2px solid black;
     border-right: 2px solid black;

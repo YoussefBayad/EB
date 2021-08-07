@@ -25,7 +25,7 @@
       }
     }
     .display-name {
-      font-size: 1.7rem;
+      font-size: $normal;
     }
     padding-bottom: 2rem;
     border-bottom: 2px solid lightgrey;
@@ -48,13 +48,13 @@
         @include transition;
         @extend .hover;
         &:hover {
-          background: lighten(lightgray, 10%);
+          background: lighten($lightgray, 10%);
         }
       }
       li > *,
       a {
-        font-size: 2rem;
-        color: black;
+        font-size: $medium;
+        color: $black;
       }
 
       li > h2 {

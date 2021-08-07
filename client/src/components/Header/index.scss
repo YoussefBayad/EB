@@ -41,12 +41,12 @@ nav {
     }
     .logo {
       color: white;
-      font-size: 3rem;
+      font-size: $medium;
       margin: 0 3rem;
     }
     & a {
       @include hover;
-      font-size: 1.7rem;
+      font-size: $normal;
       margin: 0;
       align-self: center;
       margin-right: 3rem;
@@ -81,7 +81,7 @@ nav {
     flex-direction: column;
     justify-content: space-evenly;
     padding: 3rem;
-    font-size: 3rem;
+    font-size: $medium;
     box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.267);
     text-align: left;
     z-index: 10;
@@ -89,7 +89,7 @@ nav {
       padding-left: 2rem;
       color: black;
       width: 100%;
-      font-size: 2rem !important;
+      font-size: $normal !important;
       font-weight: bold;
     }
 
@@ -128,7 +128,7 @@ nav {
     position: absolute;
     text-align: center;
     padding: 0.1rem;
-    font-size: 1.3rem;
+    font-size: $small;
     font-weight: bold;
     color: white;
     top: -0.5rem;

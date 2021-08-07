@@ -1,3 +1,5 @@
+@import '../../../default.scss';
+
 .count {
   padding: 0.1rem 1rem;
   border: 1px solid black;
@@ -5,18 +7,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.8rem;
+  font-size: $normal;
 
   & button {
     border: none;
     outline: none;
     background-color: transparent;
     cursor: pointer;
-    font-size: 1.8rem;
+    font-size: $normal;
     margin-top: 0.5rem;
   }
   & button:last-child {
-    font-size: 2.5rem;
+    font-size: $medium;
     padding: 0;
     margin: 0;
   }

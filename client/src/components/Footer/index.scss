@@ -1,12 +1,10 @@
 @import '../../default.scss';
 
 footer {
-  background-color: black;
-  color: white;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  font-size: 1.5rem;
+  background-color: $black;
+  color: $white;
+  @include flex(row, flex-start, space-around);
+  font-size: $small;
   font-weight: 400;
   padding: 6rem 1rem 15rem;
   letter-spacing: 0.1rem;
@@ -21,7 +19,7 @@ footer {
       margin-left: 4rem;
       input {
         padding: 0.8rem;
-        font-size: 1.5rem;
+        font-size: $small;
         border-radius: 1rem;
         outline: none;
         border: none;
@@ -62,7 +60,7 @@ footer {
       justify-content: center;
       flex-direction: column;
       & a {
-        font-size: 1.5rem;
+        font-size: $small;
         margin-bottom: 1rem;
         &:hover {
           color: $accent;

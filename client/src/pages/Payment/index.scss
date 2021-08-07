@@ -5,7 +5,7 @@
   margin-bottom: 10rem;
   text-align: center;
   .payment-title {
-    font-size: 4rem;
+    font-size: $title;
     padding: 3rem;
     border-bottom: 1px solid grey;
     margin-bottom: 7rem;
@@ -38,7 +38,7 @@
       border: none;
       outline: none;
       padding: 2rem;
-      font-size: 1.7rem;
+      font-size: $normal;
       width: 30rem;
       cursor: pointer;
       @include transition;
