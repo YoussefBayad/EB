@@ -12,21 +12,16 @@ footer {
   .hear-it-first {
     text-align: center;
     .input {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2rem;
-      margin-left: 4rem;
+      @include flex(row, center, center);
       input {
-        padding: 0.8rem;
-        font-size: $small;
         border-radius: 1rem;
         outline: none;
         border: none;
       }
       & img {
         width: 2.5rem;
-        margin-left: 0.5rem;
+        @extend .ml-1;
+        @extend .mb-1;
         @include transition;
         cursor: pointer;
         &:hover {
@@ -37,10 +32,10 @@ footer {
   }
   .social-media {
     & h2 {
-      margin-bottom: 2rem;
+      @extend .mb-2;
     }
     img {
-      margin-right: 2rem;
+      @extend .mr-2;
       @include transition;
       &:hover {
         transform: scale(1.1);
@@ -49,9 +44,7 @@ footer {
   }
   .footer-links {
     width: 40%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    @include flex(row, flex-start, space-between);
     line-height: 2;
     & div {
       width: 100%;
@@ -75,15 +68,13 @@ footer {
 
 @media screen and (max-width: 900px) {
   footer {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex(column, center, center);
+
     & > div {
       margin-bottom: 5rem;
     }
   }
   .footer-links {
-    flex-direction: column;
-    align-items: center !important;
+    @include flex(column, center, center);
   }
 }

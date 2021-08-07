@@ -46,7 +46,7 @@ const ProductPage = () => {
                 <h1>{product.name} </h1>
                 <h2>${product.price} usd </h2>
                 <div>
-                  <Count id={product.documentID} count={product.count} />
+                  <Count id={product._id} count={product.count} />
                   <AddToCart product={product} />
                 </div>
               </div>

@@ -12,7 +12,7 @@ const VerticalNav = ({ children }) => {
         <div className='user-img'>
           <img src={currentUser.photoURL} alt='user' />
         </div>
-        <span className='display-name'>{currentUser.displayName}</span>
+        <span className='display-name'>{currentUser.username}</span>
       </div>
       <div className='menu'>
         <ul>

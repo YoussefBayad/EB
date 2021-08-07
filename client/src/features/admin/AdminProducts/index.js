@@ -22,7 +22,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
         className='admin-products'>
         <AnimatePresence>
           {searchedProducts.map((product) => {
-            const { name, price, documentID, photoURL } = product;
+            const { name, price, _id, photoURL } = product;
             return (
               <motion.div
                 layout
@@ -31,7 +31,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                 exit={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.4 }}
                 className='admin-product'
-                key={documentID}>
+                key={_id}>
                 <div className='image'>
                   <motion.img
                     className='thumb'

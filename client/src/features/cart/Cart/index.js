@@ -52,7 +52,7 @@ const Cart = () => {
             <div className='cart-main'>
               <AnimatePresence>
                 {products.map((product) => (
-                  <CartProduct key={product.documentID} product={product} />
+                  <CartProduct key={product._id} product={product} />
                 ))}
               </AnimatePresence>
             </div>{' '}

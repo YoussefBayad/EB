@@ -25,9 +25,7 @@ const SearchResults = ({
           className='search-results'
           onClick={handleClick}>
           {searchResults.map((product) => (
-            <Link
-              key={product.documentID}
-              to={`/shop/product/${product.documentID}`}>
+            <Link key={product._id} to={`/shop/product/${product._id}`}>
               <div className='search-product'>
                 <img
                   className='search-img'

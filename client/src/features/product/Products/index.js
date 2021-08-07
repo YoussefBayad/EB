@@ -10,7 +10,7 @@ const Products = ({ data: products, status }) => {
     <div className='products'>
       {status === 'succeeded' &&
         products.map((product) => (
-          <Product product={product} key={product.documentID} />
+          <Product product={product} key={product._id} />
         ))}
       <Spinner status={status} style={{ margin: '20rem auto' }} />
 

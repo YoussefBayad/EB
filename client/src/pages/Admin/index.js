@@ -72,9 +72,9 @@ const Admin = (props) => {
     setShowModal(false);
   };
 
-  const onDeleteProduct = ({ documentID, deleteAble }) => {
+  const onDeleteProduct = ({ _id, deleteAble }) => {
     if (deleteAble === true) {
-      dispatch(deleteProduct(documentID));
+      dispatch(deleteProduct(_id));
       setError(null);
     } else {
       setError('You can delete only the products you added');

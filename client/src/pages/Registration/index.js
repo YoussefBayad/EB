@@ -25,7 +25,7 @@ const Registration = () => {
 
   // formik setup
   const initialValues = {
-    displayName: 'user',
+    username: 'user',
     email: 'user@example.com',
     password: 'qQ123456',
     confirmPassword: 'qQ123456',
@@ -33,7 +33,7 @@ const Registration = () => {
   };
 
   const validationSchema = Yup.object({
-    displayName: Yup.string().required('This field is required'),
+    username: Yup.string().required('This field is required'),
     email: Yup.string()
       .email('invalid email')
       .required('This field is required'),
@@ -70,8 +70,8 @@ const Registration = () => {
         validateOnChange={false}>
         <Form>
           {error && <ErrorText>{error}</ErrorText>}
-          <Field type='name' placeholder='Enter your name' name='displayName' />
-          <ErrorMessage name='displayName' component={ErrorText} />
+          <Field type='name' placeholder='Enter your name' name='username' />
+          <ErrorMessage name='username' component={ErrorText} />
           <Field type='email' placeholder='Enter your email' name='email' />
           <ErrorMessage name='email' component={ErrorText} />
           <Field type='password' placeholder='Password' name='password' />

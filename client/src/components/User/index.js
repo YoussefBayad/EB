@@ -26,9 +26,7 @@ const User = () => {
   const [ref] = useOutsideClickRef(() => setOpen(false));
 
   return (
-    <div
-      className='user'
-      title={currentUser ? currentUser.displayName : 'Login'}>
+    <div className='user' title={currentUser ? currentUser.username : 'Login'}>
       <img
         src={
           currentUser
@@ -52,7 +50,7 @@ const User = () => {
             className='log'>
             {currentUser ? (
               <>
-                <h3>{currentUser.displayName}</h3>
+                <h3>{currentUser.username}</h3>
                 <Button
                   onClick={() => {
                     // auth.signOut();

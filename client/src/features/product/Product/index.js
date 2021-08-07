@@ -13,7 +13,7 @@ const Product = ({ product }) => {
       transition={{ duration: 1 }}
       whileTap={{ scale: 0.9 }}
       className='product'>
-      <Link to={`/shop/product/${product.documentID}`}>
+      <Link to={`/shop/product/${product._id}`}>
         <img
           src={
             product.photoURL

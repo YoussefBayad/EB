@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   data: [
     {
-      documentID: 1,
+      _id: 1,
       photoURL: null,
       name: ' Strong Push™ Ultra True Wireless Earbuds with Print  ',
       price: 129.99,
@@ -18,7 +18,7 @@ const initialState = {
       count: 0,
     },
     {
-      documentID: 2,
+      _id: 2,
 
       photoURL: null,
       name: 'Fuelbase™ Max Wireless Charging Pad',
@@ -27,7 +27,7 @@ const initialState = {
       wireless: '',
     },
     {
-      documentID: 3,
+      _id: 3,
 
       photoURL: null,
       name: 'Fuelbase™ Wireless Charging Pad ',
@@ -38,7 +38,7 @@ const initialState = {
     },
 
     {
-      documentID: 5,
+      _id: 5,
       photoURL: null,
       name: 'Hesh 2 Over-Ear Wireless Headphone ',
       price: 99,
@@ -58,7 +58,7 @@ const initialState = {
   error: null,
 };
 // [{
-//   "documentID":1,
+//   "_id":1,
 //  "photoURL": null,
 //  "name": " Strong Push™ Ultra True Wireless Earbuds with Print  ",
 //  "price": 129.99,
@@ -73,7 +73,7 @@ const initialState = {
 //  "count": 0
 // },
 // {
-//  "documentID":2,
+//  "_id":2,
 
 //  "photoURL": null,
 //  "name": "Fuelbase™ Max Wireless Charging Pad",
@@ -82,7 +82,7 @@ const initialState = {
 //  "wireless": ""
 // },
 // {
-//  "documentID":3,
+//  "_id":3,
 
 //  "photoURL": null,
 //  "name": "Fuelbase™ Wireless Charging Pad ",
@@ -93,7 +93,7 @@ const initialState = {
 // },
 
 // {
-//  "documentID":5,
+//  "_id":5,
 //  "photoURL": null,
 //  "name": "Hesh 2 Over-Ear Wireless Headphone ",
 //  "price": 99,
@@ -123,7 +123,7 @@ export const editProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (documentID) => {}
+  async (_id) => {}
 );
 
 const productsSlice = createSlice({

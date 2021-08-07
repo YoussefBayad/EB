@@ -27,11 +27,8 @@ const CartProduct = ({ product }) => {
         <p className='cart-product-name'>{product.name}</p>
         <p className='cart-product-price'>${product.price} usd</p>
         <div className='quantity'>
-          <Count id={product.documentID} count={product.count} />
-          <RemoveProduct
-            documentID={product.documentID}
-            removeFromCart={removeFromCart}
-          />
+          <Count id={product._id} count={product.count} />
+          <RemoveProduct _id={product._id} removeFromCart={removeFromCart} />
         </div>
       </div>
     </motion.div>

@@ -6,7 +6,7 @@ import Button from '../../../components/forms/Button';
 const AddToCart = ({ product }) => {
   const dispatch = useDispatch();
   const isProductInCart = useSelector((state) =>
-    state.cart.data.find((item) => item.documentID === product.documentID)
+    state.cart.data.find((item) => item._id === product._id)
   );
   return (
     <>

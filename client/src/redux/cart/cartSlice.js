@@ -21,18 +21,18 @@ const cartSlice = createSlice({
     },
     removeFromCart(state, action) {
       state.data = state.data.filter(
-        (product) => product.documentID !== action.payload
+        (product) => product._id !== action.payload
       );
     },
     increment(state, action) {
       const clickedProduct = state.data.find(
-        (product) => product.documentID === action.payload
+        (product) => product._id === action.payload
       );
       clickedProduct.count++;
     },
     decrement(state, action) {
       const clickedProduct = state.data.find(
-        (product) => product.documentID === action.payload
+        (product) => product._id === action.payload
       );
       // preventing count from negative values
       if (clickedProduct.count === 1) return;
@@ -41,11 +41,9 @@ const cartSlice = createSlice({
       }
     },
     paymentCompleted(state, action) {
-      state.data = []
-      localStorage.setItem('cart',[])
-
-
-    }
+      state.data = [];
+      localStorage.setItem('cart', []);
+    },
   },
 });
 
@@ -56,6 +54,6 @@ export const {
   decrement,
   removeFromCart,
   setLocalStorageItems,
-  paymentCompleted
+  paymentCompleted,
 } = cartSlice.actions;
 export default cartSlice.reducer;
