@@ -1,14 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// grab token and form header
-const token = JSON.parse(localStorage.getItem('user'))?.token;
-const header = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
-
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
   loading: false,
@@ -103,6 +95,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { authChange } = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

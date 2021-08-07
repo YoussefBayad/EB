@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import header from '../../utils/header';
 
 const initialState = {
   data: [
@@ -53,9 +55,8 @@ const initialState = {
       count: 0,
     },
   ],
-
-  status: 'succeeded',
-  error: null,
+  loading: false,
+  message: null,
 };
 // [{
 //   "_id":1,
@@ -109,21 +110,49 @@ const initialState = {
 // },],
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async () => {}
+  async ({ rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/products');
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
 );
 
 export const addProduct = createAsyncThunk(
   'products/addProduct',
-  async (product) => {}
+  async (product, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/products', product, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
 );
 export const editProduct = createAsyncThunk(
   'products/editProduct',
-  async (values) => {}
+  async (newData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put('/products', newData, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
 );
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (_id) => {}
+  async (productId, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete('/products', productId, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
 );
 
 const productsSlice = createSlice({
@@ -142,68 +171,62 @@ const productsSlice = createSlice({
   },
   extraReducers: {
     [fetchProducts.pending]: (state, action) => {
-      state.status = 'loading';
-      state.error = null;
+      state.loading = true;
+      state.message = null;
     },
     [fetchProducts.fulfilled]: (state, action) => {
-      if (action.payload.length === 0) {
-        state.status = 'failed';
-        state.error = 'Failed Reload';
-      }
-
-      if (state.status === 'loading') {
-        state.data = action.payload;
-        state.status = 'succeeded';
-      }
+      if (!action.payload) return;
+      state.loading = false;
+      state.data = action.payload;
+      state.message = null;
     },
     [fetchProducts.rejected]: (state, action) => {
-      if (state.status === 'loading') {
-        state.status = 'failed';
-        state.error = 'Failed Reload';
-      }
+      state.loading = false;
+      state.message = action.payload;
     },
     [addProduct.pending]: (state, action) => {
-      state.status = 'loading';
-      // state.error = null;
+      state.loading = false;
+      state.message = 'we are processing your request';
     },
     [addProduct.fulfilled]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'succeeded';
+      if (!action.payload) return;
+      state.loading = false;
+      state.message = 'your product has been add successfully';
+      state.data.push(action.payload);
+      state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
     },
-
     [addProduct.rejected]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'failed';
-      //   state.error = 'failed to add product try again';
-      // }
+      state.loading = false;
+      state.message = action.payload;
     },
     [deleteProduct.pending]: (state, action) => {
-      state.status = 'loading';
+      state.loading = false;
+      state.message = 'we are processing your request';
     },
     [deleteProduct.fulfilled]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'succeeded';
-      // }
+      if (!action.payload) return;
+      state.message = 'product has been deleted successfully';
+      state.data = state.data.filter(
+        (product) => product._id !== action.payload.productId
+      );
     },
     [deleteProduct.rejected]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'failed';
-      //   state.error = 'failed to delete product try again';
-      // }
+      state.message = action.payload.message;
     },
     [editProduct.pending]: (state, action) => {
-      state.status = 'loading';
+      state.loading = false;
+      state.message = 'we are processing your request';
     },
     [editProduct.fulfilled]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'succeeded';
-      // }
+      state.loading = false;
+      state.data = state.data.map((product) => {
+        if (product._id === action.payload.product._id)
+          product.content = action.payload.product.content;
+      });
+      state.message = 'product has been updated';
     },
     [editProduct.rejected]: (state, action) => {
-      // if (state.status === 'loading') {
-      //   state.status = 'failed';
-      //   state.error = 'failed to delete product try again';
-      // }
+      state.message = action.payload.message;
     },
   },
 });
