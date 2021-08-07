@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 import express from 'express';
 const app = express();
-import mongoose from 'mongoose';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import multer from 'multer';
@@ -12,8 +11,7 @@ import connectDb from './config/db.js';
 import errorHandler from './middleware/error.js';
 
 // routes
-import userRoute from './routes/users.js';
-import postRoute from './routes/posts.js';
+import productsRoute from './routes/products.js';
 import authRoute from './routes/auth.js';
 import { protect } from './middleware/auth.js';
 
@@ -26,9 +24,8 @@ app.use(helmet());
 app.use(morgan('common'));
 
 // routes
-app.use('/api/users', protect, userRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/posts', protect, postRoute);
+app.use('/api/products', protect, productsRoute);
 
 // Error Handler Middleware
 app.use(errorHandler);
