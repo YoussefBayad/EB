@@ -45,7 +45,7 @@ nav {
       margin: 0 3rem;
     }
     & a {
-      @extend .hover;
+      @include hover;
       font-size: 1.7rem;
       margin: 0;
       align-self: center;

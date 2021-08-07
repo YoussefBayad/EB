@@ -1,7 +1,58 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  data: [],
+  data: [
+    {
+      documentID: 1,
+      photoURL: null,
+      name: ' Strong Push™ Ultra True Wireless Earbuds with Print  ',
+      price: 129.99,
+      category: 'Earbuds',
+      wireless: 'true',
+      wirelessCharging: 'true',
+      totalCharge: '24',
+      waterProof: 'true',
+      fullControl: 'true',
+      eitherBudSolo: 'true',
+      tile: 'true',
+      count: 0,
+    },
+    {
+      documentID: 2,
+
+      photoURL: null,
+      name: 'Fuelbase™ Max Wireless Charging Pad',
+      price: 59.99,
+      category: 'Battery',
+      wireless: '',
+    },
+    {
+      documentID: 3,
+
+      photoURL: null,
+      name: 'Fuelbase™ Wireless Charging Pad ',
+      price: 39.99,
+      category: 'Battery',
+      wireless: '',
+      count: 0,
+    },
+
+    {
+      documentID: 5,
+      photoURL: null,
+      name: 'Hesh 2 Over-Ear Wireless Headphone ',
+      price: 99,
+      category: 'Headphone',
+      wireless: 'true',
+      wirelessCharging: 'false',
+      totalCharge: '30',
+      waterProof: 'true',
+      fullControl: 'true',
+      eitherBudSolo: 'true',
+      tile: 'true',
+      count: 0,
+    },
+  ],
 
   status: 'succeeded',
   error: null,

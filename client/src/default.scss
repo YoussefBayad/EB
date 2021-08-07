@@ -51,10 +51,10 @@ $desktop: 1280;
   background-position: center;
 }
 
-@mixin hover($color: $blue) {
+@mixin hover($color: $white, $percent: 10) {
   @include transition;
   &:hover {
-    background: darken($color, 10%);
+    background: lighten($color, $percent);
   }
 }
 .hover {
@@ -119,6 +119,60 @@ $desktop: 1280;
   align-items: unquote($align);
   justify-content: unquote($justify);
 }
+
+// function
+
+$spaceamounts: (1, 2, 3, 4, 5, 6);
+
+@each $space in $spaceamounts {
+  //margins
+
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  .mt-#{$space} {
+    margin-top: #{$space}rem;
+  }
+  .mb-#{$space} {
+    margin-bottom: #{$space}rem;
+  }
+  .ml-#{$space} {
+    margin-left: #{$space}rem;
+  }
+  .mr-#{$space} {
+    margin-right: #{$space}rem;
+  }
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+  .mx-#{$space} {
+    margin: 0 #{$space}rem;
+  }
+
+  // paddings
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+  .px-#{$space} {
+    padding: 0 #{$space}rem;
+  }
+  .pl-#{$space} {
+    padding-left: #{$space}rem;
+  }
+  .pr-#{$space} {
+    padding-right: #{$space}rem;
+  }
+  .pt-#{$space} {
+    padding-top: #{$space}rem;
+  }
+  .pb-#{$space} {
+    padding-bottom: #{$space}rem;
+  }
+}
 // default
 
 * {
@@ -180,25 +234,6 @@ svg {
   z-index: 2;
 }
 
-// btns
-.btn {
-  color: $white;
-  background-color: $black;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  margin-top: 1.5rem;
-  font-size: $normal;
-  width: 80%;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  @include background-transition($accent, $accent2);
-  &:disabled,
-  &:disabled:hover {
-    opacity: 0.5;
-  }
-}
-
 // Forms
 input,
 select,
@@ -212,6 +247,24 @@ textarea {
   border: $grey 2px solid;
   background-color: $white;
   outline-color: $accent;
+}
+// btns
+.btn {
+  color: $white;
+  background-color: $black;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: $normal;
+  width: 80%;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  @include background-transition($black, $darkgrey);
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.5;
+  }
 }
 
 .buy-button {

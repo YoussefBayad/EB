@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import Links from '../../components/Links';
-import Products from '../../components/Products';
+import Products from '../../features/product/Products';
 
 // redux
 import { useSelector } from 'react-redux';
