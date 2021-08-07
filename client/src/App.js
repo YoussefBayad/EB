@@ -52,9 +52,9 @@ const App = () => {
         )}
       /> */}
         <Route exact path='/shop/product/:id'>
-          <HomeLayout>
+          <MainLayout>
             <ProductDetails />
-          </HomeLayout>
+          </MainLayout>
         </Route>
 
         <Route exact path='/shop'>

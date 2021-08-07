@@ -4,13 +4,18 @@ import { setLocalStorageItems, openCart } from '../../../redux/cart/cartSlice';
 import Header from '../Header';
 import Footer from '../Footer';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
-import './index.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 import CartProduct from '../CartProduct';
+import './index.scss';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { isCartOpen, data: products } = useSelector((state) => state.cart);
+  const {
+    isCartOpen,
+    loading,
+    error,
+    data: products,
+  } = useSelector((state) => state.cart);
 
   const handleOutsideClick = (e) => {
     if (e.target.className === 'cart-remove-product') return;

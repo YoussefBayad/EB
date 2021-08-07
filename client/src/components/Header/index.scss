@@ -1,9 +1,9 @@
 @import '../../default';
 
 nav {
-  background-color: black;
+  background-color: $black;
   padding: 1rem;
-  border-bottom: 1px solid #636262;
+  border-bottom: 1px solid $darkgrey;
   position: sticky !important;
   top: 0;
   width: 100%;
@@ -42,7 +42,6 @@ nav {
     .logo {
       color: white;
       font-size: $medium;
-      margin: 0 3rem;
     }
     & a {
       @extend .hover;
@@ -122,6 +121,7 @@ nav {
   }
 
   .cart-icon img {
+    @include box(2.5rem);
     margin-right: 0;
   }
   .cart-items-number {
@@ -154,13 +154,13 @@ nav {
     }
   }
 
-  .cart-icon,
-  .search {
-    & img {
-      height: 4rem;
-      width: 4rem;
-    }
-  }
+  // .cart-icon,
+  // .search {
+  //   & img {
+  //     height: 4rem;
+  //     width: 4rem;
+  //   }
+  // }
   .right-nav {
     .user {
       display: none;

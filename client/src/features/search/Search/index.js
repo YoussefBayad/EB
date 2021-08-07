@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import SearchInput from '../SearchInput/index.js';
-import SearchResults from '../SearchResults/index.js';
-import search from '../../assets/icon/search.svg';
+import SearchInput from '../SearchInput';
+import SearchResults from '../SearchResults';
+import searchIcon from '../../../assets/icon/search.svg';
 import './index.scss';
 
 const Search = ({ ...props }) => {
@@ -26,16 +26,16 @@ const Search = ({ ...props }) => {
     }
   };
   const handleClick = () => {
-    setShowsearch(!showsearch);
+    setShowSearch(!showSearch);
   };
 
   return (
     <div className='search' {...props}>
       <div className='search-flex'>
-        <searchInput
+        <SearchInput
           handleChange={handleChange}
           handleClick={handleClick}
-          showsearch={showsearch}
+          showSearch={showSearch}
         />
         <SearchResults
           searchResults={searchResults}
@@ -45,7 +45,7 @@ const Search = ({ ...props }) => {
       </div>
       <img
         className='search-icon'
-        src={search}
+        src={searchIcon}
         alt='search icon'
         onClick={handleClick}
       />
