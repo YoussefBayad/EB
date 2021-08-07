@@ -274,7 +274,7 @@ textarea {
   padding: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   background-color: $accent;
   color: $white;
   cursor: pointer;
@@ -335,14 +335,6 @@ textarea {
   height: 12rem;
   width: 12rem;
   border-radius: 50%;
-}
-
-.notifications-count {
-  @include flex(row, center, center);
-  @include box(3rem);
-  border-radius: 50%;
-  background-color: $accent;
-  color: $white !important;
 }
 
 // media quires

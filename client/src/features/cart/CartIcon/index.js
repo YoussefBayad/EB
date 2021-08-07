@@ -14,7 +14,7 @@ const CartIcon = () => {
         dispatch(openCart());
       }}>
       <img src={cartIcon} alt='cart icon' />
-      <p className='cart-items-number'>{products.length}</p>
+      <p className='notifications-count'>{products.length}</p>
     </div>
   );
 };
