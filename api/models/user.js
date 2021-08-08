@@ -32,37 +32,31 @@ const UserSchema = new Schema(
       type: String,
       default: '',
     },
-    coverPicture: {
-      type: String,
-      default: '',
-    },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    followings: {
-      type: Array,
-      default: [],
-    },
+
     isAdmin: {
       type: Boolean,
       default: false,
     },
-    desc: {
-      type: String,
-      max: 50,
+    merchant: {
+      type: Schema.Types.ObjectId,
+      ref: 'Merchant',
+      default: null,
     },
-    city: {
+    provider: {
       type: String,
-      max: 50,
+      required: true,
+      default: 'email',
     },
-    from: {
+    googleId: {
       type: String,
-      max: 50,
+      unique: true,
     },
-    relationship: {
-      type: Number,
-      enum: [1, 2, 3],
+    facebookId: {
+      type: String,
+      unique: true,
+    },
+    avatar: {
+      type: String,
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
