@@ -7,7 +7,7 @@ import Button from '../forms/Button';
 import deleteIcon from '../../assets/icon/delete.svg';
 
 const ResponsiveNav = ({ open, setOpen }) => {
-  const currentUser = useSelector((state) => state.currentUser);
+  const user = useSelector((state) => state.auth.user);
   const [ref] = useOutsideClickRef(() => setOpen(false));
 
   return (
@@ -50,7 +50,7 @@ const ResponsiveNav = ({ open, setOpen }) => {
             <Link to='/' onClick={() => setOpen(false)}>
               About Us
             </Link>
-            {currentUser ? (
+            {user ? (
               <Button
                 style={{ color: 'white' }}
                 onClick={() => {

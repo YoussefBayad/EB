@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { removeFromCart } from '../../../redux/cart/cartSlice';
 import Count from '../../product/ProductCount';
-import RemoveProduct from '../../../components/RemoveProduct';
+import RemoveProduct from '../RemoveProduct';
 import './index.scss';
 
 const CartProduct = ({ product }) => {

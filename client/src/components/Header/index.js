@@ -5,30 +5,34 @@ import Search from '../../features/search/Search';
 import User from '../User';
 import './index.scss';
 import Burger from './Burger';
+import SubHeader from './Subheader';
 
 const Header = () => {
   return (
-    <nav>
-      <div className='nav-container'>
-        <div className='left-nav'>
-          <Burger />
-          <Link to='/' className='logo'>
-            EB
-          </Link>
-          <Link className='shop-link' to='/shop'>
-            Shop
-          </Link>
-          <Link className='about-link' to='/about'>
-            About
-          </Link>
+    <>
+      <nav>
+        <div className='nav-container'>
+          <div className='left-nav'>
+            <Burger />
+            <Link to='/' className='logo'>
+              EB
+            </Link>
+            <Link className='shop-link' to='/shop'>
+              Shop
+            </Link>
+            <Link className='about-link' to='/about'>
+              About
+            </Link>
+          </div>
+          <div className='right-nav'>
+            <Search />
+            <User />
+            <CartIcon />
+          </div>
         </div>
-        <div className='right-nav'>
-          <Search />
-          <User />
-          <CartIcon />
-        </div>
-      </div>
-    </nav>
+      </nav>
+      <SubHeader />
+    </>
   );
 };
 
