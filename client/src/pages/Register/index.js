@@ -15,12 +15,11 @@ const Registration = () => {
 
   // formik setup
   const initialValues = {
-    username: 'user',
-    email: 'user@example.com',
+    username: 'admin',
+    email: 'admin@eb.com',
     password: '123456',
     confirmPassword: '123456',
-    profilePicture:
-      'https://miro.medium.com/max/3150/1*xxVEfOOAmIKHWOUloRKLhw.jpeg',
+    profilePicture: '../../assets/avatar.jfif',
   };
 
   const validationSchema = Yup.object({
@@ -31,9 +30,6 @@ const Registration = () => {
     password: Yup.string().required('This field is required'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Password must match')
-      .required('This field is required'),
-    profilePicture: Yup.string()
-      .url('invalid URL')
       .required('This field is required'),
   });
 
@@ -65,7 +61,6 @@ const Registration = () => {
             name='confirmPassword'
           />
           <ErrorMessage name='confirmPassword' component={ErrorText} />
-          <Field type='url' placeholder='Photo URL' name='profilePicture' />
           <ErrorMessage name='profilePicture' component={ErrorText} />
           <Button type='submit' className='btn' disabled={loading}>
             Register

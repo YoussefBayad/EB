@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
 
-//link
 import { Link } from 'react-router-dom';
-
-//redux
-
 import { useDispatch, useSelector } from 'react-redux';
-
-// auth
-
-// click outside
-
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
-// img
-
 import person from '../../assets/icon/person.svg';
-// style
-import './index.scss';
+import avatar from '../../assets/avatar.jpeg';
 import Button from '../forms/Button/index.js';
 import { AnimatePresence, motion } from 'framer-motion';
 import { logout } from '../../redux/auth/authSlice';
+// style
+import './index.scss';
 
 const User = () => {
   const dispatch = useDispatch();
@@ -30,7 +20,7 @@ const User = () => {
   return (
     <div className='user' title={user ? user.username : 'Login'}>
       <img
-        src={user ? user.photoURL : person}
+        src={user ? avatar : person}
         alt='user'
         className='user-image'
         onClick={() => setOpen((prev) => !prev)}
