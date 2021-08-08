@@ -5,14 +5,13 @@ import ErrorText from '../../components/ErrorMessage';
 import Button from '../../components/forms/Button/index.js';
 import Spinner from '../../components/Spinner/index.js';
 import { register } from '../../redux/auth/authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // style
 import './index.scss';
 
 const Registration = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const { loading, message } = useSelector((state) => state.auth);
 
   // formik setup
   const initialValues = {
@@ -39,22 +38,13 @@ const Registration = () => {
   });
 
   const onSubmit = async (values, onSubmitProps) => {
-    try {
-      // register
-      setLoading(true);
-      dispatch(register(values));
-      onSubmitProps.resetForm();
-    } catch (err) {
-      setLoading(false);
-      setError(err.message);
-    }
+    // register
+    dispatch(register(values));
+    onSubmitProps.resetForm();
   };
-
   return (
     <div className='contact-information'>
       <h1>Register</h1>
-
-      {!error && <Spinner loading={loading} />}
 
       <Formik
         initialValues={initialValues}
@@ -62,7 +52,7 @@ const Registration = () => {
         validationSchema={validationSchema}
         validateOnChange={false}>
         <Form>
-          {error && <ErrorText>{error}</ErrorText>}
+          {message && <ErrorText>{message}</ErrorText>}
           <Field type='name' placeholder='Enter your name' name='username' />
           <ErrorMessage name='username' component={ErrorText} />
           <Field type='email' placeholder='Enter your email' name='email' />
@@ -77,7 +67,7 @@ const Registration = () => {
           <ErrorMessage name='confirmPassword' component={ErrorText} />
           <Field type='url' placeholder='Photo URL' name='profilePicture' />
           <ErrorMessage name='profilePicture' component={ErrorText} />
-          <Button type='submit' className='btn'>
+          <Button type='submit' className='btn' disabled={loading}>
             Register
           </Button>
         </Form>

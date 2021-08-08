@@ -13,4 +13,7 @@
   & h1 {
     font-size: $medium;
   }
+  & form .btn {
+    margin-left: 0 !important;
+  }
 }
