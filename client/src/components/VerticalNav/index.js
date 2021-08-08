@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
+import { logout } from '../../redux/auth/authSlice';
 
 const VerticalNav = ({ children }) => {
-  const currentUser = useSelector((state) => state.currentUser);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <div className='vertical-nav'>
       <div className='user-profile'>
         <div className='user-img'>
-          <img src={currentUser.photoURL} alt='user' />
+          <img src={user.profilePicture} alt='user' />
         </div>
-        <span className='display-name'>{currentUser.username}</span>
+        <span className='display-name'>{user.username}</span>
       </div>
       <div className='menu'>
         <ul>
@@ -24,7 +26,7 @@ const VerticalNav = ({ children }) => {
           </Link>
           <li
             onClick={() => {
-              // auth.signOut();
+              dispatch(logout());
             }}>
             <h2>Logout</h2>
           </li>
