@@ -1,19 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
-import AdminSearch from '../AdminSearch';
-import CreatModal from '../CreateModel';
-import Button from '../forms/Button';
-
+import React from 'react';
+// import AdminSearch from '../AdminSearch';
+import Button from '../../../components/forms/Button';
+import EditProduct from '../EditProduct';
 const AdminProducts = ({ products, onDeleteProduct, setError }) => {
-  const [searchedProducts, setSearchedProducts] = useState(products);
+  // const [searchedProducts, setSearchedProducts] = useState(products);
 
   return (
     <>
-      <AdminSearch
+      {/* <AdminSearch
         initialState={products}
         products={searchedProducts}
         setProducts={setSearchedProducts}
-      />
+      /> */}
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -21,7 +20,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
         transition={{ duration: 0.4 }}
         className='admin-products'>
         <AnimatePresence>
-          {searchedProducts.map((product) => {
+          {products.map((product) => {
             const { name, price, _id, photoURL } = product;
             return (
               <motion.div
@@ -45,7 +44,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                     }
                     alt={name}
                   />
-                  <CreatModal
+                  <EditProduct
                     initialValues={product}
                     task={'Edit Product'}
                     setError={setError}
@@ -53,7 +52,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                 </div>
                 <h2>{name}</h2>
                 <h2>${price}</h2>
-                <Button onClick={() => onDeleteProduct(product)}>Delete</Button>
+                <Button onClick={() => onDeleteProduct(_id)}>Delete</Button>
               </motion.div>
             );
           })}
