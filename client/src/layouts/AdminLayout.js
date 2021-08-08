@@ -1,16 +1,16 @@
 import React from 'react';
-import VerticalNav from '../components/VerticalNav';
+import AdminNav from '../features/admin/AdminNav';
 import './AdminLayout.scss';
 import AdminToolBar from '../components/AdminToolBar';
 const AdminLayout = ({ children }) => {
   return (
-    <div className="adminLayout">
+    <div className='adminLayout'>
       <AdminToolBar />
-      <div className="control-panel">
-        <div className="sidebar">
-          <VerticalNav />
+      <div className='control-panel'>
+        <div className='sidebar'>
+          <AdminNav />
         </div>
-        <div className="content">{children}</div>
+        <div className='content'>{children}</div>
       </div>
     </div>
   );

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './index.scss';
-import { logout } from '../../redux/auth/authSlice';
+import { logout } from '../../../redux/auth/authSlice';
 
-const VerticalNav = ({ children }) => {
+const AdminNav = ({ children }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
@@ -36,4 +36,4 @@ const VerticalNav = ({ children }) => {
   );
 };
 
-export default VerticalNav;
+export default AdminNav;
