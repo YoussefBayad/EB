@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ErrorText from '../../components/ErrorMessage';
 import Button from '../../components/forms/Button/index.js';
 import Spinner from '../../components/Spinner/index.js';
-
+import { register } from '../../redux/auth/authSlice';
+import { useDispatch } from 'react-redux';
 // style
 import './index.scss';
 
 const Registration = () => {
-  const history = useHistory();
-  const currentUser = useSelector((state) => state.currentUser);
-
-  const [status, setStatus] = useState('idle');
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    if (currentUser) {
-      history.push('/');
-    }
-  }, [currentUser, history]);
 
   // formik setup
   const initialValues = {
     username: 'user',
     email: 'user@example.com',
-    password: 'qQ123456',
-    confirmPassword: 'qQ123456',
-    photoURL: 'https://miro.medium.com/max/3150/1*xxVEfOOAmIKHWOUloRKLhw.jpeg',
+    password: '123456',
+    confirmPassword: '123456',
+    profilePicture:
+      'https://miro.medium.com/max/3150/1*xxVEfOOAmIKHWOUloRKLhw.jpeg',
   };
 
   const validationSchema = Yup.object({
@@ -41,7 +33,7 @@ const Registration = () => {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('password'), ''], 'Password must match')
       .required('This field is required'),
-    photoURL: Yup.string()
+    profilePicture: Yup.string()
       .url('invalid URL')
       .required('This field is required'),
   });
@@ -49,10 +41,11 @@ const Registration = () => {
   const onSubmit = async (values, onSubmitProps) => {
     try {
       // register
-      setStatus('loading');
-
+      setLoading(true);
+      dispatch(register(values));
       onSubmitProps.resetForm();
     } catch (err) {
+      setLoading(false);
       setError(err.message);
     }
   };
@@ -61,7 +54,7 @@ const Registration = () => {
     <div className='contact-information'>
       <h1>Register</h1>
 
-      {!error && <Spinner status={status} />}
+      {!error && <Spinner loading={loading} />}
 
       <Formik
         initialValues={initialValues}
@@ -82,8 +75,8 @@ const Registration = () => {
             name='confirmPassword'
           />
           <ErrorMessage name='confirmPassword' component={ErrorText} />
-          <Field type='url' placeholder='Photo URL' name='photoURL' />
-          <ErrorMessage name='photoURL' component={ErrorText} />
+          <Field type='url' placeholder='Photo URL' name='profilePicture' />
+          <ErrorMessage name='profilePicture' component={ErrorText} />
           <Button type='submit' className='btn'>
             Register
           </Button>
