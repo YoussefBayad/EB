@@ -7,6 +7,7 @@ import chevronRight from '../../assets/icon/chevron-right.svg';
 import facebook from '../../assets/icon/facebook.svg';
 import twitter from '../../assets/icon/twitter.svg';
 import linkedin from '../../assets/icon/linkedin.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -20,20 +21,20 @@ const Footer = () => {
       </div>
       <div className='footer-links'>
         <div>
-          <a href='#'>Help Center</a>
-          <a href='#'>Contact Us</a>
-          <a href='#'>Account</a>
-          <a href='#'>Product Help</a>
+          <Link to='/'>Help Center</Link>
+          <Link to='/'>Contact Us</Link>
+          <Link to='/'>Account</Link>
+          <Link to='/'>Product Help</Link>
         </div>
         <div>
-          <a href='#'>Compare</a>
-          <a href='#'>Bulk Orders</a>
-          <a href='#'>Protect Our Winters</a>
+          <Link to='/'>Compare</Link>
+          <Link to='/'>Bulk Orders</Link>
+          <Link to='/'>Protect Our Winters</Link>
         </div>
         <div>
-          <a href='#'>Athletes</a>
-          <a href='#'>Warranty</a>
-          <a href='#'>Careers</a>
+          <Link to='/'>Athletes</Link>
+          <Link to='/'>Warranty</Link>
+          <Link to='/'>Careers</Link>
         </div>
       </div>
       <div className='social-media'>
