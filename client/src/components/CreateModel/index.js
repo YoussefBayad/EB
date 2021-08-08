@@ -6,19 +6,13 @@ import { editProduct } from '../../redux/Products/productsSlice';
 
 const CreatModal = ({ initialValues, task, setError }) => {
   const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(!showModal);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
     dispatch(editProduct({ ...values }));
-    toggleModal();
+    setShowModal(!showModal);
   };
-  const onclick = (deleteAble) => {
-    if (deleteAble === true) {
-      toggleModal();
-    } else {
-      setError('You can edit only the products you added');
-      setTimeout(() => setError(null), 2000);
-    }
+  const onclick = () => {
+    setShowModal(!showModal);
   };
   return (
     <>
@@ -29,7 +23,7 @@ const CreatModal = ({ initialValues, task, setError }) => {
         onClick={() => onclick(initialValues.deleteAble)}
       />
       <Modal
-        toggleModal={toggleModal}
+        setShowModal={setShowModal}
         showModal={showModal}
         initialValues={initialValues}
         onSubmit={onSubmit}
