@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal';
 import Button from '../../components/forms/Button';
-import AdminProducts from '../../components/AdminProducts';
+import AdminProducts from '../../features/admin/AdminProducts';
 import Spinner from '../../components/Spinner';
-import { addProduct, deleteProduct } from '../../redux/Products/productsSlice';
+import { addProduct, deleteProduct } from '../../redux/products/productsSlice';
 import './index.scss';
 
 const Admin = (props) => {
   const dispatch = useDispatch();
-  const { data: products, status } = useSelector((state) => state.products);
-
+  const {
+    data: products,
+    loading,
+    message,
+  } = useSelector((state) => state.products);
   const [showModal, setShowModal] = useState(false);
-  const [error, setError] = useState(null);
-
-  const toggleModal = () => setShowModal(!showModal);
-
   const configModal = {
     showModal,
-    toggleModal,
+    setShowModal,
   };
 
+  // initial state
   const initialValues = {
     category: 'headphones',
     photoURL:
@@ -36,50 +36,15 @@ const Admin = (props) => {
     totalCharge: 6,
   };
 
+  // add product
   const onSubmit = (values) => {
-    const {
-      category,
-      photoURL,
-      price,
-      name,
-      wireless,
-      wirelessCharging,
-      waterProof,
-      fullControl,
-      eitherBudSolo,
-      tile,
-      totalCharge,
-    } = values;
-
-    dispatch(
-      addProduct({
-        category,
-        photoURL,
-        name,
-        price,
-        count: 0,
-        wireless,
-        wirelessCharging,
-        waterProof,
-        fullControl,
-        eitherBudSolo,
-        tile,
-        totalCharge,
-        // createdAt: timestamp(),
-        deleteAble: true,
-      })
-    );
+    dispatch(addProduct(values));
     setShowModal(false);
   };
 
+  // delete product
   const onDeleteProduct = ({ _id, deleteAble }) => {
-    if (deleteAble === true) {
-      dispatch(deleteProduct(_id));
-      setError(null);
-    } else {
-      setError('You can delete only the products you added');
-      setTimeout(() => setError(null), 2000);
-    }
+    dispatch(deleteProduct(_id));
   };
 
   return (
@@ -93,17 +58,13 @@ const Admin = (props) => {
       <div className='manageProducts'>
         <h1>Manage Products</h1>
         <div className='call-to-actions'>
-          <Button onClick={() => toggleModal()}>Add new product</Button>
+          <Button onClick={() => setShowModal(!showModal)} disabled={loading}>
+            Add new product
+          </Button>
         </div>
-        {error && <h2 className='error'>{error}</h2>}
-
-        <Spinner status={status} style={{ margin: '5rem auto ' }} />
-
-        <AdminProducts
-          products={products}
-          onDeleteProduct={onDeleteProduct}
-          setError={setError}
-        />
+        {message && <h2 className='error'>{message}</h2>}
+        <Spinner loading={loading} style={{ margin: '5rem auto ' }} />
+        <AdminProducts products={products} onDeleteProduct={onDeleteProduct} />
       </div>
     </div>
   );
