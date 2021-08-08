@@ -35,7 +35,7 @@ const Login = () => {
         <h1>LOGiN</h1>
         <Button
           onClick={() => {
-            dispatch(login({ email: 'admin@admin.com', password: '123456' }));
+            dispatch(login({ email: 'admin@eb.com', password: '123456' }));
           }}
           className='btn btn-login-as-admin'>
           Login as Admin
