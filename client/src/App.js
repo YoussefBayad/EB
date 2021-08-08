@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 // layout
-// import AdminLayout from './layouts/AdminLayout';
+import AdminLayout from './layouts/AdminLayout';
 import MainLayout from './layouts/MainLayout.js';
 import HomeLayout from './layouts/HomeLayout.js';
 
@@ -12,7 +12,7 @@ import Login from './pages/Login';
 import Registration from './pages/Register';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
-// import Admin from './pages/Admin';
+import Admin from './pages/Admin';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
 import Wired from './pages/Earbuds/Wired';
@@ -22,17 +22,19 @@ import ProductDetails from './pages/ProductDetails';
 import NoMatch from './pages/error/NoMatch.js';
 
 // HOC
-// import WithAdminAuth from './hoc/withAdminAuth.js';
+import WithAdminAuth from './hoc/withAdminAuth.js';
 import WithAuth from './hoc/withAuth';
 import WithNoAuth from './hoc/withNoAuth';
 
 // style
 import './default.scss';
 import ScrollToTop from './hoc/ScrollToTop.js';
+import AdminToolBar from './features/admin/AdminToolBar/index.js';
 
 const App = () => {
   return (
     <ScrollToTop>
+      <AdminToolBar />
       <Switch>
         <Route exact path='/'>
           <HomeLayout>
@@ -40,17 +42,12 @@ const App = () => {
           </HomeLayout>
         </Route>
 
-        {/* <Route
-        exact
-        path='/admin'
-        render={() => (
-          <WithAdminAuth>
-            <AdminLayout>
-              <Admin />
-            </AdminLayout>
-          </WithAdminAuth>
-        )}
-      /> */}
+        <WithAdminAuth exact path='/admin'>
+          <AdminLayout>
+            <Admin />
+          </AdminLayout>
+        </WithAdminAuth>
+
         <Route exact path='/shop/product/:id'>
           <MainLayout>
             <ProductDetails />
@@ -62,16 +59,19 @@ const App = () => {
             <Shop />
           </MainLayout>
         </Route>
+
         <WithNoAuth exact path='/login'>
           <MainLayout>
             <Login />
           </MainLayout>
         </WithNoAuth>
+
         <WithNoAuth exact path='/registration'>
           <MainLayout>
             <Registration />
           </MainLayout>
         </WithNoAuth>
+
         <Route
           exact
           path='/shop/headphones'
@@ -81,6 +81,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route
           exact
           path='/shop/earbuds'
@@ -90,6 +91,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route
           exact
           path='/shop/earbuds/wireless'
@@ -99,6 +101,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route
           exact
           path='/shop/earbuds/wired'
@@ -108,6 +111,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route
           exact
           path='/shop/batteries'
@@ -117,6 +121,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route
           exact
           path='/payment'
@@ -126,6 +131,7 @@ const App = () => {
             </MainLayout>
           )}
         />
+
         <Route path='*'>
           <MainLayout>
             <NoMatch />
