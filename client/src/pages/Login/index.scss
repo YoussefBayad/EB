@@ -1,12 +1,12 @@
 @import '../../default.scss';
-.login {
+.login-container {
   height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.sign-in {
+.login {
   margin-top: 5rem;
   width: 50%;
   padding: 3rem;
