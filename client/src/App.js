@@ -9,7 +9,7 @@ import HomeLayout from './layouts/HomeLayout.js';
 // pages
 import HomePage from './pages/Home';
 import Login from './pages/Login';
-import Registration from './pages/Registration';
+import Registration from './pages/Register';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
 // import Admin from './pages/Admin';

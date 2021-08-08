@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 //redux
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // auth
 
@@ -19,22 +19,18 @@ import person from '../../assets/icon/person.svg';
 import './index.scss';
 import Button from '../forms/Button/index.js';
 import { AnimatePresence, motion } from 'framer-motion';
+import { logout } from '../../redux/auth/authSlice';
 
 const User = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const currentUser = useSelector((state) => state.currentUser);
+  const { user } = useSelector((state) => state.auth);
   const [ref] = useOutsideClickRef(() => setOpen(false));
 
   return (
-    <div className='user' title={currentUser ? currentUser.username : 'Login'}>
+    <div className='user' title={user ? user.username : 'Login'}>
       <img
-        src={
-          currentUser
-            ? currentUser.photoURL
-              ? currentUser.photoURL
-              : person
-            : person
-        }
+        src={user ? user.photoURL : person}
         alt='user'
         className='user-image'
         onClick={() => setOpen((prev) => !prev)}
@@ -48,12 +44,12 @@ const User = () => {
             transition={{ duration: 0.4 }}
             ref={ref}
             className='log'>
-            {currentUser ? (
+            {user ? (
               <>
-                <h3>{currentUser.username}</h3>
+                <h3>{user.username}</h3>
                 <Button
                   onClick={() => {
-                    // auth.signOut();
+                    dispatch(logout());
                     setOpen(false);
                   }}>
                   Logout

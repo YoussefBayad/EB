@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
 
 // login thunk
 export const login = createAsyncThunk(
-  'user/login',
+  'auth/login',
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', user);
@@ -39,7 +39,7 @@ export const login = createAsyncThunk(
 
 //edit user info thunk
 export const editUserInfo = createAsyncThunk(
-  'user/editUserInfo',
+  'auth/editUserInfo',
   async (newUserInfo, { rejectWithValue }) => {
     try {
     } catch (err) {
