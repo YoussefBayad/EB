@@ -10,10 +10,10 @@ export const getProduct = async (req, res) => {
     res.status(500).json(error);
   }
 };
-// get products not working
+// get products
 export const getProducts = async (req, res) => {
   try {
-    const product = await Product.findOne({ productId: req.params.productId });
+    const product = await Product.findOne({});
 
     res.status(200).json(product);
   } catch (error) {

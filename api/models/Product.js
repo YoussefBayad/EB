@@ -1,6 +1,6 @@
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import slug from 'mongoose-slug-generator';
-const { Schema } = Mongoose;
+const { Schema } = mongoose;
 
 const options = {
   separator: '-',
@@ -8,15 +8,21 @@ const options = {
   truncate: 120,
 };
 
-Mongoose.plugin(slug, options);
+mongoose.plugin(slug, options);
 
 // Product Schema
 const ProductSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  },
   sku: {
     type: String,
   },
   name: {
     type: String,
+    required: true,
     trim: true,
   },
   slug: {
@@ -26,19 +32,35 @@ const ProductSchema = new Schema({
   },
   imageUrl: {
     type: String,
+    default: 'some default image',
   },
   imageKey: {
     type: String,
   },
   description: {
     type: String,
+    required: true,
     trim: true,
-  },
-  quantity: {
-    type: Number,
   },
   price: {
     type: Number,
+    required: true,
+    default: 0,
+  },
+  rating: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  numReviews: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  countInStock: {
+    type: Number,
+    required: true,
+    default: 0,
   },
   taxable: {
     type: Boolean,
@@ -53,6 +75,13 @@ const ProductSchema = new Schema({
     ref: 'Brand',
     default: null,
   },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+    default: null,
+  },
+
   updated: Date,
   created: {
     type: Date,
@@ -60,4 +89,4 @@ const ProductSchema = new Schema({
   },
 });
 
-export default Mongoose.model('Product', ProductSchema);
+export default mongoose.model('Product', ProductSchema);
