@@ -3,111 +3,11 @@ import axios from 'axios';
 import header from '../../utils/header';
 
 const initialState = {
-  data: [
-    {
-      _id: 1,
-      photoURL: null,
-      name: ' Strong Push™ Ultra True Wireless Earbuds with Print  ',
-      price: 129.99,
-      category: 'Earbuds',
-      wireless: 'true',
-      wirelessCharging: 'true',
-      totalCharge: '24',
-      waterProof: 'true',
-      fullControl: 'true',
-      eitherBudSolo: 'true',
-      tile: 'true',
-      count: 0,
-    },
-    {
-      _id: 2,
-
-      photoURL: null,
-      name: 'Fuelbase™ Max Wireless Charging Pad',
-      price: 59.99,
-      category: 'Battery',
-      wireless: '',
-    },
-    {
-      _id: 3,
-
-      photoURL: null,
-      name: 'Fuelbase™ Wireless Charging Pad ',
-      price: 39.99,
-      category: 'Battery',
-      wireless: '',
-      count: 0,
-    },
-
-    {
-      _id: 5,
-      photoURL: null,
-      name: 'Hesh 2 Over-Ear Wireless Headphone ',
-      price: 99,
-      category: 'Headphone',
-      wireless: 'true',
-      wirelessCharging: 'false',
-      totalCharge: '30',
-      waterProof: 'true',
-      fullControl: 'true',
-      eitherBudSolo: 'true',
-      tile: 'true',
-      count: 0,
-    },
-  ],
+  data: [],
   loading: false,
   message: null,
 };
-// [{
-//   "_id":1,
-//  "photoURL": null,
-//  "name": " Strong Push™ Ultra True Wireless Earbuds with Print  ",
-//  "price": 129.99,
-//  "category": "Earbuds",
-//  "wireless": "true",
-//  "wirelessCharging": "true",
-//  "totalCharge": "24",
-//  "waterProof": "true",
-//  "fullControl": "true",
-//  "eitherBudSolo": "true",
-//  "tile": "true",
-//  "count": 0
-// },
-// {
-//  "_id":2,
 
-//  "photoURL": null,
-//  "name": "Fuelbase™ Max Wireless Charging Pad",
-//  "price": 59.99,
-//  "category": "Battery",
-//  "wireless": ""
-// },
-// {
-//  "_id":3,
-
-//  "photoURL": null,
-//  "name": "Fuelbase™ Wireless Charging Pad ",
-//  "price": 39.99,
-//  "category": "Battery",
-//  "wireless": "",
-//  "count": 0
-// },
-
-// {
-//  "_id":5,
-//  "photoURL": null,
-//  "name": "Hesh 2 Over-Ear Wireless Headphone ",
-//  "price": 99,
-//  "category": "Headphone",
-//  "wireless": "true",
-//  "wirelessCharging": "false",
-//  "totalCharge": "30",
-//  "waterProof": "true",
-//  "fullControl": "true",
-//  "eitherBudSolo": "true",
-//  "tile": "true",
-//  "count": 0
-// },],
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async ({ rejectWithValue }) => {

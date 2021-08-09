@@ -23,7 +23,7 @@ const Admin = (props) => {
   // initial state
   const initialValues = {
     category: 'headphones',
-    photoURL:
+    imageURL:
       'https://images-na.ssl-images-amazon.com/images/I/41GFa7W547L._AC_SY400_.jpg',
     name: 'Wireless Earpods:  Mini Bluetooth Earpods',
     price: 82,

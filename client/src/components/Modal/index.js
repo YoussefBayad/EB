@@ -12,7 +12,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
     totalCharge: Yup.number().min(1).max(48).required('This field is required'),
-    photoURL: Yup.string().url().required('This field is required'),
+    imageURL: Yup.string().url().required('This field is required'),
   });
   let values;
 
@@ -56,9 +56,9 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                       <ErrorMessage name='name' component={ErrorText} />
                     </div>
                     <div>
-                      <label htmlFor='photoURL'>Photo URL</label>
-                      <Field type='url' name='photoURL' />
-                      <ErrorMessage name='photoURL' component={ErrorText} />
+                      <label htmlFor='imageURL'>Photo URL</label>
+                      <Field type='url' name='imageURL' />
+                      <ErrorMessage name='imageURL' component={ErrorText} />
                     </div>
                     <div>
                       <label htmlFor='price'>Price</label>
