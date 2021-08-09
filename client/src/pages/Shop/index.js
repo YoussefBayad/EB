@@ -11,12 +11,12 @@ const Shop = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
-  const { data, loading } = useSelector((state) => state.products);
+  const { data, loading, message } = useSelector((state) => state.products);
   return (
     <div className='shop'>
       <h1>Shop</h1>
       <Links filter='Shop' />
-      <Products data={data} loading={loading} />
+      <Products data={data} loading={loading} message={message} />
     </div>
   );
 };

@@ -4,15 +4,14 @@ const products = [
     name: 'indy fuel true wireless earbuds',
     price: 119,
     category: 'Earbuds',
-    details: {
-      wireless: 'true',
-      wirelessCharging: 'true',
-      totalCharge: '30',
-      waterProof: 'true',
-      fullControl: 'true',
-      eitherBudSolo: 'true',
-      tile: 'true',
-    },
+
+    wireless: 'true',
+    wirelessCharging: 'true',
+    totalCharge: '30',
+    waterProof: 'true',
+    fullControl: 'true',
+    eitherBudSolo: 'true',
+    tile: 'true',
   },
   {
     imageURL: null,
