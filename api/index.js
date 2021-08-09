@@ -25,7 +25,7 @@ app.use(morgan('common'));
 
 // routes
 app.use('/api/auth', authRoute);
-app.use('/api/products', protect, productsRoute);
+app.use('/api/products', productsRoute);
 
 // Error Handler Middleware
 app.use(errorHandler);

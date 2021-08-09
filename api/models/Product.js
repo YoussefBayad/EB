@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
-import slug from 'mongoose-slug-generator';
+// import slug from 'mongoose-slug-generator';
 const { Schema } = mongoose;
 
-const options = {
-  separator: '-',
-  lang: 'en',
-  truncate: 120,
-};
+// const options = {
+//   separator: '-',
+//   lang: 'en',
+//   truncate: 120,
+// };
 
-mongoose.plugin(slug, options);
+// mongoose.plugin(options);
 
 // Product Schema
 const ProductSchema = new Schema({
@@ -25,21 +25,25 @@ const ProductSchema = new Schema({
     required: true,
     trim: true,
   },
-  slug: {
-    type: String,
-    slug: 'name',
-    unique: true,
-  },
+  // slug: {
+  //   type: String,
+  //   slug: 'name',
+  //   unique: true,
+  // },
   imageUrl: {
     type: String,
     default: 'some default image',
+  },
+  details: {
+    type: Object,
   },
   imageKey: {
     type: String,
   },
   description: {
     type: String,
-    required: true,
+    // required: true,
+    default: '',
     trim: true,
   },
   price: {
@@ -75,12 +79,12 @@ const ProductSchema = new Schema({
     ref: 'Brand',
     default: null,
   },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: 'Category',
-    required: true,
-    default: null,
-  },
+  // category: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Category',
+  //   required: true,
+  //   default: null,
+  // },
 
   updated: Date,
   created: {
