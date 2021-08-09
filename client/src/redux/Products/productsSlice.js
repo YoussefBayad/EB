@@ -10,7 +10,7 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async ({ rejectWithValue }) => {
+  async (a, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/products');
       return data;
@@ -31,6 +31,7 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
+
 export const editProduct = createAsyncThunk(
   'products/editProduct',
   async (newData, { rejectWithValue }) => {

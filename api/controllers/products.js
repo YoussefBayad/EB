@@ -4,6 +4,7 @@ import User from '../models/User.js';
 // get product
 export const getProduct = async (req, res) => {
   try {
+    console.log('hellooooo');
     const product = await Product.findOne({ productId: req.params.productId });
 
     res.status(200).json(product);
@@ -14,9 +15,9 @@ export const getProduct = async (req, res) => {
 // get products
 export const getProducts = async (req, res) => {
   try {
-    const product = await Product.findOne({});
+    const products = await Product.findOne({});
 
-    res.status(200).json(product);
+    res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -26,20 +27,6 @@ export const getProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   try {
-    // const admin = await User.findOne({ username: 'admin' });
-    // const newProducts = data.map((product) => {
-    //   const { name, price, category, imageURL, ...others } = product;
-    //   product = {
-    //     user: '610ff5db608e9e323471c072',
-    //     name,
-    //     price,
-    //     imageURL,
-    //     details: others,
-    //   };
-    //   return product;
-    // });
-    // console.log(newProducts[5]);
-    // const rv = await Product.insertMany(newProducts);
     // res.status(200).json(rv);
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 import express from 'express';
-
+import { protect } from '../middleware/auth.js';
 const router = express.Router();
 
 import {
@@ -11,9 +11,9 @@ import {
 } from '../controllers/products.js';
 
 router.get('/', getProducts);
+router.post('/', protect, createProduct);
 router.get('/:id', getProduct);
-router.post('/', createProduct);
-router.put('/:id', updateProduct);
-router.delete('/:id', deleteProduct);
+router.put('/:id', protect, updateProduct);
+router.delete('/:id', protect, deleteProduct);
 
 export default router;
