@@ -1,11 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-const index = ({children}) => {
-    return (
-        <div className="error">
-          {children}  
-        </div>
-    )
-}
+const index = ({ children }) => {
+  if (typeof children !== String) return null;
+  return <div className='error'>{children}</div>;
+};
 
-export default index
+export default index;
