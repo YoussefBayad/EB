@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  product: null,
+  data: null,
   loading: false,
   message: null,
 };
@@ -27,18 +27,18 @@ const productSlice = createSlice({
   extraReducers: {
     [fetchProduct.pending]: (state, action) => {
       state.loading = true;
-      state.product = null;
+      state.data = null;
       state.message = null;
     },
     [fetchProduct.fulfilled]: (state, action) => {
       state.loading = false;
-      state.product = action.payload;
+      state.data = action.payload;
       state.message = null;
     },
     [fetchProduct.rejected]: (state, action) => {
       state.loading = false;
       state.message = action.payload;
-      state.product = null;
+      state.data = null;
     },
   },
 });

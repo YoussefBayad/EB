@@ -21,7 +21,11 @@ import './index.scss';
 const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { product, loading, message } = useSelector((state) => state.product);
+  const {
+    data: product,
+    loading,
+    message,
+  } = useSelector((state) => state.product);
   useEffect(() => {
     dispatch(fetchProduct(id));
   }, [id]);
@@ -59,39 +63,40 @@ const ProductPage = () => {
             </div>
             <div className='product-info'>
               <div className='product-info-container'>
-                {product.wirelessCharging && (
+                {product.details.wirelessCharging && (
                   <div className='product-icon'>
                     <img src={wirelessCharging} alt='wireless charging icon' />
                     <h2>Wireless Charging Case</h2>
                   </div>
                 )}
-                {product.totalCharge && (
+                {product.details.totalCharge && (
                   <div className='product-icon'>
                     <img src={hour40} alt='battery icon' />
                     <h2>
-                      {product.totalCharge} Hours Total Battery + Rapid Charge
+                      {product.details.totalCharge} Hours Total Battery + Rapid
+                      Charge
                     </h2>
                   </div>
                 )}
-                {product.waterProof && (
+                {product.details.waterProof && (
                   <div className='product-icon'>
                     <img src={waterProof} alt='waterProof icon' />
                     <h2>Water and Dust Resistant</h2>
                   </div>
                 )}
-                {product.fullControl && (
+                {product.details.fullControl && (
                   <div className='product-icon'>
                     <img src={fullControl} alt=' control icon' />
                     <h2> Full Media Controls on Each Bud</h2>
                   </div>
                 )}
-                {product.eitherBudSolo && (
+                {product.details.eitherBudSolo && (
                   <div className='product-icon'>
                     <img src={eitherBudSolo} alt='bud icon' />
                     <h2>Use Either Bud Solo</h2>
                   </div>
                 )}
-                {product.tile && (
+                {product.details.tile && (
                   <div className='product-icon'>
                     <img src={tile} alt='wireless charging icon' />
                     <h2>Find your Earbuds with Tile™</h2>
