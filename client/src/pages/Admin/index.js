@@ -40,13 +40,15 @@ const Admin = (props) => {
       'https://images-na.ssl-images-amazon.com/images/I/41GFa7W547L._AC_SY400_.jpg',
     name: 'Wireless Earpods:  Mini Bluetooth Earpods',
     price: 82,
-    wireless: true,
-    wirelessCharging: true,
-    waterProof: false,
-    fullControl: true,
-    eitherBudSolo: true,
-    tile: true,
-    totalCharge: 6,
+    details: {
+      wireless: true,
+      wirelessCharging: true,
+      waterProof: false,
+      fullControl: true,
+      eitherBudSolo: true,
+      tile: true,
+      totalCharge: 6,
+    },
   };
 
   // add product

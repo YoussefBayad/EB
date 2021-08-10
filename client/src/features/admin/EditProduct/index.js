@@ -8,7 +8,8 @@ const EditProduct = ({ initialValues, task, setError }) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
-    dispatch(editProduct({ ...values }));
+    console.log('submeted');
+    dispatch(editProduct(values));
     setShowModal(!showModal);
   };
   const onclick = () => {

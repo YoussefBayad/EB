@@ -57,9 +57,13 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
+      $set: req.body.product,
     });
-    res.status(200).json(product);
+    res.status(200).json({
+      success: true,
+      message: 'Product has been edited successfully',
+      product,
+    });
   } catch (err) {
     return res.status(500).json(err);
   }
@@ -74,7 +78,6 @@ export const deleteProduct = async (req, res) => {
       message: 'Product has been deleted',
       id: req.params.id,
     });
-    res.status(200).json('Product has been deleted');
   } catch (err) {
     return res.status(500).json(err);
   }

@@ -37,9 +37,9 @@ export const addProduct = createAsyncThunk(
 
 export const editProduct = createAsyncThunk(
   'products/editProduct',
-  async (newData, { rejectWithValue }) => {
+  async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put('/products', newData, header);
+      const { data } = await axios.put('/products', { product }, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -125,9 +125,9 @@ const productsSlice = createSlice({
       state.loading = false;
       state.data = state.data.map((product) => {
         if (product._id === action.payload.product._id)
-          product.content = action.payload.product.content;
+          product = action.payload.product;
       });
-      state.message = 'product has been updated';
+      state.message = action.payload.message;
     },
     [editProduct.rejected]: (state, action) => {
       state.message = action.payload.message;
