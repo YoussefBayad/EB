@@ -66,7 +66,7 @@ const Admin = (props) => {
   };
 
   // delete product
-  const onDeleteProduct = ({ _id, deleteAble }) => {
+  const onDeleteProduct = (_id) => {
     dispatch(deleteProduct(_id));
   };
 

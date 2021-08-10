@@ -49,9 +49,9 @@ export const editProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (productId, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete('/products', productId, header);
+      const { data } = await axios.delete(`/products/${id}`, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -109,9 +109,9 @@ const productsSlice = createSlice({
     },
     [deleteProduct.fulfilled]: (state, action) => {
       if (!action.payload) return;
-      state.message = 'product has been deleted successfully';
+      state.message = action.payload.message;
       state.data = state.data.filter(
-        (product) => product._id !== action.payload.productId
+        (product) => product._id !== action.payload.id
       );
     },
     [deleteProduct.rejected]: (state, action) => {
