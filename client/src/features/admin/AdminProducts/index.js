@@ -52,7 +52,11 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                 </div>
                 <h2>{name}</h2>
                 <h2>${price}</h2>
-                <Button onClick={() => onDeleteProduct(_id)}>Delete</Button>
+                <Button
+                  className='btn delete-product'
+                  onClick={() => onDeleteProduct(_id)}>
+                  Delete
+                </Button>
               </motion.div>
             );
           })}

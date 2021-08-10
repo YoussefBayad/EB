@@ -18,12 +18,15 @@ const Admin = (props) => {
     loading,
     message,
   } = useSelector((state) => state.products);
+  const user = useSelector((state) => state.auth.user._id);
 
+  // fetch products
   useEffect(() => {
     if (products?.length > 0) return;
     dispatch(fetchProducts());
   }, []);
 
+  // model display state
   const [showModal, setShowModal] = useState(false);
   const configModal = {
     showModal,
@@ -48,7 +51,17 @@ const Admin = (props) => {
 
   // add product
   const onSubmit = (values) => {
-    dispatch(addProduct(values));
+    const { name, price, category, imageURL, ...others } = values;
+
+    dispatch(
+      addProduct({
+        user,
+        name,
+        price,
+        imageURL,
+        details: others,
+      })
+    );
     setShowModal(false);
   };
 

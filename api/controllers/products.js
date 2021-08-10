@@ -1,5 +1,4 @@
 import Product from '../models/Product.js';
-import User from '../models/User.js';
 
 // get product
 export const getProduct = async (req, res) => {
@@ -19,7 +18,6 @@ export const getProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   try {
     const products = await Product.find({});
-    console.log(products);
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);
@@ -28,95 +26,35 @@ export const getProducts = async (req, res) => {
 
 //create product
 
-
 export const createProduct = async (req, res) => {
-    try {
-      const sku = req.body.sku;
-      const name = req.body.name;
-      const description = req.body.description;
-      const quantity = req.body.quantity;
-      const price = req.body.price;
-      const taxable = req.body.taxable;
-      const isActive = req.body.isActive;
-      const brand = req.body.brand;
-      // const image = req.file;
+  try {
+    const product = new Product({
+      ...req.body.product,
+      imageUrl: '',
+      imageKey: '',
+    });
 
-      const unusedCode  = () =>   {
-        // if (!sku) {
-        //     return res.status(400).json({ error: 'You must enter sku.' });
-        //   }
-        //   if (!description || !name) {
-        //     return res
-        //       .status(400)
-        //       .json({ error: 'You must enter description & name.' });
-        //   }
+    const savedProduct = await product.save();
 
-        //   if (!quantity) {
-        //     return res.status(400).json({ error: 'You must enter a quantity.' });
-        //   }
-
-        //   if (!price) {
-        //     return res.status(400).json({ error: 'You must enter a price.' });
-        //   }
-
-        //   const foundProduct = await Product.findOne({ sku });
-
-        //   if (foundProduct) {
-        //     return res.status(400).json({ error: 'This sku is already in use.' });
-        //   }
-
-        //   let imageUrl = '';
-        //   let imageKey = '';
-
-        //   if (image) {
-        //     const s3bucket = new AWS.S3({
-        //       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        //       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        //       region: process.env.AWS_REGION,
-        //     });
-
-        //     const params = {
-        //       Bucket: process.env.AWS_BUCKET_NAME,
-        //       Key: image.originalname,
-        //       Body: image.buffer,
-        //       ContentType: image.mimetype,
-        //       ACL: 'public-read',
-        //     };
-
-        //     const s3Upload = await s3bucket.upload(params).promise();
-
-        //     imageUrl = s3Upload.Location;
-        //     imageKey = s3Upload.key;
-          // }
-      }
-
-      const product = new Product({
-         ...req.body.product,
-          imageUrl:'',
-          imageKey:'',
-      });
-
-      const savedProduct = await product.save();
-
-      res.status(200).json({
-          success: true,
-          message: `Product has been added successfully!`,
-          product: savedProduct,
-      });
-      
-    
-    
-    } catch (error) {
-      console.log(error);
-          return next(new ErrorResponse('Your request could not be processed. Please try again.', 400));
-    }
+    res.status(200).json({
+      success: true,
+      message: `Product has been added successfully!`,
+      product: savedProduct,
+    });
+  } catch (error) {
+    console.log(error);
+    return next(
+      new ErrorResponse(
+        'Your request could not be processed. Please try again.',
+        400
+      )
+    );
   }
+};
 
 //update Produt
 
 export const updateProduct = async (req, res) => {
- 
-  
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, {
       $set: req.body,
@@ -125,17 +63,53 @@ export const updateProduct = async (req, res) => {
   } catch (err) {
     return res.status(500).json(err);
   }
-
 };
 
 // delete user
 export const deleteProduct = async (req, res) => {
- 
-    try {
-      const product = await Product.findByIdAndDelete(req.params.id);
-      res.status(200).json('Product has been deleted');
-    } catch (err) {
-      return res.status(500).json(err);
-    }
- 
+  try {
+    const product = await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json('Product has been deleted');
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 };
+// const unusedCode = () => {
+// if (!sku) {
+//     return res.status(400).json({ error: 'You must enter sku.' });
+//   }
+//   if (!description || !name) {
+//     return res
+//       .status(400)
+//       .json({ error: 'You must enter description & name.' });
+//   }
+//   if (!quantity) {
+//     return res.status(400).json({ error: 'You must enter a quantity.' });
+//   }
+//   if (!price) {
+//     return res.status(400).json({ error: 'You must enter a price.' });
+//   }
+//   const foundProduct = await Product.findOne({ sku });
+//   if (foundProduct) {
+//     return res.status(400).json({ error: 'This sku is already in use.' });
+//   }
+//   let imageUrl = '';
+//   let imageKey = '';
+//   if (image) {
+//     const s3bucket = new AWS.S3({
+//       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//       region: process.env.AWS_REGION,
+//     });
+//     const params = {
+//       Bucket: process.env.AWS_BUCKET_NAME,
+//       Key: image.originalname,
+//       Body: image.buffer,
+//       ContentType: image.mimetype,
+//       ACL: 'public-read',
+//     };
+//     const s3Upload = await s3bucket.upload(params).promise();
+//     imageUrl = s3Upload.Location;
+//     imageKey = s3Upload.key;
+// }
+// };

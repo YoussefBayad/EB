@@ -25,7 +25,9 @@ export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/products', product, header);
+      console.log('product', product);
+
+      const { data } = await axios.post('/products', { product }, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -93,8 +95,8 @@ const productsSlice = createSlice({
     [addProduct.fulfilled]: (state, action) => {
       if (!action.payload) return;
       state.loading = false;
-      state.message = 'your product has been add successfully';
-      state.data.push(action.payload);
+      state.message = action.payload.message;
+      state.data.push(action.payload.product);
       state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
     },
     [addProduct.rejected]: (state, action) => {

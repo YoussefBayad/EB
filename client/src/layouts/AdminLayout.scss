@@ -1,3 +1,5 @@
+@import '../default.scss';
+
 .control-panel {
   display: flex;
   justify-content: space-between;
@@ -8,7 +10,9 @@
     padding: 5rem 0;
     width: 30%;
     min-width: 30rem;
-    border-right: 1px solid #d3d3d3;
+    border-right: 1px solid $sidebar;
+    background-color: $sidebar;
+    border-radius: 1rem;
   }
 
   .content {

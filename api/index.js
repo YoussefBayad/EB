@@ -39,7 +39,7 @@ app.listen(5000, () => {
 
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
-  server.close(() => process.exit(1));
+  process.exit(1);
 });
 
 // app.use("/images", express.static(path.join(__dirname, "public/images")));
