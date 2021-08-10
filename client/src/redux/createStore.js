@@ -9,6 +9,6 @@ export default configureStore({
     auth: authReducer,
     cart: cartReducer,
     products: productsReducer,
-    productDetails: productReducer,
+    product: productReducer,
   },
 });

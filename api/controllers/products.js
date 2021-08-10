@@ -1,17 +1,20 @@
 import Product from '../models/Product.js';
-import data from '../Products.js';
 import User from '../models/User.js';
+
 // get product
 export const getProduct = async (req, res) => {
   try {
-    console.log('hellooooo');
-    const product = await Product.findOne({ productId: req.params.productId });
-
+    const product = await Product.findById(req.params.id);
+    console.log(product);
+    if (!product) {
+      return new ErrorResponse('product not found', 404);
+    }
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json(error);
   }
 };
+
 // get products
 export const getProducts = async (req, res) => {
   try {
