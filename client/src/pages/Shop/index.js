@@ -7,11 +7,12 @@ import { fetchProducts } from '../../redux/products/productsSlice';
 import './index.scss';
 
 const Shop = () => {
+  const { data, loading, message } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
+    if (data?.length > 0) return;
     dispatch(fetchProducts());
   }, []);
-  const { data, loading, message } = useSelector((state) => state.products);
   return (
     <div className='shop'>
       <h1>Shop</h1>
