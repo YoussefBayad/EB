@@ -26,59 +26,116 @@ export const getProducts = async (req, res) => {
   }
 };
 
-//create user
+//create product
+
 
 export const createProduct = async (req, res) => {
-  try {
-    // res.status(200).json(rv);
-  } catch (error) {
-    console.log(error);
-  }
-};
+    try {
+      const sku = req.body.sku;
+      const name = req.body.name;
+      const description = req.body.description;
+      const quantity = req.body.quantity;
+      const price = req.body.price;
+      const taxable = req.body.taxable;
+      const isActive = req.body.isActive;
+      const brand = req.body.brand;
+      // const image = req.file;
 
-//update user
+      const unusedCode  = () =>   {
+        // if (!sku) {
+        //     return res.status(400).json({ error: 'You must enter sku.' });
+        //   }
+        //   if (!description || !name) {
+        //     return res
+        //       .status(400)
+        //       .json({ error: 'You must enter description & name.' });
+        //   }
+
+        //   if (!quantity) {
+        //     return res.status(400).json({ error: 'You must enter a quantity.' });
+        //   }
+
+        //   if (!price) {
+        //     return res.status(400).json({ error: 'You must enter a price.' });
+        //   }
+
+        //   const foundProduct = await Product.findOne({ sku });
+
+        //   if (foundProduct) {
+        //     return res.status(400).json({ error: 'This sku is already in use.' });
+        //   }
+
+        //   let imageUrl = '';
+        //   let imageKey = '';
+
+        //   if (image) {
+        //     const s3bucket = new AWS.S3({
+        //       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        //       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        //       region: process.env.AWS_REGION,
+        //     });
+
+        //     const params = {
+        //       Bucket: process.env.AWS_BUCKET_NAME,
+        //       Key: image.originalname,
+        //       Body: image.buffer,
+        //       ContentType: image.mimetype,
+        //       ACL: 'public-read',
+        //     };
+
+        //     const s3Upload = await s3bucket.upload(params).promise();
+
+        //     imageUrl = s3Upload.Location;
+        //     imageKey = s3Upload.key;
+          // }
+      }
+
+      const product = new Product({
+         ...req.body.product,
+          imageUrl:'',
+          imageKey:'',
+      });
+
+      const savedProduct = await product.save();
+
+      res.status(200).json({
+          success: true,
+          message: `Product has been added successfully!`,
+          product: savedProduct,
+      });
+      
+    
+    
+    } catch (error) {
+      console.log(error);
+          return next(new ErrorResponse('Your request could not be processed. Please try again.', 400));
+    }
+  }
+
+//update Produt
 
 export const updateProduct = async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    if (req.body.password) {
-      try {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
-      } catch (err) {
-        return res.status(500).json(err);
-      }
-    }
-    try {
-      const user = await User.findByIdAndUpdate(req.params.id, {
-        $set: req.body,
-      });
-      res.status(200).json('Account has been updated');
-    } catch (err) {
-      return res.status(500).json(err);
-    }
-  } else {
-    return res.status(403).json('You can update only your account!');
+ 
+  
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, {
+      $set: req.body,
+    });
+    res.status(200).json(product);
+  } catch (err) {
+    return res.status(500).json(err);
   }
+
 };
 
 // delete user
 export const deleteProduct = async (req, res) => {
-  if (req.body.userId === req.params.id || req.body.isAdmin) {
-    if (req.body.password) {
-      try {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(req.body.password, salt);
-      } catch (err) {
-        return res.status(500).json(err);
-      }
-    }
+ 
     try {
-      const user = await User.findByIdAndDelete(req.params.id);
-      res.status(200).json('Account has been deleted');
+      const product = await Product.findByIdAndDelete(req.params.id);
+      res.status(200).json('Product has been deleted');
     } catch (err) {
       return res.status(500).json(err);
     }
-  } else {
-    return res.status(403).json('You can delete only your account!');
-  }
+ 
 };

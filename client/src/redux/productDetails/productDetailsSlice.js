@@ -10,10 +10,9 @@ const initialState = {
 // fetch a product
 export const fetchProduct = createAsyncThunk(
   'products/fetchProduct',
-  async (productId, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      console.log('in reducer ', productId);
-      const { data } = await axios.get(`/products/${productId}`);
+      const { data } = await axios.get(`/products/${id}`);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
