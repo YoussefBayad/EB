@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal';
 import Button from '../../components/forms/Button';
 import AdminProducts from '../../features/admin/AdminProducts';
 import Spinner from '../../components/Spinner';
-import { addProduct, deleteProduct } from '../../redux/products/productsSlice';
+import {
+  addProduct,
+  deleteProduct,
+  fetchProducts,
+} from '../../redux/products/productsSlice';
 import './index.scss';
 
 const Admin = (props) => {
@@ -14,6 +18,12 @@ const Admin = (props) => {
     loading,
     message,
   } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    if (products?.length > 0) return;
+    dispatch(fetchProducts());
+  }, []);
+
   const [showModal, setShowModal] = useState(false);
   const configModal = {
     showModal,
