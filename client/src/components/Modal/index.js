@@ -62,7 +62,11 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                     <label className='checkbox-label' htmlFor='wireless'>
                       Wireless
                     </label>
-                    <Field type='checkbox' name='wireless' />
+                    <Field
+                      type='checkbox'
+                      name='wireless'
+                      checked={Boolean(formik.values.details.wireless)}
+                    />
                     {formik.values.category !== 'battery' && (
                       <>
                         <label className='checkbox-label' htmlFor='waterProof'>
