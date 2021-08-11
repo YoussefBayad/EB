@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Links from '../../components/Links';
 import Products from '../../features/product/Products';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../../redux/products/productsSlice';
 
 const Headphones = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data?.length > 0) return;
+    dispatch(fetchProducts());
+  }, []);
   const { data, loading } = useSelector((state) => state.products);
+
   const headphones = data.filter((product) => product.category === 'Headphone');
   console.log('headphones', headphones);
   return (
