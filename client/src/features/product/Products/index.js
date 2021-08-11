@@ -2,19 +2,19 @@ import React from 'react';
 
 import Product from '../Product';
 import Spinner from '../../../components/Spinner';
-
+import ErrorMessage from '../../../components/ErrorMessage';
 import './index.scss';
 
-const Products = ({ data: products, status }) => {
+const Products = ({ data: products, loading, message }) => {
   return (
     <div className='products'>
-      {status === 'succeeded' &&
+      <Spinner loading={loading} style={{ margin: '20rem auto' }} />
+      {products &&
         products.map((product) => (
           <Product product={product} key={product._id} />
         ))}
-      <Spinner status={status} style={{ margin: '20rem auto' }} />
 
-      {status === 'failed' && <h1>Failed Reload </h1>}
+      {message && <ErrorMessage>{message}</ErrorMessage>}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
         className='admin-products'>
         <AnimatePresence>
           {products.map((product) => {
-            const { name, price, _id, photoURL } = product;
+            const { name, price, _id, imageURL } = product;
             return (
               <motion.div
                 layout
@@ -38,8 +38,8 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.7 }}
                     src={
-                      photoURL
-                        ? photoURL
+                      imageURL
+                        ? imageURL
                         : `/img/${name.replace(/\s/g, '')}.webp`
                     }
                     alt={name}
@@ -52,7 +52,11 @@ const AdminProducts = ({ products, onDeleteProduct, setError }) => {
                 </div>
                 <h2>{name}</h2>
                 <h2>${price}</h2>
-                <Button onClick={() => onDeleteProduct(_id)}>Delete</Button>
+                <Button
+                  className='btn delete-product'
+                  onClick={() => onDeleteProduct(_id)}>
+                  Delete
+                </Button>
               </motion.div>
             );
           })}

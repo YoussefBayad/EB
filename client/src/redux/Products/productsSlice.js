@@ -3,116 +3,17 @@ import axios from 'axios';
 import header from '../../utils/header';
 
 const initialState = {
-  data: [
-    {
-      _id: 1,
-      photoURL: null,
-      name: ' Strong Push™ Ultra True Wireless Earbuds with Print  ',
-      price: 129.99,
-      category: 'Earbuds',
-      wireless: 'true',
-      wirelessCharging: 'true',
-      totalCharge: '24',
-      waterProof: 'true',
-      fullControl: 'true',
-      eitherBudSolo: 'true',
-      tile: 'true',
-      count: 0,
-    },
-    {
-      _id: 2,
-
-      photoURL: null,
-      name: 'Fuelbase™ Max Wireless Charging Pad',
-      price: 59.99,
-      category: 'Battery',
-      wireless: '',
-    },
-    {
-      _id: 3,
-
-      photoURL: null,
-      name: 'Fuelbase™ Wireless Charging Pad ',
-      price: 39.99,
-      category: 'Battery',
-      wireless: '',
-      count: 0,
-    },
-
-    {
-      _id: 5,
-      photoURL: null,
-      name: 'Hesh 2 Over-Ear Wireless Headphone ',
-      price: 99,
-      category: 'Headphone',
-      wireless: 'true',
-      wirelessCharging: 'false',
-      totalCharge: '30',
-      waterProof: 'true',
-      fullControl: 'true',
-      eitherBudSolo: 'true',
-      tile: 'true',
-      count: 0,
-    },
-  ],
+  data: [],
   loading: false,
   message: null,
 };
-// [{
-//   "_id":1,
-//  "photoURL": null,
-//  "name": " Strong Push™ Ultra True Wireless Earbuds with Print  ",
-//  "price": 129.99,
-//  "category": "Earbuds",
-//  "wireless": "true",
-//  "wirelessCharging": "true",
-//  "totalCharge": "24",
-//  "waterProof": "true",
-//  "fullControl": "true",
-//  "eitherBudSolo": "true",
-//  "tile": "true",
-//  "count": 0
-// },
-// {
-//  "_id":2,
 
-//  "photoURL": null,
-//  "name": "Fuelbase™ Max Wireless Charging Pad",
-//  "price": 59.99,
-//  "category": "Battery",
-//  "wireless": ""
-// },
-// {
-//  "_id":3,
-
-//  "photoURL": null,
-//  "name": "Fuelbase™ Wireless Charging Pad ",
-//  "price": 39.99,
-//  "category": "Battery",
-//  "wireless": "",
-//  "count": 0
-// },
-
-// {
-//  "_id":5,
-//  "photoURL": null,
-//  "name": "Hesh 2 Over-Ear Wireless Headphone ",
-//  "price": 99,
-//  "category": "Headphone",
-//  "wireless": "true",
-//  "wirelessCharging": "false",
-//  "totalCharge": "30",
-//  "waterProof": "true",
-//  "fullControl": "true",
-//  "eitherBudSolo": "true",
-//  "tile": "true",
-//  "count": 0
-// },],
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async ({ rejectWithValue }) => {
+  async (a, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/products');
+      console.log('data', data);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -124,18 +25,25 @@ export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/products', product, header);
+      console.log('product', product);
+
+      const { data } = await axios.post('/products', { product }, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
   }
 );
+
 export const editProduct = createAsyncThunk(
   'products/editProduct',
-  async (newData, { rejectWithValue }) => {
+  async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put('/products', newData, header);
+      const { data } = await axios.put(
+        `/products/${product._id}`,
+        { product },
+        header
+      );
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -145,9 +53,9 @@ export const editProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   'products/deleteProduct',
-  async (productId, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete('/products', productId, header);
+      const { data } = await axios.delete(`/products/${id}`, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -160,7 +68,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     latest(state) {
-      state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
     },
     lowest(state) {
       state.data.sort((a, b) => (a.price > b.price ? 1 : -1));
@@ -178,6 +86,8 @@ const productsSlice = createSlice({
       if (!action.payload) return;
       state.loading = false;
       state.data = action.payload;
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
+
       state.message = null;
     },
     [fetchProducts.rejected]: (state, action) => {
@@ -191,9 +101,9 @@ const productsSlice = createSlice({
     [addProduct.fulfilled]: (state, action) => {
       if (!action.payload) return;
       state.loading = false;
-      state.message = 'your product has been add successfully';
-      state.data.push(action.payload);
-      state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+      state.message = action.payload.message;
+      state.data.push(action.payload.product);
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
     },
     [addProduct.rejected]: (state, action) => {
       state.loading = false;
@@ -205,9 +115,9 @@ const productsSlice = createSlice({
     },
     [deleteProduct.fulfilled]: (state, action) => {
       if (!action.payload) return;
-      state.message = 'product has been deleted successfully';
+      state.message = action.payload.message;
       state.data = state.data.filter(
-        (product) => product._id !== action.payload.productId
+        (product) => product._id !== action.payload.id
       );
     },
     [deleteProduct.rejected]: (state, action) => {
@@ -218,14 +128,18 @@ const productsSlice = createSlice({
       state.message = 'we are processing your request';
     },
     [editProduct.fulfilled]: (state, action) => {
-      state.loading = false;
+      console.log(action.payload.product);
       state.data = state.data.map((product) => {
         if (product._id === action.payload.product._id)
-          product.content = action.payload.product.content;
+          product = action.payload.product;
+        return product;
       });
-      state.message = 'product has been updated';
+
+      state.loading = false;
+      state.message = action.payload.message;
     },
     [editProduct.rejected]: (state, action) => {
+      state.loading = false;
       state.message = action.payload.message;
     },
   },

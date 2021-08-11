@@ -3,11 +3,12 @@
 .product-intro {
   @extend .container;
   margin-top: 5rem;
-  display: flex;
-  align-items: center;
+  @include flex(row, center, space-between);
   flex-wrap: wrap-reverse;
-  justify-content: space-between;
 
+  .product-img {
+    @include box(30rem);
+  }
   .product-description {
     & h1 {
       font-size: $medium;
@@ -27,18 +28,19 @@
 }
 
 .product-info {
-  background: rgb(14, 14, 14);
-  background: linear-gradient(
-    90deg,
-    rgba(14, 14, 14, 1) 0%,
-    rgba(37, 37, 37, 1) 18%,
-    rgba(57, 57, 57, 1) 36%,
-    rgba(52, 53, 53, 1) 67%,
-    rgba(65, 66, 66, 1) 84%
-  );
-  color: white;
+  background: $darkgrey;
+  // background: linear-gradient(
+  //   20deg,
+  //   rgba(14, 14, 14, 1) 0%,
+
+  //   rgba(52, 53, 53, 1) 67%,
+  //   rgba(65, 66, 66, 1) 84%
+  // );
+  border-radius: 2rem;
+  color: $white;
+  font-size: $normal;
   margin-bottom: 20rem;
-  padding: 5rem 0 10rem 0;
+  padding: 5rem;
   &-container {
     @extend .container;
   }

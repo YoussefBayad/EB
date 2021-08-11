@@ -18,7 +18,7 @@ import Wireless from './pages/Earbuds/Wireless';
 import Wired from './pages/Earbuds/Wired';
 import Headphones from './pages/Headphones';
 import Battery from './pages/Battery';
-import ProductDetails from './pages/ProductDetails';
+import Product from './pages/Product';
 import NoMatch from './pages/error/NoMatch.js';
 
 // HOC
@@ -50,7 +50,7 @@ const App = () => {
 
         <Route exact path='/shop/product/:id'>
           <MainLayout>
-            <ProductDetails />
+            <Product />
           </MainLayout>
         </Route>
 

@@ -24,7 +24,9 @@ export const protect = async (req, res, next) => {
     if (!user) {
       return next(new ErrorResponse('No user found with this id', 404));
     }
-
+    if (!user.isAdmin) {
+      return next(new ErrorResponse('Not authorized to access this router', 404));
+    }
     req.user = user;
 
     next();

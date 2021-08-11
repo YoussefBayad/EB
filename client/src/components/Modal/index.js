@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ErrorText from '../../components/ErrorMessage';
@@ -11,29 +10,19 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
   const validationSchema = Yup.object({
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
-    totalCharge: Yup.number().min(1).max(48).required('This field is required'),
-    photoURL: Yup.string().url().required('This field is required'),
+    totalCharge: Yup.number().min(1).max(48),
+    imageURL: Yup.string().url(),
   });
-  let values;
 
   return (
     <>
       {showModal && (
         <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+          <div
             className='modal-overlay'
             onClick={() => setShowModal(!showModal)}
           />
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className='modal'>
+          <div className='modal'>
             <div className='addNewProductForm'>
               <Formik
                 initialValues={initialValues}
@@ -56,9 +45,9 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                       <ErrorMessage name='name' component={ErrorText} />
                     </div>
                     <div>
-                      <label htmlFor='photoURL'>Photo URL</label>
-                      <Field type='url' name='photoURL' />
-                      <ErrorMessage name='photoURL' component={ErrorText} />
+                      <label htmlFor='imageURL'>Photo URL</label>
+                      <Field type='url' name='imageURL' />
+                      <ErrorMessage name='imageURL' component={ErrorText} />
                     </div>
                     <div>
                       <label htmlFor='price'>Price</label>
@@ -73,24 +62,40 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                     <label className='checkbox-label' htmlFor='wireless'>
                       Wireless
                     </label>
-                    <Field type='checkbox' name='wireless' />
+                    <Field
+                      type='checkbox'
+                      name='wireless'
+                      checked={Boolean(formik.values.details.wireless)}
+                    />
                     {formik.values.category !== 'battery' && (
                       <>
                         <label className='checkbox-label' htmlFor='waterProof'>
                           Water Prof
                         </label>
 
-                        <Field type='checkbox' name='waterProof' />
+                        <Field
+                          type='checkbox'
+                          name='waterProof'
+                          checked={Boolean(formik.values.details.waterProof)}
+                        />
                         <ErrorMessage name='waterProof' component={ErrorText} />
                         <label className='checkbox-label' htmlFor='tile'>
                           Tile
                         </label>
-                        <Field type='checkbox' name='tile' />
+                        <Field
+                          type='checkbox'
+                          name='tile'
+                          checked={Boolean(formik.values.details.tile)}
+                        />
                         <ErrorMessage name='tile' component={ErrorText} />
                         <label className='checkbox-label' htmlFor='fullControl'>
                           fullControl
                         </label>
-                        <Field type='checkbox' name='fullControl' />
+                        <Field
+                          type='checkbox'
+                          name='fullControl'
+                          checked={Boolean(formik.values.details.fullControl)}
+                        />
                         <ErrorMessage
                           name='fullControl'
                           component={ErrorText}
@@ -100,14 +105,24 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                           htmlFor='eitherBudSolo'>
                           Either BudSolo
                         </label>
-                        <Field type='checkbox' name='eitherBudSolo' />
+                        <Field
+                          type='checkbox'
+                          name='eitherBudSolo'
+                          checked={Boolean(formik.values.details.eitherBudSolo)}
+                        />
 
                         <label
                           className='checkbox-label'
                           htmlFor='wirelessCharging'>
                           Wireless Charging
                         </label>
-                        <Field type='checkbox' name='wirelessCharging' />
+                        <Field
+                          type='checkbox'
+                          name='wirelessCharging'
+                          checked={Boolean(
+                            formik.values.details.wirelessCharging
+                          )}
+                        />
                       </>
                     )}
 
@@ -116,7 +131,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                 )}
               </Formik>
             </div>
-          </motion.div>
+          </div>
         </>
       )}
     </>

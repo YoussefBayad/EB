@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import header from '../../utils/header';
+
 const initialState = {
-  productDetails: [],
+  data: null,
   loading: false,
   message: null,
 };
@@ -10,9 +10,9 @@ const initialState = {
 // fetch a product
 export const fetchProduct = createAsyncThunk(
   'products/fetchProduct',
-  async (ProductId, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/products/${ProductId}`, header);
+      const { data } = await axios.get(`/products/${id}`);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -27,17 +27,18 @@ const productSlice = createSlice({
   extraReducers: {
     [fetchProduct.pending]: (state, action) => {
       state.loading = true;
-      state.productDetails = null;
+      state.data = null;
+      state.message = null;
     },
     [fetchProduct.fulfilled]: (state, action) => {
       state.loading = false;
-      state.productDetails = action.payload;
-      state.error = null;
+      state.data = action.payload;
+      state.message = null;
     },
     [fetchProduct.rejected]: (state, action) => {
       state.loading = false;
       state.message = action.payload;
-      state.productDetails = null;
+      state.data = null;
     },
   },
 });

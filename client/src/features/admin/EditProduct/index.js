@@ -8,19 +8,17 @@ const EditProduct = ({ initialValues, task, setError }) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
-    dispatch(editProduct({ ...values }));
+    dispatch(editProduct(values));
     setShowModal(!showModal);
   };
-  const onclick = () => {
-    setShowModal(!showModal);
-  };
+
   return (
     <>
       <img
         className='edit'
         src={edit}
         alt='edit'
-        onClick={() => onclick(initialValues.deleteAble)}
+        onClick={() => setShowModal(!showModal)}
       />
       <Modal
         setShowModal={setShowModal}

@@ -8,10 +8,10 @@
     margin: 5.5rem auto;
     margin-top: 3rem;
     & button {
-      background: #3f4c96;
+      background: $blue;
       &:hover {
-        color: white;
-        background: darken(#3f4c96, 10%);
+        color: $white;
+        background: darken($blue, 10%);
       }
     }
   }
@@ -40,7 +40,7 @@
         margin-top: 1rem;
       }
       .error {
-        color: #c93131;
+        color: $error;
       }
       .image {
         position: relative;
@@ -60,13 +60,15 @@
           transform: scale(1.1);
         }
       }
-      & button {
+      .delete-product {
         margin-top: 3rem;
         width: 20rem;
-        background-color: #9b3f3f;
+        background: none;
+        background-color: $error;
+
         &:hover {
-          color: white;
-          background: darken(#9b3f3f, 10%);
+          color: $white;
+          background: darken($error, 10%);
         }
       }
     }
