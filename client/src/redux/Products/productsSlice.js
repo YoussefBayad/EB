@@ -68,7 +68,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     latest(state) {
-      state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
     },
     lowest(state) {
       state.data.sort((a, b) => (a.price > b.price ? 1 : -1));
@@ -86,6 +86,8 @@ const productsSlice = createSlice({
       if (!action.payload) return;
       state.loading = false;
       state.data = action.payload;
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
+
       state.message = null;
     },
     [fetchProducts.rejected]: (state, action) => {
@@ -101,7 +103,7 @@ const productsSlice = createSlice({
       state.loading = false;
       state.message = action.payload.message;
       state.data.push(action.payload.product);
-      state.data.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+      state.data.sort((a, b) => (a.created < b.created ? 1 : -1));
     },
     [addProduct.rejected]: (state, action) => {
       state.loading = false;
