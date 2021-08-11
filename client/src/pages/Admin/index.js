@@ -88,8 +88,11 @@ const Admin = (props) => {
           </Button>
         </div>
         {message && <h2 className='error'>{message}</h2>}
-        <Spinner loading={loading} style={{ margin: '5rem auto ' }} />
-        <AdminProducts products={products} onDeleteProduct={onDeleteProduct} />
+        <AdminProducts
+          products={products}
+          loading={loading}
+          onDeleteProduct={onDeleteProduct}
+        />
       </div>
     </div>
   );
