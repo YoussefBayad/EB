@@ -39,7 +39,11 @@ export const editProduct = createAsyncThunk(
   'products/editProduct',
   async (product, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put('/products', { product }, header);
+      const { data } = await axios.put(
+        `/products/${product._id}`,
+        { product },
+        header
+      );
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -122,14 +126,18 @@ const productsSlice = createSlice({
       state.message = 'we are processing your request';
     },
     [editProduct.fulfilled]: (state, action) => {
-      state.loading = false;
+      console.log(action.payload.product);
       state.data = state.data.map((product) => {
         if (product._id === action.payload.product._id)
           product = action.payload.product;
+        return product;
       });
+
+      state.loading = false;
       state.message = action.payload.message;
     },
     [editProduct.rejected]: (state, action) => {
+      state.loading = false;
       state.message = action.payload.message;
     },
   },

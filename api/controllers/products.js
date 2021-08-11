@@ -62,7 +62,7 @@ export const updateProduct = async (req, res) => {
     res.status(200).json({
       success: true,
       message: 'Product has been edited successfully',
-      product,
+      product: { ...product._doc, ...req.body.product },
     });
   } catch (err) {
     return res.status(500).json(err);

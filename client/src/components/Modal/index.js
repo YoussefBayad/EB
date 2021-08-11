@@ -10,8 +10,8 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
   const validationSchema = Yup.object({
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
-    totalCharge: Yup.number().min(1).max(48).required('This field is required'),
-    imageURL: Yup.string().url().required('This field is required'),
+    totalCharge: Yup.number().min(1).max(48),
+    imageURL: Yup.string().url(),
   });
 
   return (
