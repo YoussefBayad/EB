@@ -7,7 +7,7 @@ import Products from '../../features/product/Products';
 import { useSelector } from 'react-redux';
 
 const Battery = () => {
-  const { data, status } = useSelector((state) => state.products);
+  const { data, loading } = useSelector((state) => state.products);
 
   return (
     <div className='shop'>
@@ -15,7 +15,7 @@ const Battery = () => {
       <Links filter='Battery' />
       <Products
         data={data.filter((product) => product.category === 'Battery')}
-        status={status}
+        loading={loading}
       />
     </div>
   );

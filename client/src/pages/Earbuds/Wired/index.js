@@ -6,14 +6,14 @@ import Products from '../../../features/product/Product';
 import { useSelector } from 'react-redux';
 
 const Wired = () => {
-  const { data, status } = useSelector((state) => state.products);
+  const { data, loading } = useSelector((state) => state.products);
 
   return (
     <div className='shop'>
       <h1>Wired Earbuds</h1>
       <Links filter='Earbuds' />
       <Products
-        status={status}
+        loading={loading}
         data={data.filter((product) => product.wireless === 'false')}
       />
     </div>
