@@ -13,15 +13,15 @@ const Earbuds = () => {
     dispatch(fetchProducts());
   }, []);
   const { data, loading } = useSelector((state) => state.products);
+  const earbuds = data.filter((product) => product.category === 'Earbuds');
+
+  console.log('Earbuds', data);
 
   return (
     <div className='shop'>
       <h1>Earbuds</h1>
       <Links filter='Earbuds' />
-      <Products
-        loading={loading}
-        data={data.filter((product) => product.category === 'Earbuds')}
-      />
+      <Products loading={loading} data={earbuds} />
     </div>
   );
 };

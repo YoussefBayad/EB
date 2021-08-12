@@ -10,7 +10,7 @@ const Products = ({ data: products, loading, message }) => {
   return (
     <div className='products'>
       {!loading ? (
-        products.map((product) => (
+        products?.map((product) => (
           <Product product={product} key={product._id} />
         ))
       ) : (
