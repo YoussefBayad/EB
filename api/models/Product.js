@@ -85,6 +85,11 @@ const ProductSchema = new Schema({
   //   required: true,
   //   default: null,
   // },
+  category: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
   updated: Date,
   created: {

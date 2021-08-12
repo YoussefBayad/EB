@@ -19,7 +19,7 @@ const importData = async () => {
         name,
         price,
         imageURL,
-
+        category,
         details: others,
       };
     });
