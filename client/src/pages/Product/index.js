@@ -7,6 +7,7 @@ import Spinner from '../../components/Spinner';
 import ErrorMessage from '../../components/ErrorMessage';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fetchProduct } from '../../redux/productDetails/productDetailsSlice';
+import Skeleton from 'react-loading-skeleton';
 // svg
 import wirelessCharging from '../../assets/icon/wirless-charging.webp';
 import waterProof from '../../assets/icon/waterproof.webp';
@@ -21,14 +22,15 @@ import './index.scss';
 const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  useEffect(() => {
+    dispatch(fetchProduct(id));
+  }, [id]);
+
   const {
     data: product,
     loading,
     message,
   } = useSelector((state) => state.product);
-  useEffect(() => {
-    dispatch(fetchProduct(id));
-  }, [id]);
 
   return (
     <AnimatePresence>
@@ -39,7 +41,24 @@ const ProductPage = () => {
         transition={{ duration: 1 }}
         className='product-showcase'>
         <ErrorMessage>{message} </ErrorMessage>
-        <Spinner loading={loading} style={{ margin: '20rem 50%' }} />
+        {loading && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
+            <div>
+              <Skeleton height={400} width={400} style={{ margin: 30 }} />
+              <Skeleton height={400} width={400} style={{ marginTop: 30 }} />
+            </div>
+            <div>
+              <Skeleton height={30} width={80} style={{ marginRight: 200 }} />
+              <Skeleton height={30} width={80} />
+            </div>
+            <Skeleton height={300} width={600} style={{ marginTop: 30 }} />
+          </div>
+        )}
         {product && (
           <>
             <div className='product-intro'>

@@ -7,7 +7,7 @@
   flex-wrap: wrap-reverse;
 
   .product-img {
-    @include box(30rem);
+    @include box(40rem);
   }
   .product-description {
     & h1 {
@@ -29,13 +29,6 @@
 
 .product-info {
   background: $darkgrey;
-  // background: linear-gradient(
-  //   20deg,
-  //   rgba(14, 14, 14, 1) 0%,
-
-  //   rgba(52, 53, 53, 1) 67%,
-  //   rgba(65, 66, 66, 1) 84%
-  // );
   border-radius: 2rem;
   color: $white;
   font-size: $normal;
