@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Links from '../../../components/Links';
-import Products from '../../../features/product/Product';
+import Products from '../../../features/product/Products';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,15 +14,15 @@ const Wired = () => {
   }, []);
 
   const { data, loading } = useSelector((state) => state.products);
-
+  const wired = data.filter(
+    (product) =>
+      product.category === 'Earbuds' && product.details.wireless === 'false'
+  );
   return (
     <div className='shop'>
       <h1>Wired Earbuds</h1>
       <Links filter='Earbuds' />
-      <Products
-        loading={loading}
-        data={data.filter((product) => product.wireless === 'false')}
-      />
+      <Products loading={loading} data={wired} />
     </div>
   );
 };
