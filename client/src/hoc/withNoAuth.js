@@ -2,14 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, useHistory, useLocation } from 'react-router-dom';
 
-function WithNoAuth({ children, ...rest }) {
+function WithNoAuth({ children, location, ...rest }) {
   const user = useSelector((state) => state.auth.user);
-  const location = useLocation();
+  // const location = useLocation();
   const history = useHistory();
-  let { from } = location.state || { from: { pathname: '/' } };
-
+  const redirect = location.search ? location.search.split('=')[1] : '/';
+  console.log('location', redirect, location);
   return (
-    <Route {...rest} render={() => (user ? history.replace(from) : children)} />
+    <Route
+      {...rest}
+      render={() => (user ? history.push(redirect) : children)}
+    />
   );
 }
 

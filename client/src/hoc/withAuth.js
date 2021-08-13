@@ -1,14 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 
 function WithAuth({ children, ...rest }) {
   const { user } = useSelector((state) => state.auth);
-
+  const history = useHistory();
   return (
     <Route
       {...rest}
-      render={({ location }) => (user ? children : <Redirect to='/login' />)}
+      render={() => (user ? children : history.push('/login?redirect=payment'))}
     />
   );
 }
