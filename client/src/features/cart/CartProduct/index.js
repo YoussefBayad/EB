@@ -27,7 +27,11 @@ const CartProduct = ({ product }) => {
         <p className='cart-product-name'>{product.name}</p>
         <p className='cart-product-price'>${product.price} usd</p>
         <div className='quantity'>
-          <ProductQty id={product._id} qty={product.qty} />
+          <ProductQty
+            id={product._id}
+            qty={product.qty}
+            countInStock={product.countInStock}
+          />
           <RemoveProduct _id={product._id} removeFromCart={removeFromCart} />
         </div>
       </div>
