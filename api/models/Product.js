@@ -32,7 +32,7 @@ const ProductSchema = new Schema({
   // },
   imageUrl: {
     type: String,
-    default: 'some default image',
+    default: null,
   },
   details: {
     type: Object,
