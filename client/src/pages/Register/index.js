@@ -8,6 +8,7 @@ import { register } from '../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 // style
 import './index.scss';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ const Registration = () => {
           <Button type='submit' className='btn' disabled={loading}>
             Register
           </Button>
+          <h4>
+            Already have an account ? <Link to='/login'>Login Now</Link>{' '}
+          </h4>
         </Form>
       </Formik>
     </div>

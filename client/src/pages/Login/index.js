@@ -7,6 +7,7 @@ import ErrorText from './../../components/ErrorMessage';
 import { login } from '../../redux/auth/authSlice';
 //style
 import './index.scss';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,10 @@ const Login = () => {
           }}>
           Login With Google
         </Button>
+
+        <h4>
+          Don't have an account ? <Link to='/register'>Register</Link>{' '}
+        </h4>
       </div>
     </div>
   );
