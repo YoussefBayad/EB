@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Count from '../../features/product/ProductCount';
+import Count from '../../features/cart/ProductQty';
 import AddToCart from '../../features/cart/AddToCart';
-import Spinner from '../../components/Spinner';
 import ErrorMessage from '../../components/ErrorMessage';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fetchProduct } from '../../redux/productDetails/productDetailsSlice';
@@ -22,15 +21,29 @@ import './index.scss';
 const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  useEffect(() => {
-    dispatch(fetchProduct(id));
-  }, [id]);
+  const [qty, setQty] = useState(1);
 
   const {
     data: product,
     loading,
     message,
   } = useSelector((state) => state.product);
+
+  // incremet product qty
+  const incrementQty = () => {
+    if (qty === product.countInStock) return;
+    setQty((prev) => prev + 1);
+  };
+
+  // check if product in cart
+  const isProductInCart = useSelector((state) =>
+    state.cart.data.find((item) => item._id === id)
+  );
+
+  // fetch product
+  useEffect(() => {
+    dispatch(fetchProduct(id));
+  }, [id]);
 
   return (
     <AnimatePresence>
@@ -64,10 +77,21 @@ const ProductPage = () => {
             <div className='product-intro'>
               <div className='product-description'>
                 <h1>{product.name} </h1>
-                <h2>${product.price} usd </h2>
+                <h2>Price: ${product.price}</h2>
+                <h3>In Stock: {product.countInStock} </h3>
+
                 <div>
-                  <Count id={product._id} count={product.count} />
-                  <AddToCart product={product} />
+                  {!isProductInCart && (
+                    <div className='product-qty'>
+                      <button onClick={incrementQty}>+</button>
+                      {qty}
+                      <button
+                        onClick={() => qty > 1 && setQty((prev) => prev - 1)}>
+                        -
+                      </button>
+                    </div>
+                  )}
+                  <AddToCart product={{ ...product, qty }} />
                 </div>
               </div>
               <img
