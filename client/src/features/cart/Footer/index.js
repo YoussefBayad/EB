@@ -18,7 +18,13 @@ const CartFooter = ({ total, openCart }) => {
           {total ? total : '00.00'}
         </span>
       </Link>
-      <Link className='cart-remove-product' to='/cart'>
+      <Link
+        className='cart-remove-product'
+        to='/cart'
+        onClick={() => {
+          dispatch(openCart());
+        }}>
+        {' '}
         View cart
       </Link>
     </div>

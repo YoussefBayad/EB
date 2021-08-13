@@ -19,6 +19,7 @@ import Wired from './pages/Earbuds/Wired';
 import Headphones from './pages/Headphones';
 import Battery from './pages/Battery';
 import Product from './pages/Product';
+import CartPage from './pages/Cart';
 import NoMatch from './pages/error/NoMatch.js';
 
 // HOC
@@ -48,18 +49,6 @@ const App = () => {
           </AdminLayout>
         </WithAdminAuth>
 
-        <Route exact path='/shop/product/:id'>
-          <MainLayout>
-            <Product />
-          </MainLayout>
-        </Route>
-
-        <Route exact path='/shop'>
-          <MainLayout>
-            <Shop />
-          </MainLayout>
-        </Route>
-
         <WithNoAuth exact path='/login'>
           <MainLayout>
             <Login />
@@ -72,6 +61,12 @@ const App = () => {
           </MainLayout>
         </WithNoAuth>
 
+        <Route exact path='/shop'>
+          <MainLayout>
+            <Shop />
+          </MainLayout>
+        </Route>
+
         <Route
           exact
           path='/shop/headphones'
@@ -81,6 +76,22 @@ const App = () => {
             </MainLayout>
           )}
         />
+
+        <Route
+          exact
+          path='/shop/batteries'
+          render={() => (
+            <MainLayout>
+              <Battery />
+            </MainLayout>
+          )}
+        />
+
+        <Route exact path='/shop/product/:id'>
+          <MainLayout>
+            <Product />
+          </MainLayout>
+        </Route>
 
         <Route
           exact
@@ -112,15 +123,11 @@ const App = () => {
           )}
         />
 
-        <Route
-          exact
-          path='/shop/batteries'
-          render={() => (
-            <MainLayout>
-              <Battery />
-            </MainLayout>
-          )}
-        />
+        <Route path='/cart'>
+          <MainLayout>
+            <CartPage />
+          </MainLayout>
+        </Route>
 
         <WithAuth exact path='/payment'>
           <MainLayout>
