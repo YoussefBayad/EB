@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocalStorageItems, openCart } from '../../../redux/cart/cartSlice';
-import Header from '../Header';
-import Footer from '../Footer';
+import { setLocalStorageItems, openCart } from '../../redux/cart/cartSlice';
+import Header from './Header';
+import Footer from './Footer';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
 import { AnimatePresence, motion } from 'framer-motion';
-import CartProduct from '../CartProduct';
+import CartProduct from './CartProduct';
 import './index.scss';
 
 const Cart = () => {
@@ -16,6 +16,15 @@ const Cart = () => {
     message,
     data: products,
   } = useSelector((state) => state.cart);
+
+  // total price
+  const total =
+    products.length > 0 &&
+    products
+      .reduce((a, p) => {
+        return a + p.price * p.qty;
+      }, 0)
+      .toFixed(2);
 
   const handleOutsideClick = (e) => {
     if (e.target.className === 'cart-remove-product') return;
@@ -55,14 +64,16 @@ const Cart = () => {
             className='cart'>
             <Header openCart={openCart} />
             <div className='cart-main'>
-              {products.length === 0 && <p>Your cart is empty</p>}
+              {products.length === 0 && (
+                <h3 className='empty-cart'>Your cart is empty ...</h3>
+              )}
               <AnimatePresence>
                 {products.map((product) => (
                   <CartProduct key={product._id} product={product} />
                 ))}
               </AnimatePresence>
             </div>{' '}
-            <Footer products={products} openCart={openCart} />
+            <Footer total={total} openCart={openCart} />
           </motion.div>
         </>
       )}

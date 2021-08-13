@@ -31,26 +31,6 @@
       align-items: center;
       font-size: $small;
     }
-    .cart-remove-product {
-      font-size: $small;
-      font-weight: lighter;
-
-      cursor: pointer;
-      position: relative;
-      &:after {
-        content: '';
-        background-color: grey;
-        width: 100%;
-        height: 1px;
-        position: absolute;
-        bottom: -4px;
-        left: -0px;
-        @include transition;
-      }
-      &:hover:after {
-        width: 0%;
-      }
-    }
   }
   .count {
     padding: 0.1rem 1rem;

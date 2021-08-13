@@ -54,7 +54,7 @@ $desktop: 1280;
 @mixin hover($color: $white, $percent: 10) {
   @include transition;
   &:hover {
-    background: lighten($color, $percent);
+    background: darken($color, $percent);
   }
 }
 .hover {
@@ -260,7 +260,6 @@ textarea {
   width: 80%;
   cursor: pointer;
   border-radius: 0.5rem;
-  @include background-transition($black, $darkgrey);
   &:disabled,
   &:disabled:hover {
     opacity: 0.5;
