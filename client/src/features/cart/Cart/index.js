@@ -13,7 +13,7 @@ const Cart = () => {
   const {
     isCartOpen,
     loading,
-    error,
+    message,
     data: products,
   } = useSelector((state) => state.cart);
 
@@ -30,11 +30,11 @@ const Cart = () => {
     if (data) {
       dispatch(setLocalStorageItems(JSON.parse(data)));
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(products));
-  });
+  }, [products]);
   return (
     <AnimatePresence>
       {isCartOpen && (
@@ -55,6 +55,7 @@ const Cart = () => {
             className='cart'>
             <Header openCart={openCart} />
             <div className='cart-main'>
+              {products.length === 0 && <p>Your cart is empty</p>}
               <AnimatePresence>
                 {products.map((product) => (
                   <CartProduct key={product._id} product={product} />

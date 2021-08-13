@@ -72,7 +72,7 @@ const cartSlice = createSlice({
       state.isCartOpen = !state.isCartOpen;
     },
     addToCart(state, action) {
-      const product = { ...action.payload, count: 1 };
+      const product = action.payload;
       state.data.push(product);
     },
     removeFromCart(state, action) {
@@ -84,16 +84,16 @@ const cartSlice = createSlice({
       const clickedProduct = state.data.find(
         (product) => product._id === action.payload
       );
-      clickedProduct.count++;
+      clickedProduct.qty++;
     },
     decrement(state, action) {
       const clickedProduct = state.data.find(
         (product) => product._id === action.payload
       );
-      // preventing count from negative values
-      if (clickedProduct.count === 1) return;
+      // preventing qty from negative values
+      if (clickedProduct.qty === 1) return;
       else {
-        clickedProduct.count--;
+        clickedProduct.qty--;
       }
     },
     paymentCompleted(state, action) {
