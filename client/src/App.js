@@ -9,7 +9,7 @@ import HomeLayout from './layouts/HomeLayout.js';
 // pages
 import HomePage from './pages/Home';
 import Login from './pages/Login';
-import Registration from './pages/Register';
+import Register from './pages/Register';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
 import Admin from './pages/Admin';
@@ -66,9 +66,9 @@ const App = () => {
           </MainLayout>
         </WithNoAuth>
 
-        <WithNoAuth exact path='/registration'>
+        <WithNoAuth exact path='/register'>
           <MainLayout>
-            <Registration />
+            <Register />
           </MainLayout>
         </WithNoAuth>
 
