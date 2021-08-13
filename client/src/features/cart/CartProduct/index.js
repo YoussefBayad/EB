@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { removeFromCart } from '../../../redux/cart/cartSlice';
-import Count from '../../product/ProductCount';
+import ProductQty from '../../cart/ProductQty';
 import RemoveProduct from '../RemoveProduct';
 import './index.scss';
 
@@ -27,7 +27,7 @@ const CartProduct = ({ product }) => {
         <p className='cart-product-name'>{product.name}</p>
         <p className='cart-product-price'>${product.price} usd</p>
         <div className='quantity'>
-          <Count id={product._id} count={product.count} />
+          <ProductQty id={product._id} qty={product.qty} />
           <RemoveProduct _id={product._id} removeFromCart={removeFromCart} />
         </div>
       </div>
