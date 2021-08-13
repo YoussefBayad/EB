@@ -122,15 +122,11 @@ const App = () => {
           )}
         />
 
-        <Route
-          exact
-          path='/payment'
-          render={() => (
-            <MainLayout>
-              <Payment />
-            </MainLayout>
-          )}
-        />
+        <WithAuth exact path='/payment'>
+          <MainLayout>
+            <Payment />
+          </MainLayout>
+        </WithAuth>
 
         <Route path='*'>
           <MainLayout>
