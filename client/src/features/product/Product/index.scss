@@ -4,6 +4,7 @@
   margin-bottom: 5rem;
   @include flex('column', 'center', 'space-between');
   cursor: pointer;
+
   & img {
     max-width: 25rem;
     max-height: 25rem;
@@ -22,6 +23,7 @@
   .price {
     margin-top: 1rem;
     font-weight: 400;
+    color: $black;
   }
 }
 
