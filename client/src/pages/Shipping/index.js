@@ -13,13 +13,18 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 const Shipping = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const shippingData = useSelector((state) => state.cart.shippingData);
 
-  const initialValues = {
-    address: '',
-    city: '',
-    postalCode: '',
-    country: '',
-  };
+  // get initial values from storage
+  let initialValues;
+  shippingData
+    ? (initialValues = shippingData)
+    : (initialValues = {
+        address: '',
+        city: '',
+        postalCode: '',
+        country: '',
+      });
 
   const validationSchema = Yup.object({
     address: Yup.string().required('address is required'),
@@ -28,6 +33,7 @@ const Shipping = () => {
     country: Yup.string().required('country is required'),
     phoneNumber: Yup.string().required('phone number field is required'),
   });
+
   const onSubmit = (values) => {
     dispatch(saveShippingData(values));
     history.push('/payment');
@@ -53,12 +59,8 @@ const Shipping = () => {
           <Field name='country' type='text' placeholder='Country' />
           <ErrorMessage name='country' component={ErrorText} />
 
-          <Field
-            name='phone'
-            type='text'
-            placeholder='Phone number for order/shipping updates and exclusive offers'
-          />
-          <ErrorMessage name='phone' component={ErrorText} />
+          <Field name='phoneNumber' type='text' placeholder='Phone number ' />
+          <ErrorMessage name='phoneNumber' component={ErrorText} />
 
           <Button type='submit' className='btn'>
             Continue

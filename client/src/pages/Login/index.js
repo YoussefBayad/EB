@@ -26,7 +26,7 @@ const Login = () => {
       .required('This field is required'),
     password: Yup.string().required('This field is required'),
   });
-  const onSubmit = async (values, onSubmitProps) => {
+  const onSubmit = (values, onSubmitProps) => {
     dispatch(login(values));
   };
 
