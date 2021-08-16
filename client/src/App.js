@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
+import Order from './pages/Order';
 import Admin from './pages/Admin';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
@@ -139,6 +140,12 @@ const App = () => {
         <WithAuth exact path='/payment'>
           <MainLayout>
             <Payment />
+          </MainLayout>
+        </WithAuth>
+
+        <WithAuth exact path='/order'>
+          <MainLayout>
+            <Order />
           </MainLayout>
         </WithAuth>
 
