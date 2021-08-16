@@ -25,6 +25,7 @@ const Payment = () => {
   });
   const onSubmit = (values) => {
     dispatch(savePaymentMethod(values.paymentMethod));
+    history.push('/order');
   };
 
   return (
