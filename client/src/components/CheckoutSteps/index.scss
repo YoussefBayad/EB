@@ -1,7 +1,7 @@
 @import '../../default.scss';
 
 .checkout-steps {
-  @include flex('', 'center', 'space-around');
+  @include flex('', 'center', 'space-between');
   margin: 5rem 0;
 
   .checkout-steps-link {
