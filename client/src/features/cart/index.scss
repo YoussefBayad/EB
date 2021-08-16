@@ -63,10 +63,7 @@
     height: 75vh;
     overflow-x: hidden;
   }
-  .empty-cart {
-    padding: 2rem;
-    color: $darkgrey;
-  }
+
   .cart-footer {
     @include flex();
     padding: 3rem;

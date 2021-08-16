@@ -21,9 +21,15 @@ const AddToCart = ({ product }) => {
           Add To Cart
         </Button>
       ) : (
-        <Link className='buy in-cart' to='/cart'>
-          View In Cart
-        </Link>
+        <div className='product-in-cart'>
+          <Link className='buy in-cart' to='/cart'>
+            Go To Cart
+          </Link>
+          <p>or</p>
+          <Link className='buy in-cart' to='/shop'>
+            Back To Shop
+          </Link>
+        </div>
       )}
     </>
   );
