@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
-import { setLocalStorageItems } from '../../redux/cart/cartSlice';
 import CartProduct from '../../features/cart/CartProduct';
+import CheckoutSummary from '../../components/CheckoutSummary';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
@@ -40,24 +40,11 @@ const Cart = () => {
             </AnimatePresence>
           )}
         </div>
-        <div className='checkout'>
-          <h1 className='title'>ORDER SUMMARY </h1>
-          <div className='total-items'>
-            <p className='text'>Total items </p>
-            <p className='price'>{totalItems}</p>
-          </div>
-          <div className='shipping-cost'>
-            <p className='text'>Shipping </p>
-            <p className='price'>$00.00</p>
-          </div>
-          <div className='total-price'>
-            <p className='text'>Total </p>
-            <p className='price'>${total}</p>
-          </div>
+        <CheckoutSummary total={total} totalItems={totalItems}>
           <Link to='/shipping' className='btn checkout-btn'>
             Place Order
           </Link>
-        </div>
+        </CheckoutSummary>
       </div>
     </div>
   );
