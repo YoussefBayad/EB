@@ -3,36 +3,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ErrorText from '../../components/ErrorMessage';
-import { paymentCompleted } from '../../redux/cart/cartSlice';
+import CheckoutSteps from '../../components/CheckoutSteps';
+
+import { savePaymentMethod } from '../../redux/cart/cartSlice';
 import Button from '../../components/forms/Button';
 import './index.scss';
 import { useHistory } from 'react-router-dom';
 
 const Payment = () => {
   const dispatch = useDispatch();
-  const shippingData = useSelector((state) => state.cart.shippingData);
   const history = useHistory();
+
+  const shippingData = useSelector((state) => state.cart.shippingData);
   if (!shippingData) history.push('/shipping');
+
   const initialValues = {
-    name: '',
+    paymentMethod: 'PayPal',
   };
   const validationSchema = Yup.object({
-    name: Yup.string().required('This field is required'),
+    paymentMethod: Yup.string().required('please choose a payment method'),
   });
-  const onSubmit = (values) => {};
+  const onSubmit = (values) => {
+    dispatch(savePaymentMethod(values.paymentMethod));
+  };
 
   return (
     <div className='payment'>
+      <CheckoutSteps />
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}>
         <Form>
-          <Field type='text' placeholder='Name on Card' name='name' />
-          <ErrorMessage name='name' component={ErrorText} />
+          <h2>Select Payment Method:</h2>
+          <Field as='select' name='paymentMethod'>
+            <option value='PayPal'>PayPal</option>
+            <option value='Stripe'>Stripe</option>
+          </Field>
+          <ErrorMessage name='paymentMethod' component={ErrorText} />
 
           <Button type='submit' className='btn'>
-            Complete Payment
+            Continue
           </Button>
         </Form>
       </Formik>
