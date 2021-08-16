@@ -1,0 +1,12 @@
+@import '../../default.scss';
+
+.shipping {
+  margin-top: 4rem;
+  margin-bottom: 10rem;
+  text-align: center;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+  }
+}
