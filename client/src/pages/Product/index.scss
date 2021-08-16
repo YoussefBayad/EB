@@ -30,6 +30,12 @@
   }
 }
 
+.product-in-cart {
+  display: flex;
+  align-items: flex-start !important;
+
+  flex-direction: column;
+}
 .product-info {
   background: $darkgrey;
   border-radius: 2rem;

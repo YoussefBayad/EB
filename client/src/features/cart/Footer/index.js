@@ -8,13 +8,13 @@ const CartFooter = ({ total, openCart }) => {
     <div className='cart-footer'>
       <Link
         to='/payment'
-        className='btn checkout'
+        className='btn checkout-btn'
         onClick={() => {
           dispatch(openCart());
         }}>
-        <span>CHECKOUT</span> <span>.</span>{' '}
+        <span>CHECKOUT</span>{' '}
         <span>
-          $ {''}
+          ${''}
           {total ? total : '00.00'}
         </span>
       </Link>
