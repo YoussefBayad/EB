@@ -284,18 +284,23 @@ textarea {
 }
 .in-cart {
   font-size: 1.6rem;
-  padding: 1rem 2rem;
   color: $accent;
-  background-color: $white;
-  border: 1px solid $black;
-  border-radius: 0.5rem;
+  border: none;
   @include transition;
-
   &:hover {
-    background-color: darken(white, 10%);
+    color: darken($accent, 20%);
+    transform: scale(1.1);
   }
 }
-
+.empty-cart {
+  padding: 2rem;
+  color: $darkgrey;
+}
+.checkout-btn {
+  background-color: $blue;
+  width: 70%;
+  @include hover($blue, 20);
+}
 // scroll down
 
 .scroll-down {
