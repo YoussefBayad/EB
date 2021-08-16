@@ -8,5 +8,10 @@
   & form {
     display: flex;
     flex-direction: column;
+
+    & button {
+      width: 30rem;
+      padding: 1rem 0;
+    }
   }
 }

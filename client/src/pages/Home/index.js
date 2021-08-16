@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import downArrow from '../../assets/icon/down-arrow.svg';
+import Button from '../../components/forms/Button/index';
 import './index.scss';
+
 const HomePage = () => {
   return (
     <>
@@ -30,9 +32,9 @@ const HomePage = () => {
             <div className='earbuds-card card'>
               <div className='text'>
                 <h1>Earbuds</h1>
-                <button className='buy-button' to='/shop/earbuds'>
+                <Button className='buy-button' to='/shop/earbuds'>
                   View All
-                </button>
+                </Button>
               </div>
             </div>
           </Link>

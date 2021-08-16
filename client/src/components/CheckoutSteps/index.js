@@ -6,17 +6,20 @@ const CheckoutSteps = () => {
     <div className='checkout-steps'>
       <NavLink
         to='/shipping'
-        className='checkout-steps'
+        className='checkout-steps-link'
         activeClassName='active'>
         Shipping
       </NavLink>
       <NavLink
         to='/payment'
-        className='checkout-steps'
+        className='checkout-steps-link'
         activeClassName='active'>
         Payment
       </NavLink>
-      <NavLink to='/Order' className='checkout-steps' activeClassName='active'>
+      <NavLink
+        to='/Order'
+        className='checkout-steps-link'
+        activeClassName='active'>
         Place Order
       </NavLink>
     </div>

@@ -18,6 +18,10 @@ nav {
 
   .left-nav {
     display: flex;
+
+    .active {
+      color: $accent;
+    }
     .burger {
       height: 2.3rem;
       width: 3rem;
@@ -144,8 +148,8 @@ nav {
     .burger {
       display: inline-block !important;
     }
-    & .shop-link,
-    .about-link {
+
+    .link {
       display: none;
     }
     .logo {
