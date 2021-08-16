@@ -12,6 +12,7 @@
   }
   &-inner {
     @include flex('', 'flex-start', 'space-between');
+    flex-wrap: wrap;
   }
   .cart-product {
     height: auto;
@@ -24,6 +25,7 @@
   }
   .cart-product:last-child {
     border: none;
+    margin-bottom: 5rem;
   }
   .cart-remove-product {
     margin-left: 30rem;

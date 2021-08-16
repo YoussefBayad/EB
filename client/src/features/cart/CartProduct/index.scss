@@ -4,15 +4,19 @@
   height: 25vh;
   display: flex;
   align-items: flex-start;
+
   margin-bottom: 1rem;
+
   .cart-product-img {
-    width: 40%;
+    width: 15rem;
   }
+
   .cart-product-description {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     .cart-product-name {
+      color: $black;
       font-size: $small;
       font-weight: bold;
       margin-top: 2rem;
