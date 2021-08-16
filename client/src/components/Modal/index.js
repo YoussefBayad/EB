@@ -13,6 +13,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
     totalCharge: Yup.number().min(1).max(48),
     imageURL: Yup.string().url(),
   });
+  console.log('task', task);
 
   return (
     <>
@@ -20,137 +21,134 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
         <>
           <div
             className='modal-overlay'
-            onClick={() => setShowModal(!showModal)}>
-            <div className='modal'>
-              <div className='addNewProductForm'>
-                <Formik
-                  initialValues={initialValues}
-                  onSubmit={onSubmit}
-                  validationSchema={validationSchema}>
-                  {(formik) => (
-                    <Form>
-                      <h2>Add new product</h2>
-                      <div>
-                        <label htmlFor='category'>Category:</label>
-                        <Field as='select' name='category'>
-                          <option value='headphones'>Headphones</option>
-                          <option value='earbuds'>Earbuds</option>
-                          <option value='battery'>Battery</option>
-                        </Field>
-                      </div>
-                      <div>
-                        <label htmlFor='name'>Name :</label>
-                        <Field type='text' name='name' />
-                        <ErrorMessage name='name' component={ErrorText} />
-                      </div>
+            onClick={() => setShowModal(!showModal)}></div>
+          <div className='modal'>
+            <div className='addNewProductForm'>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={onSubmit}
+                validationSchema={validationSchema}>
+                {(formik) => (
+                  <Form>
+                    <h2>{task}</h2>
 
-                      <div>
-                        <label htmlFor='price'>Price :</label>
-                        <Field type='number' name='price' />
-                        <ErrorMessage name='price' component={ErrorText} />
-                      </div>
-                      <div>
-                        <label htmlFor='imageURL'>Photo URL :</label>
-                        <Field type='url' name='imageURL' />
-                        <ErrorMessage name='imageURL' component={ErrorText} />
-                      </div>
-                      <div>
-                        <label htmlFor='totalCharge'>Total Charge :</label>
-                        <Field type='number' name='totalCharge' />
-                        <ErrorMessage
-                          name='totalCharge'
-                          component={ErrorText}
+                    <div>
+                      <label htmlFor='category'>Category:</label>
+                      <Field as='select' name='category'>
+                        <option value='headphones'>Headphones</option>
+                        <option value='earbuds'>Earbuds</option>
+                        <option value='battery'>Battery</option>
+                      </Field>
+                    </div>
+                    <div>
+                      <label htmlFor='name'>Name :</label>
+                      <Field type='text' name='name' />
+                      <ErrorMessage name='name' component={ErrorText} />
+                    </div>
+
+                    <div>
+                      <label htmlFor='price'>Price :</label>
+                      <Field type='number' name='price' />
+                      <ErrorMessage name='price' component={ErrorText} />
+                    </div>
+                    <div>
+                      <label htmlFor='imageURL'>Photo URL :</label>
+                      <Field type='url' name='imageURL' />
+                      <ErrorMessage name='imageURL' component={ErrorText} />
+                    </div>
+                    <div>
+                      <label htmlFor='totalCharge'>Total Charge :</label>
+                      <Field type='number' name='totalCharge' />
+                      <ErrorMessage name='totalCharge' component={ErrorText} />
+                    </div>
+                    <div className='checkboxes'>
+                      <div className='checkbox'>
+                        <label className='checkbox-label' htmlFor='wireless'>
+                          Wireless
+                        </label>
+                        <Field
+                          type='checkbox'
+                          name='wireless'
+                          checked={Boolean(formik.values.details.wireless)}
                         />
                       </div>
-                      <div className='checkboxes'>
-                        <div className='checkbox'>
-                          <label className='checkbox-label' htmlFor='wireless'>
-                            Wireless
-                          </label>
-                          <Field
-                            type='checkbox'
-                            name='wireless'
-                            checked={Boolean(formik.values.details.wireless)}
-                          />
-                        </div>
-                        {formik.values.category !== 'battery' && (
-                          <>
-                            <div className='checkbox'>
-                              <label
-                                className='checkbox-label'
-                                htmlFor='waterProof'>
-                                Water Prof
-                              </label>
+                      {formik.values.category !== 'battery' && (
+                        <>
+                          <div className='checkbox'>
+                            <label
+                              className='checkbox-label'
+                              htmlFor='waterProof'>
+                              Water Prof
+                            </label>
 
-                              <Field
-                                type='checkbox'
-                                name='waterProof'
-                                checked={Boolean(
-                                  formik.values.details.waterProof
-                                )}
-                              />
-                            </div>
+                            <Field
+                              type='checkbox'
+                              name='waterProof'
+                              checked={Boolean(
+                                formik.values.details.waterProof
+                              )}
+                            />
+                          </div>
 
-                            <div className='checkbox'>
-                              <label className='checkbox-label' htmlFor='tile'>
-                                Tile
-                              </label>
-                              <Field
-                                type='checkbox'
-                                name='tile'
-                                checked={Boolean(formik.values.details.tile)}
-                              />
-                            </div>
-                            <div className='checkbox'>
-                              <label
-                                className='checkbox-label'
-                                htmlFor='fullControl'>
-                                fullControl
-                              </label>
-                              <Field
-                                type='checkbox'
-                                name='fullControl'
-                                checked={Boolean(
-                                  formik.values.details.fullControl
-                                )}
-                              />
-                            </div>
-                            <div className='checkbox'>
-                              <label
-                                className='checkbox-label'
-                                htmlFor='eitherBudSolo'>
-                                Either BudSolo
-                              </label>
-                              <Field
-                                type='checkbox'
-                                name='eitherBudSolo'
-                                checked={Boolean(
-                                  formik.values.details.eitherBudSolo
-                                )}
-                              />
-                            </div>
-                            <div className='checkbox'>
-                              <label
-                                className='checkbox-label'
-                                htmlFor='wirelessCharging'>
-                                Wireless Charging
-                              </label>
-                              <Field
-                                type='checkbox'
-                                name='wirelessCharging'
-                                checked={Boolean(
-                                  formik.values.details.wirelessCharging
-                                )}
-                              />
-                            </div>
-                          </>
-                        )}
-                      </div>
-                      <Button type='submit'>{task}</Button>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
+                          <div className='checkbox'>
+                            <label className='checkbox-label' htmlFor='tile'>
+                              Tile
+                            </label>
+                            <Field
+                              type='checkbox'
+                              name='tile'
+                              checked={Boolean(formik.values.details.tile)}
+                            />
+                          </div>
+                          <div className='checkbox'>
+                            <label
+                              className='checkbox-label'
+                              htmlFor='fullControl'>
+                              fullControl
+                            </label>
+                            <Field
+                              type='checkbox'
+                              name='fullControl'
+                              checked={Boolean(
+                                formik.values.details.fullControl
+                              )}
+                            />
+                          </div>
+                          <div className='checkbox'>
+                            <label
+                              className='checkbox-label'
+                              htmlFor='eitherBudSolo'>
+                              Either BudSolo
+                            </label>
+                            <Field
+                              type='checkbox'
+                              name='eitherBudSolo'
+                              checked={Boolean(
+                                formik.values.details.eitherBudSolo
+                              )}
+                            />
+                          </div>
+                          <div className='checkbox'>
+                            <label
+                              className='checkbox-label'
+                              htmlFor='wirelessCharging'>
+                              Wireless Charging
+                            </label>
+                            <Field
+                              type='checkbox'
+                              name='wirelessCharging'
+                              checked={Boolean(
+                                formik.values.details.wirelessCharging
+                              )}
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    <Button type='submit'>{task}</Button>
+                  </Form>
+                )}
+              </Formik>
             </div>
           </div>
         </>
