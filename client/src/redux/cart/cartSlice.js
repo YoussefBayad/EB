@@ -1,84 +1,31 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import header from '../../utils/header';
+import { createSlice } from '@reduxjs/toolkit';
+
+// get data from cart
+const data = localStorage.getItem('cart')
+  ? JSON.parse(localStorage.getItem('cart'))
+  : [];
+
+const shippingData = localStorage.getItem('shippingData')
+  ? JSON.parse(localStorage.getItem('shippingData'))
+  : null;
+
+const paymentMethod = localStorage.getItem('paymentMethod')
+  ? JSON.parse(localStorage.getItem('paymentMethod'))
+  : null;
 
 const initialState = {
   isCartOpen: false,
-  data: [],
+  data,
   loading: false,
   message: null,
+  shippingData,
+  paymentMethod,
 };
-
-export const saveShippingData = createAsyncThunk(
-  'cart/saveShippingData',
-  async (id, { rejectWithValue }) => {
-    // try {
-    //   const { data } = await axios.get(`/cart/${id}`);
-    //   return data;
-    // } catch (err) {
-    //   return rejectWithValue(err.response.data);
-    // }
-  }
-);
-export const fetchCart = createAsyncThunk(
-  'cart/fetchCart',
-  async (id, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(`/cart/${id}`);
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
-export const addProductToCart = createAsyncThunk(
-  'cart/addProduct',
-  async ({ userId, product }, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post(
-        '/cart/${userId} ',
-        { product },
-        header
-      );
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
-export const editProductInCart = createAsyncThunk(
-  'cart/editProduct',
-  async ({ userId, product }, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.put(`/cart/${userId}`, { product }, header);
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
-export const deleteProductFromCart = createAsyncThunk(
-  'cart/deleteProduct',
-  async ({ userId, productId }, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.delete(`/products/${productId}`, header);
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setLocalStorageItems(state, action) {
-      state.data = action.payload;
-    },
     openCart(state) {
       state.isCartOpen = !state.isCartOpen;
     },
@@ -107,9 +54,13 @@ const cartSlice = createSlice({
         clickedProduct.qty--;
       }
     },
-    paymentCompleted(state, action) {
-      state.data = [];
-      localStorage.setItem('cart', []);
+    saveShippingData(state, action) {
+      state.shippingData = action.payload;
+      localStorage.setItem('shippingData', JSON.stringify(action.payload));
+    },
+    savePaymentMethod(state, action) {
+      state.paymentMethod = action.payload;
+      localStorage.setItem('paymentMethod', JSON.stringify(action.payload));
     },
   },
 });
@@ -121,6 +72,7 @@ export const {
   decrement,
   removeFromCart,
   setLocalStorageItems,
-  paymentCompleted,
+  saveShippingData,
+  savePaymentMethod,
 } = cartSlice.actions;
 export default cartSlice.reducer;
