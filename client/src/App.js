@@ -31,6 +31,7 @@ import WithNoAuth from './hoc/withNoAuth';
 import './default.scss';
 import ScrollToTop from './hoc/ScrollToTop.js';
 import AdminToolBar from './features/admin/AdminToolBar/index.js';
+import Shipping from './pages/Shipping';
 
 const App = () => {
   return (
@@ -128,6 +129,12 @@ const App = () => {
             <CartPage />
           </MainLayout>
         </Route>
+
+        <WithAuth exact path='/Shipping'>
+          <MainLayout>
+            <Shipping />
+          </MainLayout>
+        </WithAuth>
 
         <WithAuth exact path='/payment'>
           <MainLayout>
