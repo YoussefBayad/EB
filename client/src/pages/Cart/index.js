@@ -54,7 +54,7 @@ const Cart = () => {
             <p className='text'>Total </p>
             <p className='price'>${total}</p>
           </div>
-          <Link to='/payment' className='btn checkout-btn'>
+          <Link to='/shipping' className='btn checkout-btn'>
             Place Order
           </Link>
         </div>

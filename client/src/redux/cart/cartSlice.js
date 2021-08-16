@@ -9,6 +9,17 @@ const initialState = {
   message: null,
 };
 
+export const saveShippingData = createAsyncThunk(
+  'cart/saveShippingData',
+  async (id, { rejectWithValue }) => {
+    // try {
+    //   const { data } = await axios.get(`/cart/${id}`);
+    //   return data;
+    // } catch (err) {
+    //   return rejectWithValue(err.response.data);
+    // }
+  }
+);
 export const fetchCart = createAsyncThunk(
   'cart/fetchCart',
   async (id, { rejectWithValue }) => {
