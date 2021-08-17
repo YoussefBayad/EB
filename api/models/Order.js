@@ -20,7 +20,6 @@ const OrderSchema = new Schema(
         },
         imageUrl: {
           type: String,
-          required: true,
         },
         price: {
           type: Number,
@@ -28,7 +27,6 @@ const OrderSchema = new Schema(
         },
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
           ref: 'Product',
         },
       },
