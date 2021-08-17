@@ -3,14 +3,7 @@ import axios from 'axios';
 import header from '../../utils/header';
 
 const initialState = {
-  data: {
-    orderItems: [],
-    shippingAddress: {},
-    paymentMethod: null,
-    itemsPrice: null,
-    shippingPrice: null,
-    taxPrice: null,
-  },
+  data: null,
   loading: false,
   message: null,
 };

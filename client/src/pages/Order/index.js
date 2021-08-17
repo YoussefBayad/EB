@@ -7,16 +7,17 @@ import CheckoutSteps from '../../components/CheckoutSteps';
 import './index.scss';
 import { addOrder } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
+import { useHistory } from 'react-router-dom';
 
 const Order = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   let products = useSelector((state) => state.cart.data);
-  let { address, city, postalCode, country } = useSelector(
-    (state) => state.cart.shippingData
-  );
-  let paymentMethod = useSelector((state) => state.cart.paymentMethod);
-  let shippingData = useSelector((state) => state.cart.shippingData);
 
+  const paymentMethod = useSelector((state) => state.cart.paymentMethod);
+  const shippingData = useSelector((state) => state.cart.shippingData);
+  const order = useSelector((state) => state.order.data);
+  if (order) history.push(`/order/${order._id}`);
   // add order
   const addOrderHandler = () => {
     dispatch(
@@ -49,7 +50,7 @@ const Order = () => {
         <div className='left'>
           <div className='shipping'>
             <h3>Shipping :</h3>
-            {`${address} ${city} ${postalCode} ${country}`}
+            {`${shippingData.address} ${shippingData.city} ${shippingData.postalCode} ${shippingData.country}`}
           </div>
           <div className='payment-method'>
             <h3>Payment Method :</h3>
