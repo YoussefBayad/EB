@@ -54,4 +54,10 @@
     border: none;
     margin-bottom: 5rem;
   }
+  .checkout-summary {
+    & button {
+      display: block;
+      width: 26rem;
+    }
+  }
 }
