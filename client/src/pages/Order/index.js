@@ -1,19 +1,35 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import Product from '../../features/product/Product';
 import CheckoutSummary from '../../components/CheckoutSummary';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import './index.scss';
-import { Link } from 'react-router-dom';
+import { addOrder } from '../../redux/order/orderSlice';
+import Button from '../../components/forms/Button';
 
 const Order = () => {
+  const dispatch = useDispatch();
   let products = useSelector((state) => state.cart.data);
   let { address, city, postalCode, country } = useSelector(
     (state) => state.cart.shippingData
   );
   let paymentMethod = useSelector((state) => state.cart.paymentMethod);
+  let shippingData = useSelector((state) => state.cart.shippingData);
 
+  // add order
+  const addOrderHandler = () => {
+    dispatch(
+      addOrder({
+        orderItems: products,
+        shippingAddress: shippingData,
+        paymentMethod,
+        shippingPrice: 0,
+        taxPrice: 0,
+        totalPrice: Number(total),
+      })
+    );
+  };
   // total price
   const total =
     products.length > 0 &&
@@ -52,9 +68,9 @@ const Order = () => {
         </div>
         {isData && (
           <CheckoutSummary total={total} totalItems={totalItems}>
-            <Link to='/shipping' className='btn checkout-btn'>
+            <Button className='btn checkout-btn' onClick={addOrderHandler}>
               Place Order
-            </Link>
+            </Button>
           </CheckoutSummary>
         )}
       </div>
