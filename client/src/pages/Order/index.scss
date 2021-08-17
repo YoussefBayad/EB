@@ -1,0 +1,57 @@
+@import '../../default.scss';
+
+.order-page {
+  height: 100%;
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 10rem;
+  .order-page-inner {
+    @include flex('', 'flex-start', 'space-between');
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  & h3 {
+    margin-bottom: 1rem;
+  }
+
+  .shipping {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  .shipping,
+  .payment-method,
+  .order-page-products {
+    padding: 1.5rem;
+    padding-left: 0;
+  }
+  .shipping,
+  .payment-method {
+    margin-bottom: 1rem;
+    max-width: 40rem;
+    border-bottom: solid 2px $grey;
+  }
+  .order-page-products {
+    height: auto;
+    width: fit-content;
+
+    .product {
+      & a {
+        @include flex('', 'center', 'center');
+
+        .price {
+          display: none;
+        }
+      }
+      & img {
+        @include box(8rem);
+      }
+    }
+  }
+
+  .order-page-products {
+    border: none;
+    margin-bottom: 5rem;
+  }
+}

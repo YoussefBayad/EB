@@ -40,11 +40,13 @@ const Cart = () => {
             </AnimatePresence>
           )}
         </div>
-        <CheckoutSummary total={total} totalItems={totalItems}>
-          <Link to='/shipping' className='btn checkout-btn'>
-            Place Order
-          </Link>
-        </CheckoutSummary>
+        {products.length > 0 && (
+          <CheckoutSummary total={total} totalItems={totalItems}>
+            <Link to='/shipping' className='btn checkout-btn'>
+              Proceed to Checkout
+            </Link>
+          </CheckoutSummary>
+        )}
       </div>
     </div>
   );

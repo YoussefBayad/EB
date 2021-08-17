@@ -22,11 +22,13 @@ const AddToCart = ({ product }) => {
         </Button>
       ) : (
         <div className='product-in-cart'>
-          <Link className='buy in-cart' to='/cart'>
+          <Link className='in-cart' to='/cart'>
             Go To Cart
           </Link>
+          <br />
           <p>or</p>
-          <Link className='buy in-cart' to='/shop'>
+          <br />
+          <Link className='in-cart' to='/shop'>
             Back To Shop
           </Link>
         </div>
