@@ -13,7 +13,7 @@ import errorHandler from './middleware/error.js';
 // routes
 import productsRoute from './routes/products.js';
 import authRoute from './routes/auth.js';
-import { protect } from './middleware/auth.js';
+import orderRoute from './routes/order.js';
 
 // connect to db
 connectDb();
@@ -26,6 +26,7 @@ app.use(morgan('common'));
 // routes
 app.use('/api/auth', authRoute);
 app.use('/api/products', productsRoute);
+app.use('/api/order', orderRoute);
 
 // Error Handler Middleware
 app.use(errorHandler);

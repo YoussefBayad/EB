@@ -1,8 +1,8 @@
 import Order from '../models/Order.js';
 
 export const addOrder = async (req, res) => {
-  const data = { ...req.body, userId: req.user._id };
-
+  const data = { ...req.body.order, user: req.user._id };
+  console.log('data', data);
   if (data.orderItems && data.orderItems.length === 0) {
     return next(new ErrorResponse('No order items', 400));
   } else {
