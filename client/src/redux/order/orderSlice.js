@@ -4,7 +4,7 @@ import header from '../../utils/header';
 
 const initialState = {
   data: null,
-  loading: false,
+  loading: true,
   message: null,
 };
 
@@ -14,6 +14,19 @@ export const addOrder = createAsyncThunk(
     console.log('order', order);
     try {
       const { data } = await axios.post('/order', { order }, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getOrder = createAsyncThunk(
+  'products/getOrder',
+  async (id, { rejectWithValue }) => {
+    console.log('order id', id);
+    try {
+      const { data } = await axios.get(`/order/${id}`, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -35,6 +48,21 @@ const orderSlice = createSlice({
       state.message = 'your order has been added successfully';
     },
     [addOrder.rejected]: (state, action) => {
+      state.loading = false;
+      state.message = action.payload;
+      state.data = null;
+    },
+    [getOrder.pending]: (state, action) => {
+      state.loading = true;
+      state.data = null;
+      state.message = 'we are processing your request';
+    },
+    [getOrder.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+      state.message = 'your order has been added successfully';
+    },
+    [getOrder.rejected]: (state, action) => {
       state.loading = false;
       state.message = action.payload;
       state.data = null;

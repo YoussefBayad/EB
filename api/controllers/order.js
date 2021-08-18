@@ -15,10 +15,11 @@ export const addOrder = async (req, res) => {
 
 export const getOrder = async (req, res) => {
   const order = await Order.findById(req.params.id);
+  console.log(order.user == req.user._id);
 
-  if (order.user !== req.user._id) {
-    return next(new ErrorResponse('Not authorized to access this router', 401));
+  if (order) {
+    res.status(200).json(order);
+  } else {
+    res.status(404).json('There is no order by that id');
   }
-
-  res.status(200).json(order);
 };
