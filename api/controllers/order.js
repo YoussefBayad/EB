@@ -29,7 +29,7 @@ export const getOrder = async (req, res) => {
 
 // update order to paid
 
-export const updateOrder = async (req, res) => {
+export const updateOrderToPaid = async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
