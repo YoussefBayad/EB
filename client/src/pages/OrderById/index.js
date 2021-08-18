@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import Product from '../../features/product/Product';
 import CheckoutSummary from '../../components/CheckoutSummary';
+import ErrorMessage from '../../components/ErrorMessage';
 import CheckoutSteps from '../../components/CheckoutSteps';
 import { getOrder } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
@@ -46,11 +47,22 @@ const OrderById = () => {
           <div className='left'>
             <div className='shipping'>
               <h3>Shipping :</h3>
+
               {`${order.shippingAddress.address} ${order.shippingAddress.city} ${order.shippingAddress.postalCode} ${order.shippingAddress.country}`}
+              {order.isDelivered ? (
+                <p className='paid'>Delivered on: {order.deliveredAt} </p>
+              ) : (
+                <p className='not-paid'>Not Delivered </p>
+              )}
             </div>
             <div className='payment-method'>
               <h3>Payment Method :</h3>
               {`${order.paymentMethod}`}
+              {order.isPaid ? (
+                <p className='paid'>Paid on: {order.paidAt} </p>
+              ) : (
+                <p className='not-paid'>Not Paid </p>
+              )}
             </div>
 
             <div className='order-page-products'>

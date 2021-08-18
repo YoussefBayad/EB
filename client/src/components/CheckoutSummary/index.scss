@@ -2,7 +2,7 @@
 
 .checkout-summary {
   border: solid 3px $grey;
-  // border-bottom: none;
+  border-radius: 0.5rem;
 
   .checkout-summary-title {
     font-size: $medium;
@@ -25,5 +25,6 @@
     border-radius: 0;
     margin: 0.5rem;
     margin-top: 1rem;
+    border-radius: 0.5rem;
   }
 }
