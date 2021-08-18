@@ -8,6 +8,8 @@ const initialState = {
   message: null,
 };
 
+// add order thunk
+
 export const addOrder = createAsyncThunk(
   'products/addOrder',
   async (order, { rejectWithValue }) => {
@@ -21,12 +23,32 @@ export const addOrder = createAsyncThunk(
   }
 );
 
+// get order thunk
+
 export const getOrder = createAsyncThunk(
   'products/getOrder',
   async (id, { rejectWithValue }) => {
     console.log('order id', id);
     try {
       const { data } = await axios.get(`/order/${id}`, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+//update order thunk
+export const updateOrderToPaid = createAsyncThunk(
+  'products/updateOrderToPaid',
+  async ({ id, paymentResult }, { rejectWithValue }) => {
+    console.log('order id', id);
+    try {
+      const { data } = await axios.put(
+        `/order/${id}/pay`,
+        paymentResult,
+        header
+      );
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -48,6 +70,21 @@ const orderSlice = createSlice({
       state.message = 'your order has been added successfully';
     },
     [addOrder.rejected]: (state, action) => {
+      state.loading = false;
+      state.message = action.payload;
+      state.data = null;
+    },
+    [getOrder.pending]: (state, action) => {
+      state.loading = true;
+      state.data = null;
+      state.message = 'we are processing your request';
+    },
+    [getOrder.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+      state.message = 'your order has been added successfully';
+    },
+    [getOrder.rejected]: (state, action) => {
       state.loading = false;
       state.message = action.payload;
       state.data = null;
