@@ -1,0 +1,43 @@
+@import '../../default.scss';
+
+.cart-page {
+  margin-top: 3rem;
+  margin-bottom: 15rem;
+  height: 100%;
+  width: 100%;
+  padding-left: 2rem;
+  .title {
+    font-size: $title;
+    padding-bottom: 3rem;
+  }
+  &-inner {
+    @include flex('', 'flex-start', 'space-between');
+    flex-wrap: wrap;
+  }
+  .cart-product {
+    height: auto;
+    width: fit-content;
+    padding-bottom: 1rem;
+    border-bottom: solid 2px $grey;
+  }
+  .cart-product:first-child {
+    border-top: solid 2px $grey;
+  }
+  .cart-product:last-child {
+    border: none;
+    margin-bottom: 5rem;
+  }
+  .cart-remove-product {
+    margin-left: 30rem;
+    color: $error;
+    &::after {
+      background-color: $error;
+    }
+  }
+  .cart-product-img {
+    @include box(10rem);
+  }
+  .in-cart {
+    padding: 2rem;
+  }
+}

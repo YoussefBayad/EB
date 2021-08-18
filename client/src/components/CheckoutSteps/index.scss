@@ -1,0 +1,16 @@
+@import '../../default.scss';
+
+.checkout-steps {
+  @include flex('', 'center', 'space-between');
+  margin: 5rem 0;
+
+  .checkout-steps-link {
+    color: $black;
+    font-weight: bold;
+    opacity: 0.5;
+    font-size: $normal;
+  }
+  .active {
+    opacity: 1;
+  }
+}

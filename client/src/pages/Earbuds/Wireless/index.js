@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Links from '../../../components/Links';
-import Products from '../../../features/product/Product';
+import Products from '../../../features/product/Products';
 
 // redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../../../redux/products/productsSlice';
 
 const Wireless = () => {
-  const { data, status } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.products);
+  const wireless = data.filter(
+    (product) =>
+      product.category === 'Earbuds' && product.details.wireless === 'true'
+  );
+
+  useEffect(() => {
+    if (data?.length > 0) return;
+    dispatch(fetchProducts());
+  }, []);
 
   return (
     <div className='shop'>
       <h1>Wireless Earbuds</h1>
       <Links filter='Earbuds' />
-      <Products
-        status={status}
-        data={data.filter(
-          (product) =>
-            product.category === 'Earbuds' && product.wireless === 'true'
-        )}
-      />
+      <Products loading={loading} data={wireless} />
     </div>
   );
 };

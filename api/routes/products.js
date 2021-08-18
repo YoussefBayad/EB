@@ -1,5 +1,5 @@
 import express from 'express';
-import { protect } from '../middleware/auth.js';
+import { adminAuth } from '../middleware/auth.js';
 const router = express.Router();
 
 import {
@@ -11,9 +11,9 @@ import {
 } from '../controllers/products.js';
 
 router.get('/', getProducts);
-router.post('/', protect, createProduct);
+router.post('/', adminAuth, createProduct);
 router.get('/:id', getProduct);
-router.put('/:id', protect, updateProduct);
-router.delete('/:id', protect, deleteProduct);
+router.put('/:id', adminAuth, updateProduct);
+router.delete('/:id', adminAuth, deleteProduct);
 
 export default router;

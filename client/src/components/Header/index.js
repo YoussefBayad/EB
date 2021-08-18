@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import CartIcon from '../../features/cart/CartIcon';
 import Search from '../../features/search/Search';
 import User from '../User';
@@ -14,15 +14,18 @@ const Header = () => {
         <div className='nav-container'>
           <div className='left-nav'>
             <Burger />
-            <Link to='/' className='logo'>
+            <NavLink to='/' className='logo'>
               EB
-            </Link>
-            <Link className='shop-link' to='/shop'>
+            </NavLink>
+            <NavLink className='link' activeClassName='active' to='/shop'>
               Shop
-            </Link>
-            <Link className='about-link' to='/about'>
-              About
-            </Link>
+            </NavLink>
+            <NavLink className='link' activeClassName='active' to='/cart'>
+              Cart
+            </NavLink>
+            <NavLink className=' link' activeClassName='active' to='/support'>
+              Support
+            </NavLink>
           </div>
           <div className='right-nav'>
             <Search />

@@ -28,7 +28,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: ' Sesh® Evo True Wireless Eabuds ',
+    name: ' Sesh Evo True Wireless Eabuds ',
     price: 79,
     category: 'Earbuds',
     wireless: 'true',
@@ -41,7 +41,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Indy™ Evo True Wireless Earbuds',
+    name: 'Indy Evo True Wireless Earbuds',
     price: 199,
     category: 'Earbuds',
     wireless: 'true',
@@ -54,7 +54,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Original Sesh® True Wireless Earbuds with Print ',
+    name: 'Original Sesh True Wireless Earbuds with Print ',
     price: 59,
     category: 'Earbuds',
     wireless: 'true',
@@ -67,7 +67,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: ' Strong Push™ Ultra True Wireless Earbuds with Print  ',
+    name: ' Strong Push Ultra True Wireless Earbuds with Print  ',
     price: 129,
     category: 'Earbuds',
     wireless: 'true',
@@ -80,14 +80,14 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Fuelbase™ Max Wireless Charging Pad',
+    name: 'Fuelbase Max Wireless Charging Pad',
     price: 59,
     category: 'Battery',
     wireless: '',
   },
   {
     imageURL: null,
-    name: 'Fuelbase™ Wireless Charging Pad ',
+    name: 'Fuelbase Wireless Charging Pad ',
     price: 39,
     category: 'Battery',
     wireless: '',
@@ -162,7 +162,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Ink’d+ Earbuds with Microphone ',
+    name: 'Ink d+ Earbuds with Microphone ',
     price: 14,
     category: 'Earbuds',
     wireless: 'false',
@@ -175,7 +175,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Ink’d+ Wireless Earbuds  ',
+    name: 'Ink d+ Wireless Earbuds  ',
     price: 40,
     category: 'Earbuds',
     wireless: 'true',
@@ -201,7 +201,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: ' Method® Active Wireless Sport Earbuds',
+    name: ' Method Active Wireless Sport Earbuds',
     price: 69,
     category: 'Earbuds',
     wireless: 'true',
@@ -286,7 +286,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Sesh® True Wireless Earbuds  ',
+    name: 'Sesh True Wireless Earbuds  ',
     price: 59,
     category: 'Earbuds',
     wireless: 'true',
@@ -299,7 +299,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Stash™ Fuel 5,000 mAh Wireless Battery Pack   ',
+    name: 'Stash Fuel 5,000 mAh Wireless Battery Pack   ',
     price: 44,
     category: 'Battery',
     wireless: '',
@@ -325,7 +325,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Stash™ Fuel 10,000 mAh Wireless Battery Pack',
+    name: 'Stash Fuel 10,000 mAh Wireless Battery Pack',
     price: 79,
     category: 'Battery',
     wireless: '',
@@ -338,7 +338,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Stash™ Mini 5,000 mAh Portable Battery Pack',
+    name: 'Stash Mini 5,000 mAh Portable Battery Pack',
     price: 29,
     category: 'Battery',
     wireless: '',
@@ -351,7 +351,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Energized Stash™ Mini 5,000 mAh Portable Battery Pack',
+    name: 'Energized Stash Mini 5,000 mAh Portable Battery Pack',
     price: 29,
     category: 'Battery',
     wireless: '',
@@ -377,7 +377,7 @@ const products = [
   },
   {
     imageURL: null,
-    name: 'Wild Indy™ Evo True Wireless Earbuds with Print',
+    name: 'Wild Indy Evo True Wireless Earbuds with Print',
     price: 89,
     category: 'Earbuds',
     wireless: 'true',

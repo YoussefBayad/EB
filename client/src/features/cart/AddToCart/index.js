@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { openCart, addToCart } from '../../../redux/cart/cartSlice';
 import Button from '../../../components/forms/Button';
+import { Link } from 'react-router-dom';
 
 const AddToCart = ({ product }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const AddToCart = ({ product }) => {
   );
   return (
     <>
-      {isProductInCart === undefined ? (
+      {!isProductInCart ? (
         <Button
           className='buy-button'
           onClick={() => {
@@ -20,9 +21,17 @@ const AddToCart = ({ product }) => {
           Add To Cart
         </Button>
       ) : (
-        <Button className='buy in-cart' onClick={() => dispatch(openCart())}>
-          In Cart
-        </Button>
+        <div className='product-in-cart'>
+          <Link className='in-cart' to='/cart'>
+            Go To Cart
+          </Link>
+          <br />
+          <p>or</p>
+          <br />
+          <Link className='in-cart' to='/shop'>
+            Back To Shop
+          </Link>
+        </div>
       )}
     </>
   );

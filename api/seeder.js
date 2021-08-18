@@ -19,7 +19,8 @@ const importData = async () => {
         name,
         price,
         imageURL,
-
+        category,
+        countInStock: 3,
         details: others,
       };
     });

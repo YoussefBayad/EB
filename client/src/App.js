@@ -9,9 +9,10 @@ import HomeLayout from './layouts/HomeLayout.js';
 // pages
 import HomePage from './pages/Home';
 import Login from './pages/Login';
-import Registration from './pages/Register';
+import Register from './pages/Register';
 import Shop from './pages/Shop';
 import Payment from './pages/Payment';
+import Order from './pages/Order';
 import Admin from './pages/Admin';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
@@ -19,6 +20,7 @@ import Wired from './pages/Earbuds/Wired';
 import Headphones from './pages/Headphones';
 import Battery from './pages/Battery';
 import Product from './pages/Product';
+import CartPage from './pages/Cart';
 import NoMatch from './pages/error/NoMatch.js';
 
 // HOC
@@ -30,6 +32,7 @@ import WithNoAuth from './hoc/withNoAuth';
 import './default.scss';
 import ScrollToTop from './hoc/ScrollToTop.js';
 import AdminToolBar from './features/admin/AdminToolBar/index.js';
+import Shipping from './pages/Shipping';
 
 const App = () => {
   return (
@@ -48,29 +51,23 @@ const App = () => {
           </AdminLayout>
         </WithAdminAuth>
 
-        <Route exact path='/shop/product/:id'>
-          <MainLayout>
-            <Product />
-          </MainLayout>
-        </Route>
-
-        <Route exact path='/shop'>
-          <MainLayout>
-            <Shop />
-          </MainLayout>
-        </Route>
-
         <WithNoAuth exact path='/login'>
           <MainLayout>
             <Login />
           </MainLayout>
         </WithNoAuth>
 
-        <WithNoAuth exact path='/registration'>
+        <WithNoAuth exact path='/register'>
           <MainLayout>
-            <Registration />
+            <Register />
           </MainLayout>
         </WithNoAuth>
+
+        <Route exact path='/shop'>
+          <MainLayout>
+            <Shop />
+          </MainLayout>
+        </Route>
 
         <Route
           exact
@@ -81,6 +78,22 @@ const App = () => {
             </MainLayout>
           )}
         />
+
+        <Route
+          exact
+          path='/shop/batteries'
+          render={() => (
+            <MainLayout>
+              <Battery />
+            </MainLayout>
+          )}
+        />
+
+        <Route exact path='/shop/product/:id'>
+          <MainLayout>
+            <Product />
+          </MainLayout>
+        </Route>
 
         <Route
           exact
@@ -112,25 +125,29 @@ const App = () => {
           )}
         />
 
-        <Route
-          exact
-          path='/shop/batteries'
-          render={() => (
-            <MainLayout>
-              <Battery />
-            </MainLayout>
-          )}
-        />
+        <Route path='/cart'>
+          <MainLayout>
+            <CartPage />
+          </MainLayout>
+        </Route>
 
-        <Route
-          exact
-          path='/payment'
-          render={() => (
-            <MainLayout>
-              <Payment />
-            </MainLayout>
-          )}
-        />
+        <WithAuth exact path='/Shipping'>
+          <MainLayout>
+            <Shipping />
+          </MainLayout>
+        </WithAuth>
+
+        <WithAuth exact path='/payment'>
+          <MainLayout>
+            <Payment />
+          </MainLayout>
+        </WithAuth>
+
+        <WithAuth exact path='/order'>
+          <MainLayout>
+            <Order />
+          </MainLayout>
+        </WithAuth>
 
         <Route path='*'>
           <MainLayout>

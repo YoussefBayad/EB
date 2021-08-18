@@ -1,24 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// get data from cart
+const data = localStorage.getItem('cart')
+  ? JSON.parse(localStorage.getItem('cart'))
+  : [];
+
+const shippingData = localStorage.getItem('shippingData')
+  ? JSON.parse(localStorage.getItem('shippingData'))
+  : null;
+
+const paymentMethod = localStorage.getItem('paymentMethod')
+  ? JSON.parse(localStorage.getItem('paymentMethod'))
+  : null;
+
 const initialState = {
   isCartOpen: false,
-  data: [],
+  data,
   loading: false,
-  error: null,
+  message: null,
+  shippingData,
+  paymentMethod,
 };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setLocalStorageItems(state, action) {
-      state.data = action.payload;
-    },
     openCart(state) {
       state.isCartOpen = !state.isCartOpen;
     },
     addToCart(state, action) {
-      const product = { ...action.payload, count: 1 };
+      const product = action.payload;
       state.data.push(product);
     },
     removeFromCart(state, action) {
@@ -30,21 +42,25 @@ const cartSlice = createSlice({
       const clickedProduct = state.data.find(
         (product) => product._id === action.payload
       );
-      clickedProduct.count++;
+      clickedProduct.qty++;
     },
     decrement(state, action) {
       const clickedProduct = state.data.find(
         (product) => product._id === action.payload
       );
-      // preventing count from negative values
-      if (clickedProduct.count === 1) return;
+      // preventing qty from negative values
+      if (clickedProduct.qty === 1) return;
       else {
-        clickedProduct.count--;
+        clickedProduct.qty--;
       }
     },
-    paymentCompleted(state, action) {
-      state.data = [];
-      localStorage.setItem('cart', []);
+    saveShippingData(state, action) {
+      state.shippingData = action.payload;
+      localStorage.setItem('shippingData', JSON.stringify(action.payload));
+    },
+    savePaymentMethod(state, action) {
+      state.paymentMethod = action.payload;
+      localStorage.setItem('paymentMethod', JSON.stringify(action.payload));
     },
   },
 });
@@ -56,6 +72,7 @@ export const {
   decrement,
   removeFromCart,
   setLocalStorageItems,
-  paymentCompleted,
+  saveShippingData,
+  savePaymentMethod,
 } = cartSlice.actions;
 export default cartSlice.reducer;
