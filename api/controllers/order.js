@@ -12,3 +12,13 @@ export const addOrder = async (req, res) => {
     res.status(200).json(createdOrder);
   }
 };
+
+export const getOrder = async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order.user !== req.user._id) {
+    return next(new ErrorResponse('Not authorized to access this router', 401));
+  }
+
+  res.status(200).json(order);
+};
