@@ -6,11 +6,12 @@ import { fetchProducts } from '../../redux/products/productsSlice';
 
 const Headphones = () => {
   const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.products);
+
   useEffect(() => {
     if (data?.length > 0) return;
     dispatch(fetchProducts());
-  }, []);
-  const { data, loading } = useSelector((state) => state.products);
+  }, [data.length, dispatch]);
 
   const headphones = data.filter((product) => product.category === 'Headphone');
   console.log('headphones', headphones);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Links from '../../../components/Links';
 import Products from '../../../features/product/Products';
 
@@ -17,7 +17,7 @@ const Wireless = () => {
   useEffect(() => {
     if (data?.length > 0) return;
     dispatch(fetchProducts());
-  }, []);
+  }, [data.length, dispatch]);
 
   return (
     <div className='shop'>

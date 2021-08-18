@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocalStorageItems, openCart } from '../../redux/cart/cartSlice';
+import { openCart } from '../../redux/cart/cartSlice';
 import Header from './Header';
 import Footer from './Footer';
 import useOutsideClickRef from '@rooks/use-outside-click-ref';
@@ -10,12 +10,7 @@ import './index.scss';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const {
-    isCartOpen,
-    loading,
-    message,
-    data: products,
-  } = useSelector((state) => state.cart);
+  const { isCartOpen, data: products } = useSelector((state) => state.cart);
 
   // total price
   const total =

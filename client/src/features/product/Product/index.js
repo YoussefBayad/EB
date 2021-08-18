@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './index.scss';
-import AddToCart from '../../cart/AddToCart';
 
 const Product = ({ product }) => {
   return (

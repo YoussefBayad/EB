@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal';
 import Button from '../../components/forms/Button';
 import AdminProducts from '../../features/admin/AdminProducts';
-import Spinner from '../../components/Spinner';
 import {
   addProduct,
   deleteProduct,
@@ -24,7 +23,7 @@ const Admin = (props) => {
   useEffect(() => {
     if (products?.length > 0) return;
     dispatch(fetchProducts());
-  }, []);
+  }, [products.length, dispatch]);
 
   // model display state
   const [showModal, setShowModal] = useState(false);

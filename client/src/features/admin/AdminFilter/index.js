@@ -7,6 +7,7 @@ const AdminSearch = ({ products, setProducts, initialState }) => {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
+
   useEffect(() => {
     if (query.trim() === '') {
       setProducts(initialState);

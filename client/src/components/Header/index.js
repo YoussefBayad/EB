@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import CartIcon from '../../features/cart/CartIcon';
 import Search from '../../features/search/Search';
 import User from '../User';

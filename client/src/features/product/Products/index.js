@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Product from '../Product';
-import Spinner from '../../../components/Spinner';
 import ErrorMessage from '../../../components/ErrorMessage';
 import Skeleton from 'react-loading-skeleton';
 import './index.scss';

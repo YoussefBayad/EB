@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Count from '../../features/cart/ProductQty';
 import AddToCart from '../../features/cart/AddToCart';
 import ErrorMessage from '../../components/ErrorMessage';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -43,7 +42,7 @@ const ProductPage = () => {
   // fetch product
   useEffect(() => {
     dispatch(fetchProduct(id));
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <AnimatePresence>

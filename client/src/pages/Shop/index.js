@@ -12,7 +12,7 @@ const Shop = () => {
   useEffect(() => {
     if (data?.length > 0) return;
     dispatch(fetchProducts());
-  }, []);
+  }, [data.length, dispatch]);
   return (
     <div className='shop'>
       <h1>Shop</h1>

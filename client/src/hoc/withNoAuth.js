@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Route, useHistory, useLocation } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 
 function WithNoAuth({ children, location, ...rest }) {
   const user = useSelector((state) => state.auth.user);

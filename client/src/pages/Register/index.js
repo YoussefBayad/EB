@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ErrorText from '../../components/ErrorMessage';
 import Button from '../../components/forms/Button/index.js';
-import Spinner from '../../components/Spinner/index.js';
 import { register } from '../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 // style
