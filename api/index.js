@@ -27,6 +27,9 @@ app.use(morgan('common'));
 app.use('/api/auth', authRoute);
 app.use('/api/products', productsRoute);
 app.use('/api/order', orderRoute);
+app.get('/api/config/paypal', (res, req) =>
+  res.send(process.env.PAYPAL_CLIENT_ID)
+);
 
 // Error Handler Middleware
 app.use(errorHandler);
