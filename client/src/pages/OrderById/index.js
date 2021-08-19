@@ -1,26 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import Product from '../../features/product/Product';
 import CheckoutSummary from '../../components/CheckoutSummary';
-import ErrorMessage from '../../components/ErrorMessage';
 import CheckoutSteps from '../../components/CheckoutSteps';
-import { getOrder } from '../../redux/order/orderSlice';
+import { getOrder, updateOrderToPaid } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
+import { PayPalButton } from 'react-paypal-button-v2';
+
 import { useParams } from 'react-router-dom';
 import './index.scss';
 import Skeleton from 'react-loading-skeleton';
+import axios from 'axios';
 
 const OrderById = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-
-  const { data: order, loading, message } = useSelector((state) => state.order);
+  const [sdkReady, setSdkReady] = useState(false);
+  const { data: order, loading } = useSelector((state) => state.order);
 
   // fetch order
   useEffect(() => {
-    dispatch(getOrder(id));
-  }, [id, dispatch]);
+    const addPayPalScript = async () => {
+      const { data: clientId } = await axios.get('/config/paypal');
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+
+    if (!order) {
+      dispatch(getOrder(id));
+    } else if (!order.isPaid) {
+      if (!window.paypal) {
+        addPayPalScript();
+      } else {
+        setSdkReady(true);
+      }
+    }
+  }, [dispatch, id, order, loading]);
+
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(updateOrderToPaid({ id, paymentResult }));
+  };
 
   return (
     <div className='order-page'>
@@ -78,7 +104,18 @@ const OrderById = () => {
           <CheckoutSummary
             total={order.totalPrice}
             totalItems={order.orderItems.length}>
-            <Button className='btn checkout-btn'>Place Order</Button>
+            {!order.isPaid && (
+              <>
+                {!sdkReady ? (
+                  <Button className='btn checkout-btn'>Loading...</Button>
+                ) : (
+                  <PayPalButton
+                    amount={order.totalPrice}
+                    onSuccess={successPaymentHandler}
+                  />
+                )}
+              </>
+            )}
           </CheckoutSummary>
         </div>
       )}
