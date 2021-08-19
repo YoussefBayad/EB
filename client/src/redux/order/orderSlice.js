@@ -42,13 +42,14 @@ export const getOrder = createAsyncThunk(
 export const updateOrderToPaid = createAsyncThunk(
   'products/updateOrderToPaid',
   async ({ id, paymentResult }, { rejectWithValue }) => {
-    console.log('order id', id);
     try {
       const { data } = await axios.put(
         `/order/${id}/pay`,
         paymentResult,
         header
       );
+      console.log('data', data);
+
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -89,17 +90,17 @@ const orderSlice = createSlice({
       state.message = action.payload;
       state.data = null;
     },
-    [getOrder.pending]: (state, action) => {
+    [updateOrderToPaid.pending]: (state, action) => {
       state.loading = true;
       state.data = null;
       state.message = 'we are processing your request';
     },
-    [getOrder.fulfilled]: (state, action) => {
+    [updateOrderToPaid.fulfilled]: (state, action) => {
       state.loading = false;
       state.data = action.payload;
       state.message = 'your order has been added successfully';
     },
-    [getOrder.rejected]: (state, action) => {
+    [updateOrderToPaid.rejected]: (state, action) => {
       state.loading = false;
       state.message = action.payload;
       state.data = null;

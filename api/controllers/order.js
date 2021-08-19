@@ -18,7 +18,6 @@ export const addOrder = async (req, res) => {
 
 export const getOrder = async (req, res) => {
   const order = await Order.findById(req.params.id);
-  console.log(order.user == req.user._id);
 
   if (order) {
     res.status(200).json(order);
@@ -31,19 +30,19 @@ export const getOrder = async (req, res) => {
 
 export const updateOrderToPaid = async (req, res) => {
   const order = await Order.findById(req.params.id);
-
+  console.log(req.body);
   if (order) {
     order.isPaid = true;
-    order.paidAt = date.now();
+    order.paidAt = Date.now();
     order.paymentResult = {
       id: req.body.id,
       status: req.body.status,
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     };
-    const updatesOrder = await Order.save();
+    const updatedOrder = await order.save();
 
-    res.status(200).json(updatesOrder);
+    res.status(200).json(updatedOrder);
   } else {
     res.status(404).json('There is no order by that id');
   }
