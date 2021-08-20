@@ -85,7 +85,9 @@ const OrderById = () => {
               <h3>Payment Method :</h3>
               {`${order.paymentMethod}`}
               {order.isPaid ? (
-                <p className='paid'>Paid on: {order.paidAt} </p>
+                <p className='paid'>
+                  Paid on: {order.paidAt.toLocaleString()}{' '}
+                </p>
               ) : (
                 <p className='not-paid'>Not Paid </p>
               )}

@@ -54,6 +54,9 @@ const cartSlice = createSlice({
         clickedProduct.qty--;
       }
     },
+    resetCart(state, action) {
+      state.data = [];
+    },
     saveShippingData(state, action) {
       state.shippingData = action.payload;
       localStorage.setItem('shippingData', JSON.stringify(action.payload));
@@ -74,5 +77,6 @@ export const {
   setLocalStorageItems,
   saveShippingData,
   savePaymentMethod,
+  resetCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

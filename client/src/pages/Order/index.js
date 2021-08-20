@@ -8,6 +8,7 @@ import './index.scss';
 import { addOrder } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
 import { useHistory } from 'react-router-dom';
+import { resetCart } from '../../redux/cart/cartSlice';
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Order = () => {
         totalPrice: Number(total),
       })
     );
+    dispatch(resetCart());
   };
   // total price
   const total =
