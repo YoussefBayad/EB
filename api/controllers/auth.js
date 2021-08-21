@@ -17,6 +17,30 @@ export const getUsers = async (req, res) => {
   }
 };
 
+// delete user
+export const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.status(200).json(req.params.id);
+  } catch (err) {
+    return next(new ErrorResponse('Something went wrong', 400));
+  }
+};
+
+// update user
+export const updateUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, {
+      $set: req.body.user,
+    });
+    res.status(200).json({
+      user: { ...user._doc, ...req.body.user },
+    });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 //   Login user
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
