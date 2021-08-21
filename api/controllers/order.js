@@ -26,6 +26,18 @@ export const getOrder = async (req, res) => {
   }
 };
 
+//get user orders
+
+export const getUserOrder = async (req, res) => {
+  const orders = await Order.find({ user: req.user._id });
+
+  if (orders) {
+    res.status(200).json(orders);
+  } else {
+    res.status(404).json('you have no orders');
+  }
+};
+
 // update order to paid
 
 export const updateOrderToPaid = async (req, res) => {
