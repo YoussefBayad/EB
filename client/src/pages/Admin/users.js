@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorMessage from '../../components/ErrorMessage';
-import { getUsers } from '../../redux/users';
+import { deleteUser, getUsers } from '../../redux/users';
 import edit from '../../assets/icon/edit.svg';
 import './users.scss';
 
@@ -17,9 +17,7 @@ const Users = () => {
   const editUserHandler = () => {
     console.log('edit user');
   };
-  const deleteUserHandler = () => {
-    console.log('delete user');
-  };
+
   return (
     <div>
       <h1>Users :</h1>
@@ -52,7 +50,7 @@ const Users = () => {
                     onClick={editUserHandler}
                   />{' '}
                 </td>
-                <td onClick={deleteUserHandler}>delete</td>
+                <td onClick={() => dispatch(deleteUser(user._id))}>delete</td>
               </tr>
             ))}
           </tbody>

@@ -48,7 +48,7 @@ const User = () => {
             ) : (
               <>
                 <Link
-                  to='/registration'
+                  to='/register'
                   className='btn'
                   onClick={() => {
                     setOpen(false);

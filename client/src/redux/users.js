@@ -3,7 +3,7 @@ import axios from 'axios';
 import header from '../utils/header';
 
 const initialState = {
-  users: null,
+  data: null,
   loading: false,
   message: null,
 };
@@ -67,12 +67,12 @@ const usersSlice = createSlice({
       state.loading = false;
       state.data = null;
     },
-    [deleteUsers.fulfilled]: (state, action) => {
+    [deleteUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.message = null;
-      state.data = state.data.filter((user) => user._id !== action.payload.id);
+      state.data = state.data.filter((user) => user._id !== action.payload);
     },
-    [updateUsers.fulfilled]: (state, action) => {
+    [editUser.fulfilled]: (state, action) => {
       state.data = state.data.map((user) => {
         if (user._id === action.payload.user._id) user = action.payload.user;
         return user;
