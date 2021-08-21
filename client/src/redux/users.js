@@ -30,19 +30,17 @@ const usersSlice = createSlice({
     [getUsers.pending]: (state, action) => {
       state.loading = true;
       state.message = null;
-      state.user = null;
+      state.data = null;
     },
     [getUsers.fulfilled]: (state, action) => {
-      if (!action.payload) return;
-      state.user = action.payload.user;
+      state.data = action.payload;
       state.loading = false;
       state.message = null;
     },
     [getUsers.rejected]: (state, action) => {
-      if (!action.payload) return;
       state.message = action.payload;
       state.loading = false;
-      state.user = null;
+      state.data = null;
     },
   },
 });

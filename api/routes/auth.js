@@ -12,7 +12,7 @@ import {
 
 import { adminAuth } from '../middleware/auth.js';
 
-router.post('/', adminAuth, getUsers);
+router.get('/', adminAuth, getUsers);
 
 router.post('/register', register);
 

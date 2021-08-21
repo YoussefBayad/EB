@@ -9,8 +9,12 @@ export const getUser = async (req, res, next) => {
 
 // get all users for admin page
 export const getUsers = async (req, res) => {
-  const users = await User.find({});
-  res.status(200).json(users);
+  try {
+    const users = await User.find({});
+    res.status(200).json(users);
+  } catch (err) {
+    return next(new ErrorResponse('Something went wrong', 400));
+  }
 };
 
 //   Login user

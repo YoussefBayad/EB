@@ -15,6 +15,8 @@ import Payment from './pages/Payment';
 import Order from './pages/Order';
 import OrderById from './pages/OrderById';
 import Admin from './pages/Admin';
+import AdminUsers from './pages/Admin/users';
+import AdminOrders from './pages/Admin/orders';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
 import Wired from './pages/Earbuds/Wired';
@@ -49,6 +51,18 @@ const App = () => {
         <WithAdminAuth exact path='/admin'>
           <AdminLayout>
             <Admin />
+          </AdminLayout>
+        </WithAdminAuth>
+
+        <WithAdminAuth exact path='/admin/users'>
+          <AdminLayout>
+            <AdminUsers />
+          </AdminLayout>
+        </WithAdminAuth>
+
+        <WithAdminAuth exact path='/admin/orders'>
+          <AdminLayout>
+            <AdminOrders />
           </AdminLayout>
         </WithAdminAuth>
 
