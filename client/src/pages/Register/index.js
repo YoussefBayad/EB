@@ -15,8 +15,8 @@ const Registration = () => {
 
   // formik setup
   const initialValues = {
-    username: 'admin',
-    email: 'admin@eb.com',
+    username: '',
+    email: '',
     password: '123456',
     confirmPassword: '123456',
     profilePicture: '../../assets/avatar.jfif',
@@ -39,7 +39,7 @@ const Registration = () => {
     onSubmitProps.resetForm();
   };
   return (
-    <div className='contact-information'>
+    <div className='shipping'>
       <h1>Register</h1>
 
       <Formik

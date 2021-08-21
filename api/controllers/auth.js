@@ -60,7 +60,7 @@ export const register = async (req, res, next) => {
 
     sendToken(user, 200, res);
   } catch (err) {
-    next(err);
+    return next(new ErrorResponse(err, 401));
   }
 };
 

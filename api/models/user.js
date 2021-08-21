@@ -49,11 +49,9 @@ const UserSchema = new Schema(
     },
     googleId: {
       type: String,
-      unique: true,
     },
     facebookId: {
       type: String,
-      unique: true,
     },
     avatar: {
       type: String,
