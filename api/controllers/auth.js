@@ -6,6 +6,13 @@ import User from '../models/User.js';
 export const getUser = async (req, res, next) => {
   res.send(req.user);
 };
+
+// get all users for admin page
+export const getUsers = async (req, res) => {
+  const users = await User.find({});
+  res.status(200).json(users);
+};
+
 //   Login user
 export const login = async (req, res, next) => {
   const { email, password } = req.body;

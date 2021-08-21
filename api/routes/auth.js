@@ -7,7 +7,12 @@ import {
   forgotPassword,
   resetPassword,
   getUser,
+  getUsers,
 } from '../controllers/auth.js';
+
+import { adminAuth } from '../middleware/auth.js';
+
+router.post('/', adminAuth, getUsers);
 
 router.post('/register', register);
 
