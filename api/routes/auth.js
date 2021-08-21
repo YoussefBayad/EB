@@ -8,11 +8,15 @@ import {
   resetPassword,
   getUser,
   getUsers,
+  deleteUser,
+  updateUser,
 } from '../controllers/auth.js';
 
-import { adminAuth } from '../middleware/auth.js';
+import { adminAuth, userAuth } from '../middleware/auth.js';
 
 router.get('/', adminAuth, getUsers);
+router.delete('/:id', adminAuth, deleteUser);
+router.put('/:id', userAuth, updateUser);
 
 router.post('/register', register);
 
