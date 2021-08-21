@@ -47,12 +47,7 @@ const UserSchema = new Schema(
       required: true,
       default: 'email',
     },
-    googleId: {
-      type: String,
-    },
-    facebookId: {
-      type: String,
-    },
+
     avatar: {
       type: String,
     },

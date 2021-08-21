@@ -19,7 +19,6 @@ const Registration = () => {
     email: '',
     password: '123456',
     confirmPassword: '123456',
-    profilePicture: '../../assets/avatar.jfif',
   };
 
   const validationSchema = Yup.object({
