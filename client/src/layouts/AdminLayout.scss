@@ -7,11 +7,15 @@
   height: 100%;
 
   .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
     padding: 5rem 0;
     width: 30%;
     min-width: 30rem;
     border-right: 1px solid $sidebar;
-    background-color: $sidebar;
+    background-color: $grey;
     border-radius: 1rem;
   }
 

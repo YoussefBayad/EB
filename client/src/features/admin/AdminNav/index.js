@@ -19,10 +19,16 @@ const AdminNav = ({ children }) => {
       <div className='menu'>
         <ul>
           <Link to='/'>
-            <li>Home</li>
+            <li>Products</li>
+          </Link>
+          <Link to='/admin/users'>
+            <li>Users</li>
+          </Link>
+          <Link to='/admin/orders'>
+            <li>Orders</li>
           </Link>
           <Link to='/shop'>
-            <li>Shop</li>
+            <li>Back To Shop</li>
           </Link>
           <li
             onClick={() => {
