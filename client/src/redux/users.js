@@ -22,6 +22,31 @@ export const getUsers = createAsyncThunk(
   }
 );
 
+// edit user
+export const editUser = createAsyncThunk(
+  'users/editUser',
+  async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put(`/auth/${user._id}`, { user }, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  'users/deleteUser',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/auth/${id}`, header);
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -41,6 +66,19 @@ const usersSlice = createSlice({
       state.message = action.payload;
       state.loading = false;
       state.data = null;
+    },
+    [deleteUsers.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.message = null;
+      state.data = state.data.filter((user) => user._id !== action.payload.id);
+    },
+    [updateUsers.fulfilled]: (state, action) => {
+      state.data = state.data.map((user) => {
+        if (user._id === action.payload.user._id) user = action.payload.user;
+        return user;
+      });
+      state.loading = false;
+      state.message = null;
     },
   },
 });

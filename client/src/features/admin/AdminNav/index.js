@@ -18,7 +18,7 @@ const AdminNav = ({ children }) => {
       </div>
       <div className='menu'>
         <ul>
-          <Link to='/'>
+          <Link to='/admin'>
             <li>Products</li>
           </Link>
           <Link to='/admin/users'>
