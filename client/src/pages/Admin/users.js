@@ -20,7 +20,7 @@ const Users = () => {
   };
 
   return (
-    <div>
+    <div className='admin-users'>
       <h1>Users :</h1>
       {loading && <h1>Loading ...</h1>}
       {message && <ErrorMessage>{message} </ErrorMessage>}

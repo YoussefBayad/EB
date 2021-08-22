@@ -35,8 +35,7 @@ const Admin = (props) => {
   // initial state
   const initialValues = {
     category: 'headphones',
-    imageURL:
-      'https://images-na.ssl-images-amazon.com/images/I/41GFa7W547L._AC_SY400_.jpg',
+    imageURL: '',
     name: 'Wireless Earpods:  Mini Bluetooth Earpods',
     price: 82,
     details: {
@@ -53,6 +52,7 @@ const Admin = (props) => {
   // add product
   const onSubmit = (values) => {
     const { name, price, category, imageURL, ...others } = values;
+    console.log('values', values);
 
     dispatch(
       addProduct({

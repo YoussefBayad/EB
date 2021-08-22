@@ -1,34 +1,43 @@
 @import '../../default';
 
-.edit {
-  width: 2rem;
-}
+.admin-users {
+  h1 {
+    font-size: $title;
+  }
 
-thead {
-  background: SteelBlue;
-  color: white;
-}
+  .users-list {
+    margin-top: 3rem;
+    font-size: $normal;
+  }
+  thead {
+    background: SteelBlue;
+    color: white;
+  }
 
-th,
-td {
-  padding: 5px 10px;
-}
+  th,
+  td {
+    padding: 5px 10px;
+  }
 
-tbody tr:nth-child(even) {
-  background: WhiteSmoke;
-}
+  tbody tr:nth-child(even) {
+    background: WhiteSmoke;
+  }
 
-tbody tr td:nth-child(2) {
-  text-align: center;
-}
+  tbody tr td:nth-child(2) {
+    text-align: center;
+  }
 
-tbody tr td:nth-child(3),
-tbody tr td:nth-child(4) {
-  text-align: right;
-  font-family: monospace;
-}
+  tbody tr td:nth-child(3),
+  tbody tr td:nth-child(4) {
+    text-align: right;
+    font-family: monospace;
+  }
 
-.delete-user {
-  color: $error;
-  cursor: pointer;
+  .delete-user {
+    color: $error;
+    cursor: pointer;
+  }
+  .edit {
+    width: 2rem;
+  }
 }

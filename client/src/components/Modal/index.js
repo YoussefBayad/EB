@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ErrorText from '../../components/ErrorMessage';
 import Button from '../../components/forms/Button';
 
 import './styles.scss';
+import axios from 'axios';
 
 const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
+  const [uploading, setUploading] = useState(false);
+  const [imageURL, setImageURL] = useState('');
   const validationSchema = Yup.object({
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
     totalCharge: Yup.number().min(1).max(48),
-    imageURL: Yup.string().url(),
+    imageURL: Yup.string(),
   });
-  console.log('task', task);
 
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await axios.post('/upload', formData, config);
+      setImageURL(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
   return (
     <>
       {showModal && (
@@ -26,7 +48,9 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
             <div className='addNewProductForm'>
               <Formik
                 initialValues={initialValues}
-                onSubmit={onSubmit}
+                onSubmit={(values) => {
+                  onSubmit({ ...values, imageURL });
+                }}
                 validationSchema={validationSchema}>
                 {(formik) => (
                   <Form>
@@ -53,7 +77,11 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                     </div>
                     <div>
                       <label htmlFor='imageURL'>Photo URL :</label>
-                      <Field type='url' name='imageURL' />
+                      <Field
+                        name='imageURL'
+                        type='file'
+                        onChange={(e) => uploadFileHandler(e)}
+                      />
                       <ErrorMessage name='imageURL' component={ErrorText} />
                     </div>
                     <div>
@@ -145,7 +173,13 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                         </>
                       )}
                     </div>
-                    <Button type='submit'>{task}</Button>
+                    {uploading ? (
+                      <Button type='submit' disabled>
+                        Uploading
+                      </Button>
+                    ) : (
+                      <Button type='submit'>{task}</Button>
+                    )}
                   </Form>
                 )}
               </Formik>
