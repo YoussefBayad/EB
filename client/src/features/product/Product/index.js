@@ -14,7 +14,11 @@ const Product = ({ product }) => {
       className='product'>
       <Link to={`/shop/product/${product._id}`}>
         <img
-          src={`/img/${product.name.replace(/\s/g, '')}.webp`}
+          src={
+            product.imageUrl
+              ? product.imageUrl
+              : `/img/${product.name.replace(/\s/g, '')}.webp`
+          }
           alt={product.name.replace(/\s/g, '')}
         />
         <p className='name'>{product.name}</p>

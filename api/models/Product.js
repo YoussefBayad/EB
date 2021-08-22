@@ -32,7 +32,7 @@ const ProductSchema = new Schema({
   // },
   imageUrl: {
     type: String,
-    default: null,
+    default: '/uploads\\image-1629638869572.webp',
   },
   details: {
     type: Object,

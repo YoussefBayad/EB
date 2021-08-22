@@ -51,11 +51,9 @@ const AdminProducts = ({ products, loading, onDeleteProduct, setError }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.7 }}
-                        src={
-                          imageURL
-                            ? imageURL
-                            : `/img/${name.replace(/\s/g, '')}.webp`
-                        }
+                        // src={imageURL}
+                        src={`http://localhost:5000${imageURL}`}
+                        fluid
                         alt={name}
                       />
                       <EditProduct
