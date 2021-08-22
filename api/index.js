@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
+import path from 'path';
 import express from 'express';
 const app = express();
 import helmet from 'helmet';
@@ -14,6 +15,7 @@ import errorHandler from './middleware/error.js';
 import productsRoute from './routes/products.js';
 import authRoute from './routes/auth.js';
 import orderRoute from './routes/order.js';
+import uploadsRoute from './routes/uploads.js';
 
 // connect to db
 connectDb();
@@ -23,10 +25,13 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 // routes
 app.use('/api/auth', authRoute);
 app.use('/api/products', productsRoute);
 app.use('/api/order', orderRoute);
+app.use('/api/uploads', uploadsRoute);
 
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
