@@ -30,8 +30,6 @@ export const createProduct = async (req, res) => {
   try {
     const product = new Product({
       ...req.body.product,
-      imageUrl: '',
-      imageKey: '',
     });
 
     const savedProduct = await product.save();

@@ -88,6 +88,7 @@ const ProductSchema = new Schema({
   category: {
     type: String,
     required: true,
+    default: 'generic',
     trim: true,
   },
 
