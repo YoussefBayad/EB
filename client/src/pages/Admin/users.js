@@ -8,6 +8,7 @@ import './users.scss';
 const Users = () => {
   const dispatch = useDispatch();
   const { data: users, message, loading } = useSelector((state) => state.users);
+  const { _id: adminId } = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     if (users?.length > 0) return;
@@ -32,6 +33,7 @@ const Users = () => {
               <th>Email</th>
               <th>Admin</th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -50,7 +52,13 @@ const Users = () => {
                     onClick={editUserHandler}
                   />{' '}
                 </td>
-                <td onClick={() => dispatch(deleteUser(user._id))}>delete</td>
+                {user._id !== adminId && (
+                  <td
+                    className='delete-user'
+                    onClick={() => dispatch(deleteUser(user._id))}>
+                    delete
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

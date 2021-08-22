@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import avatar from '../../../assets/avatar.jpeg';
+
 import './index.scss';
 import { logout } from '../../../redux/auth/authSlice';
 
@@ -12,7 +14,10 @@ const AdminNav = ({ children }) => {
     <div className='vertical-nav'>
       <div className='user-profile'>
         <div className='user-img'>
-          <img src={user.profilePicture} alt='user' />
+          <img
+            src={user.profilePicture ? user.profilePicture : avatar}
+            alt='user'
+          />
         </div>
         <span className='display-name'>{user.username}</span>
       </div>

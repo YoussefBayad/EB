@@ -25,49 +25,41 @@ const User = () => {
         className='user-image'
         onClick={() => setOpen((prev) => !prev)}
       />
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ y: -50, scale: 0.5 }}
-            animate={{ y: 0, scale: 1 }}
-            exit={{ y: 20, scale: 0.5 }}
-            transition={{ duration: 0.4 }}
-            ref={ref}
-            className='log'>
-            {user ? (
-              <>
-                <h3>{user.username}</h3>
-                <Button
-                  onClick={() => {
-                    dispatch(logout());
-                    setOpen(false);
-                  }}>
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Link
-                  to='/register'
-                  className='btn'
-                  onClick={() => {
-                    setOpen(false);
-                  }}>
-                  Register
-                </Link>
-                <Link
-                  to='/login'
-                  className='btn'
-                  onClick={() => {
-                    setOpen(false);
-                  }}>
-                  login
-                </Link>
-              </>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && (
+        <div ref={ref} className='log'>
+          {user ? (
+            <>
+              <h3>{user.username}</h3>
+              <Button
+                onClick={() => {
+                  dispatch(logout());
+                  setOpen(false);
+                }}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link
+                to='/register'
+                className='btn'
+                onClick={() => {
+                  setOpen(false);
+                }}>
+                Register
+              </Link>
+              <Link
+                to='/login'
+                className='btn'
+                onClick={() => {
+                  setOpen(false);
+                }}>
+                login
+              </Link>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };
