@@ -12,13 +12,13 @@ const importData = async () => {
     await Product.deleteMany();
     const admin = await User.findOne({ username: 'admin' });
     const newProducts = products.map((product) => {
-      const { name, price, category, imageURL, ...others } = product;
+      const { name, price, category, imageUrl, ...others } = product;
 
       return {
         user: admin._id,
         name,
         price,
-        imageURL,
+        imageUrl: `/uploads/${product.name.replace(/\s/g, '')}.webp`,
         category,
         countInStock: 3,
         details: others,
