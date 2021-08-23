@@ -22,14 +22,8 @@ const AddToCart = ({ product }) => {
         </Button>
       ) : (
         <div className='product-in-cart'>
-          <Link className='in-cart' to='/cart'>
+          <Link className='buy-button' to='/cart'>
             Go To Cart
-          </Link>
-          <br />
-          <p>or</p>
-          <br />
-          <Link className='in-cart' to='/shop'>
-            Back To Shop
           </Link>
         </div>
       )}
