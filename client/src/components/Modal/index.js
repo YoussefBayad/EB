@@ -10,6 +10,8 @@ import axios from 'axios';
 const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
   const [uploading, setUploading] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
+
+  // validation scheme
   const validationSchema = Yup.object({
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
@@ -17,6 +19,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
     imageUrl: Yup.string(),
   });
 
+  // uploading product image and getting url
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import edit from '../../../assets/icon/edit.svg';
 import { editProduct } from '../../../redux/products/productsSlice';
 
-const EditProduct = ({ initialValues, task, setError }) => {
+const EditProduct = ({ initialValues, task }) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const onSubmit = (values) => {
