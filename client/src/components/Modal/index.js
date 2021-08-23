@@ -9,12 +9,12 @@ import axios from 'axios';
 
 const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
   const [uploading, setUploading] = useState(false);
-  const [imageURL, setImageURL] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const validationSchema = Yup.object({
     name: Yup.string().required('This field is required'),
     price: Yup.number().min(0).max(500).required('This field is required'),
     totalCharge: Yup.number().min(1).max(48),
-    imageURL: Yup.string(),
+    imageUrl: Yup.string(),
   });
 
   const uploadFileHandler = async (e) => {
@@ -30,7 +30,8 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
       };
 
       const { data } = await axios.post('/upload', formData, config);
-      setImageURL(data);
+      setImageUrl(data);
+      console.log('url', data);
       setUploading(false);
     } catch (error) {
       console.error(error);
@@ -49,7 +50,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
               <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {
-                  onSubmit({ ...values, imageURL });
+                  onSubmit({ ...values, imageUrl });
                 }}
                 validationSchema={validationSchema}>
                 {(formik) => (
@@ -76,13 +77,13 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                       <ErrorMessage name='price' component={ErrorText} />
                     </div>
                     <div>
-                      <label htmlFor='imageURL'>Photo URL :</label>
+                      <label htmlFor='imageUrl'>Photo URL :</label>
                       <Field
-                        name='imageURL'
+                        name='imageUrl'
                         type='file'
                         onChange={(e) => uploadFileHandler(e)}
                       />
-                      <ErrorMessage name='imageURL' component={ErrorText} />
+                      <ErrorMessage name='imageUrl' component={ErrorText} />
                     </div>
                     <div>
                       <label htmlFor='totalCharge'>Total Charge :</label>

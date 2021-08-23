@@ -19,8 +19,8 @@ const CartProduct = ({ product }) => {
         <img
           className='cart-product-img'
           src={
-            product.imageURL
-              ? product.imageURL
+            product.imageUrl
+              ? product.imageUrl
               : `/img/${product.name.replace(/\s/g, '')}.webp`
           }
           alt={product.name}

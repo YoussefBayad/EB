@@ -96,8 +96,8 @@ const ProductPage = () => {
               <img
                 className='product-img'
                 src={
-                  product.imageURL
-                    ? product.imageURL
+                  product.imageUrl
+                    ? product.imageUrl
                     : `/img/${product.name.replace(/\s/g, '')}.webp`
                 }
                 alt={product.name}

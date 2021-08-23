@@ -30,8 +30,8 @@ const SearchResults = ({
                 <img
                   className='search-img'
                   src={
-                    product.imageURL
-                      ? product.imageURL
+                    product.imageUrl
+                      ? product.imageUrl
                       : ` /img/${product.name.replace(/\s/g, '')}.webp`
                   }
                   alt='product img'

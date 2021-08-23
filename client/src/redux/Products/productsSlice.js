@@ -28,6 +28,8 @@ export const addProduct = createAsyncThunk(
       console.log('product', product);
 
       const { data } = await axios.post('/products', { product }, header);
+      console.log('data', data);
+
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);

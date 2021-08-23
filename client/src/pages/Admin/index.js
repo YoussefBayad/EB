@@ -35,7 +35,7 @@ const Admin = (props) => {
   // initial state
   const initialValues = {
     category: 'headphones',
-    imageURL: '',
+    imageUrl: '',
     name: 'Wireless Earpods:  Mini Bluetooth Earpods',
     price: 82,
     details: {
@@ -51,7 +51,7 @@ const Admin = (props) => {
 
   // add product
   const onSubmit = (values) => {
-    const { name, price, category, imageURL, ...others } = values;
+    const { name, price, category, imageUrl, ...others } = values;
     console.log('values', values);
 
     dispatch(
@@ -59,7 +59,8 @@ const Admin = (props) => {
         user,
         name,
         price,
-        imageURL,
+        category,
+        imageUrl,
         details: others,
       })
     );
