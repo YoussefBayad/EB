@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import AddToCart from '../../features/cart/AddToCart';
-import ErrorMessage from '../../components/ErrorMessage';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fetchProduct } from '../../redux/productDetails/productDetailsSlice';
 import Skeleton from 'react-loading-skeleton';
@@ -19,6 +18,7 @@ import './index.scss';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
   const [qty, setQty] = useState(1);
 
@@ -52,7 +52,7 @@ const ProductPage = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 1 }}
         className='product-showcase'>
-        <ErrorMessage>{message} </ErrorMessage>
+        {message && history.push('/shop')}
         {loading && (
           <div
             style={{
