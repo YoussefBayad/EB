@@ -8,16 +8,17 @@ import { getOrder, updateOrderToPaid } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
 import { PayPalButton } from 'react-paypal-button-v2';
 
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './index.scss';
 import Skeleton from 'react-loading-skeleton';
 import axios from 'axios';
 
 const OrderById = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
   const [sdkReady, setSdkReady] = useState(false);
-  const { data: order, loading } = useSelector((state) => state.order);
+  const { data: order, loading, message } = useSelector((state) => state.order);
 
   // fetch order
   useEffect(() => {
@@ -51,6 +52,8 @@ const OrderById = () => {
   return (
     <div className='order-page'>
       <CheckoutSteps />
+      {message && history.push('/shop')}
+
       {loading ? (
         <div
           style={{
