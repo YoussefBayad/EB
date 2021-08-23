@@ -35,7 +35,7 @@ const AdminProducts = ({ products, loading, onDeleteProduct, setError }) => {
           ) : (
             <>
               {products.map((product) => {
-                const { name, price, _id, imageURL } = product;
+                const { name, price, _id, imageUrl } = product;
                 return (
                   <motion.div
                     layout
@@ -51,8 +51,7 @@ const AdminProducts = ({ products, loading, onDeleteProduct, setError }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.7 }}
-                        // src={imageURL}
-                        src={`http://localhost:5000${imageURL}`}
+                        src={`http://localhost:5000${imageUrl}`}
                         fluid
                         alt={name}
                       />
