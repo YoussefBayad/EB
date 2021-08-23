@@ -20,7 +20,7 @@ const CartProduct = ({ product }) => {
           className='cart-product-img'
           src={
             product.imageUrl
-              ? product.imageUrl
+              ? `http://localhost:5000${product.imageUrl}`
               : `/img/${product.name.replace(/\s/g, '')}.webp`
           }
           alt={product.name}

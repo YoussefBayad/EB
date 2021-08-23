@@ -6,7 +6,6 @@ import useOutsideClickRef from '@rooks/use-outside-click-ref';
 import person from '../../assets/icon/person.svg';
 import avatar from '../../assets/avatar.jpeg';
 import Button from '../forms/Button/index.js';
-import { AnimatePresence, motion } from 'framer-motion';
 import { logout } from '../../redux/auth/authSlice';
 // style
 import './index.scss';

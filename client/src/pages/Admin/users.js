@@ -9,11 +9,11 @@ const Users = () => {
   const dispatch = useDispatch();
   const { data: users, message, loading } = useSelector((state) => state.users);
   const { _id: adminId } = useSelector((state) => state.auth.user);
-
+  const isUsers = users && users.length;
   useEffect(() => {
-    if (users?.length > 0) return;
+    if (isUsers > 0) return;
     dispatch(getUsers());
-  }, [dispatch, users?.length]);
+  }, [dispatch, isUsers]);
 
   const editUserHandler = () => {
     console.log('edit user');
