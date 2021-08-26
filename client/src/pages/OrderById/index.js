@@ -52,7 +52,9 @@ const OrderById = () => {
   return (
     <div className='order-page'>
       <CheckoutSteps />
-      {message && history.push('/shop')}
+      {/* {message &&
+        message != 'your order has been added successfully' &&
+        history.push('/shop')} */}
 
       {loading ? (
         <div
@@ -79,7 +81,9 @@ const OrderById = () => {
 
               {`${order.shippingAddress.address} ${order.shippingAddress.city} ${order.shippingAddress.postalCode} ${order.shippingAddress.country}`}
               {order.isDelivered ? (
-                <p className='paid'>Delivered on: {order.deliveredAt} </p>
+                <p className='paid'>
+                  Delivered on: {order.deliveredAt.substring(1, 10)}{' '}
+                </p>
               ) : (
                 <p className='not-paid'>Not Delivered </p>
               )}
@@ -89,7 +93,7 @@ const OrderById = () => {
               {`${order.paymentMethod}`}
               {order.isPaid ? (
                 <p className='paid'>
-                  Paid on: {order.paidAt.toLocaleString()}{' '}
+                  Paid on: {order.paidAt.substring(0, 10)}{' '}
                 </p>
               ) : (
                 <p className='not-paid'>Not Paid </p>

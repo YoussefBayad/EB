@@ -58,7 +58,6 @@ const AdminProducts = ({ products, loading, onDeleteProduct, setError }) => {
                       <EditProduct
                         initialValues={product}
                         task={'Edit Product'}
-                        setError={setError}
                       />
                     </div>
                     <h2>{name}</h2>
