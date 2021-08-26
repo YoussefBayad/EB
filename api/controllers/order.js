@@ -85,3 +85,21 @@ export const updateOrderToPaid = async (req, res) => {
     res.status(404).json('There is no order by that id');
   }
 };
+
+// update order to delivered
+export const updateOrderToDelivered = async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+
+    res
+      .status(200)
+      .json({ deliveredAt: updatedOrder.deliveredAt, id: updatedOrder._id });
+  } else {
+    res.status(404).jason({ message: 'Order not found' });
+  }
+};
