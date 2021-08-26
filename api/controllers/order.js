@@ -26,6 +26,17 @@ export const getOrder = async (req, res) => {
   }
 };
 
+//get orders for admin
+
+export const getOrders = async (req, res) => {
+  const orders = await Order.find()
+    .select('isPaid paidAt isDelivered deliveredAt totalPrice createdAt')
+    .populate('user username')
+    .exec();
+
+  res.status(200).json(orders);
+};
+
 //get user orders
 
 export const getUserOrder = async (req, res) => {

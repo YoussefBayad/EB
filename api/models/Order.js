@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import User from './User.js';
+
 const { Schema } = mongoose;
 
 const OrderSchema = new Schema(
@@ -6,8 +8,9 @@ const OrderSchema = new Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: User,
     },
+
     orderItems: [
       {
         name: {
