@@ -5,6 +5,7 @@ import productReducer from './productDetails/productDetailsSlice';
 import authReducer from './auth/authSlice';
 import orderReducer from './order/orderSlice';
 import usersReducer from './users';
+import ordersReducer from './orders';
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     product: productReducer,
     order: orderReducer,
     users: usersReducer,
+    orders: ordersReducer,
   },
 });
