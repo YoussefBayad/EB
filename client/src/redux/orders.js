@@ -74,7 +74,9 @@ const ordersSlice = createSlice({
     [deleteOrder.fulfilled]: (state, action) => {
       state.loading = false;
       state.message = null;
-      state.data = state.data.filter((order) => order._id !== action.payload);
+      state.data = state.data.filter(
+        (order) => order._id !== action.payload.id
+      );
     },
     [editOrder.fulfilled]: (state, action) => {
       state.data = state.data.map((order) => {

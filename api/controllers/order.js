@@ -49,6 +49,21 @@ export const getUserOrder = async (req, res) => {
   }
 };
 
+//delete order
+
+export const deleteOrder = async (req, res) => {
+  try {
+    await Order.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message: 'order has been deleted',
+      id: req.params.id,
+    });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
 // update order to paid
 
 export const updateOrderToPaid = async (req, res) => {
