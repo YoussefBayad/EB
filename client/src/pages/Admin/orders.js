@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  deleteOrder,
+  getOrders,
+  updateOrderToDelivered,
+} from '../../redux/orders';
 import ErrorMessage from '../../components/ErrorMessage';
-import { deleteOrder, getOrders } from '../../redux/orders';
-import edit from '../../assets/icon/edit.svg';
+import Button from '../../components/forms/Button';
 import './users.scss';
 
 const Orders = () => {
@@ -57,17 +61,16 @@ const Orders = () => {
                 {order.isDelivered ? (
                   <td>{order.deliveredAt.substring(0, 10)} </td>
                 ) : (
-                  <td>False</td>
+                  <td>
+                    <Button
+                      className='btn'
+                      onClick={() =>
+                        dispatch(updateOrderToDelivered(order._id))
+                      }>
+                      Mark as Delivered
+                    </Button>
+                  </td>
                 )}
-                <td>
-                  {' '}
-                  <img
-                    className='edit'
-                    src={edit}
-                    alt='edit'
-                    onClick={editOrderHandler}
-                  />{' '}
-                </td>
 
                 <td
                   className='delete-user'

@@ -22,16 +22,12 @@ export const getOrders = createAsyncThunk(
   }
 );
 
-// edit Order
-export const editOrder = createAsyncThunk(
-  'orders/editOrder',
-  async (order, { rejectWithValue }) => {
+// update Order To Delivered
+export const updateOrderToDelivered = createAsyncThunk(
+  'orders/updateOrderToDelivered',
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put(
-        `/order/${order._id}`,
-        { order },
-        header
-      );
+      const { data } = await axios.put(`/order/${id}/delivered`, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -78,10 +74,10 @@ const ordersSlice = createSlice({
         (order) => order._id !== action.payload.id
       );
     },
-    [editOrder.fulfilled]: (state, action) => {
+    [updateOrderToDelivered.fulfilled]: (state, action) => {
       state.data = state.data.map((order) => {
-        if (order._id === action.payload.order._id)
-          order = action.payload.order;
+        if (order._id === action.payload.id) order.isDelivered = true;
+        order.deliveredAt = action.payload.deliveredAt;
         return order;
       });
       state.loading = false;
