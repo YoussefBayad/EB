@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorMessage from '../../components/ErrorMessage';
-import { deleteUser, getUsers } from '../../redux/users';
-import edit from '../../assets/icon/edit.svg';
+import Button from '../../components/forms/Button';
+import { deleteUser, getUsers, setUserAsAdmin } from '../../redux/users';
 import './users.scss';
 
 const Users = () => {
@@ -44,13 +44,15 @@ const Users = () => {
                 <td>{user.email} </td>
                 <td>{String(user.isAdmin)} </td>
                 <td>
-                  {' '}
-                  <img
-                    className='edit'
-                    src={edit}
-                    alt='edit'
-                    onClick={editUserHandler}
-                  />{' '}
+                  {!user.isAdmin && (
+                    <td>
+                      <Button
+                        className='btn'
+                        onClick={() => dispatch(setUserAsAdmin(user._id))}>
+                        Set As Admin
+                      </Button>
+                    </td>
+                  )}
                 </td>
                 {user._id !== adminId && (
                   <td
