@@ -79,6 +79,18 @@ const ProductPage = () => {
                 <h2>Price: ${product.price}</h2>
                 <h3>In Stock: {product.countInStock} </h3>
 
+                {[...Array(product.rating).keys()].map((s) => (
+                  <span style={{ color: '#ff9933', cursor: 'pointer' }}>
+                    {'\u2605'}
+                  </span>
+                ))}
+                {[...Array(5 - product.rating).keys()].map((s) => (
+                  <span style={{ color: '#ff9933', cursor: 'pointer' }}>
+                    {'\u2606'}
+                  </span>
+                ))}
+
+                <p>{`${product.numReviews}`} reviews</p>
                 <div>
                   {!isProductInCart && (
                     <div className='product-qty'>
