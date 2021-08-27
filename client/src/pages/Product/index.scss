@@ -1,5 +1,8 @@
 @import '../../default';
 
+.product-container {
+  padding: 2rem;
+}
 .product-intro {
   @extend .container;
   margin-top: 5rem;
@@ -41,7 +44,7 @@
   border-radius: 2rem;
   color: $white;
   font-size: $normal;
-  margin-bottom: 15rem;
+  margin-bottom: 5rem;
   padding: 5rem;
   &-container {
     @extend .container;
@@ -56,6 +59,21 @@
       margin-right: 2rem;
       width: 5rem;
     }
+  }
+}
+
+.add-review {
+  border: solid 4px $lightgrey;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  form {
+    margin: 2rem 0;
+  }
+  h4 {
+    margin-bottom: 1rem;
+  }
+  button {
+    max-width: 36rem;
   }
 }
 
