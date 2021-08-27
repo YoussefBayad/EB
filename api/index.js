@@ -5,7 +5,6 @@ import express from 'express';
 const app = express();
 import helmet from 'helmet';
 import morgan from 'morgan';
-import multer from 'multer';
 import connectDb from './config/db.js';
 
 // middleware

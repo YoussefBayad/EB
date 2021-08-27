@@ -7,7 +7,7 @@ const CartFooter = ({ total, openCart }) => {
   return (
     <div className='cart-footer'>
       <Link
-        to='/cart'
+        to='/shipping'
         className='btn checkout-btn'
         onClick={() => {
           dispatch(openCart());
