@@ -23,11 +23,11 @@ export const getUsers = createAsyncThunk(
 );
 
 // edit user
-export const editUser = createAsyncThunk(
-  'users/editUser',
-  async (user, { rejectWithValue }) => {
+export const setUserAsAdmin = createAsyncThunk(
+  'users/setUserAsAdmin',
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put(`/auth/${user._id}`, { user }, header);
+      const { data } = await axios.put(`/auth/${id}/setAsAdmin`, header);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -72,9 +72,10 @@ const usersSlice = createSlice({
       state.message = null;
       state.data = state.data.filter((user) => user._id !== action.payload);
     },
-    [editUser.fulfilled]: (state, action) => {
+    [editUser.setUserAsAdmin]: (state, action) => {
       state.data = state.data.map((user) => {
-        if (user._id === action.payload.user._id) user = action.payload.user;
+        if (user._id === action.payload.id)
+          user.isAdmin = action.payload.isAdmin;
         return user;
       });
       state.loading = false;
