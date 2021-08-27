@@ -41,6 +41,27 @@ export const updateUser = async (req, res) => {
   }
 };
 
+// set user as admin
+
+export const setUserAsAdmin = async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.isAdmin = true;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      id: updatedUser._id,
+
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+};
+
 //   Login user
 export const login = async (req, res, next) => {
   const { email, password } = req.body;
