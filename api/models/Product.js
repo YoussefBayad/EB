@@ -2,34 +2,46 @@ import mongoose from 'mongoose';
 // import slug from 'mongoose-slug-generator';
 const { Schema } = mongoose;
 
-// const options = {
-//   separator: '-',
-//   lang: 'en',
-//   truncate: 120,
-// };
+const reviewSchema = mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-// mongoose.plugin(options);
-
-// Product Schema
+// product  schema
 const ProductSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User',
   },
-  sku: {
-    type: String,
-  },
+
   name: {
     type: String,
     required: true,
     trim: true,
   },
-  // slug: {
-  //   type: String,
-  //   slug: 'name',
-  //   unique: true,
-  // },
+  reviews: [reviewSchema],
+  rating: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  numReviews: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   imageUrl: {
     type: String,
     default: '/uploads\\default.webp',
