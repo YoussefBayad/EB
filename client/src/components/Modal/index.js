@@ -81,7 +81,7 @@ const Modal = ({ showModal, setShowModal, initialValues, onSubmit, task }) => {
                     </div>
                     <div>
                       <label htmlFor='imageUrl'>Photo URL :</label>
-                      <Field
+                      <input
                         name='imageUrl'
                         type='file'
                         onChange={(e) => uploadFileHandler(e)}
