@@ -83,7 +83,7 @@ export const deleteProduct = async (req, res) => {
 
 // create a review
 export const createProductReview = async (req, res) => {
-  const { rating, comment } = req.body;
+  const { rating, comment } = req.body.review;
 
   const product = await Product.findById(req.params.id);
 
@@ -97,7 +97,7 @@ export const createProductReview = async (req, res) => {
     }
 
     const review = {
-      name: req.user.name,
+      username: req.user.username,
       rating: Number(rating),
       comment,
       user: req.user._id,
