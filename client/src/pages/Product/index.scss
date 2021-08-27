@@ -62,21 +62,6 @@
   }
 }
 
-.add-review {
-  border: solid 4px $lightgrey;
-  border-radius: 1rem;
-  padding: 1rem 2rem;
-  form {
-    margin: 2rem 0;
-  }
-  h4 {
-    margin-bottom: 1rem;
-  }
-  button {
-    max-width: 36rem;
-  }
-}
-
 @media screen and (max-width: 800px) {
   .product-img {
     width: 40rem !important;
