@@ -5,7 +5,7 @@ import Button from '../../../components/forms/Button';
 import './index.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addReview } from '../../../redux/products/productsSlice';
+import { addReview } from '../../../redux/productDetails/productDetailsSlice';
 import Rating from '../../../components/Rating';
 
 const AddReview = ({ id, reviews }) => {
@@ -16,7 +16,7 @@ const AddReview = ({ id, reviews }) => {
 
   //check if already reviewed
   const alreadyReviewed = reviews.find(
-    (r) => r.user.toString() === userId.toString()
+    (r) => r.user.toString() === userId?.toString()
   );
 
   // add review

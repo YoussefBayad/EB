@@ -19,7 +19,6 @@ import hour40 from '../../assets/icon/40hour.webp';
 // style
 import './index.scss';
 
-import { addReview } from '../../redux/products/productsSlice';
 import AddReview from '../../features/product/AddReview';
 
 const ProductPage = () => {

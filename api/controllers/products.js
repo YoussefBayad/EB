@@ -111,8 +111,11 @@ export const createProductReview = async (req, res) => {
       product.reviews.reduce((acc, item) => item.rating + acc, 0) /
       product.reviews.length;
 
-    await product.save();
-    res.status(201).json({ message: 'Review added' });
+    const newProduct = await product.save();
+    const newReview = newProduct.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+    res.status(201).json(newReview);
   } else {
     res.status(404).jason({ message: 'Already reviewed' });
   }
