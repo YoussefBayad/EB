@@ -7,10 +7,32 @@
   form {
     margin: 2rem 0;
   }
+  h3 {
+    margin-top: 3rem;
+  }
   h4 {
     margin-bottom: 1rem;
   }
   button {
     max-width: 36rem;
+  }
+  .review {
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    .comment {
+      margin-top: 0.5rem;
+    }
+    .rating {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .login-message {
+    margin-top: 1rem;
+    a {
+      color: $blue;
+    }
   }
 }
