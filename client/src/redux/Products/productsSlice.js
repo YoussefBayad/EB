@@ -37,27 +37,6 @@ export const addProduct = createAsyncThunk(
   }
 );
 
-// add review
-export const addReview = createAsyncThunk(
-  'products/addReview',
-  async ({ review, productId }, { rejectWithValue }) => {
-    try {
-      console.log('review', review);
-
-      const { data } = await axios.post(
-        `/products/${productId}/reviews`,
-        { review },
-        header
-      );
-      console.log('data', data);
-
-      return data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  }
-);
-
 export const editProduct = createAsyncThunk(
   'products/editProduct',
   async (product, { rejectWithValue }) => {
