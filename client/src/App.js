@@ -84,6 +84,12 @@ const App = () => {
           </MainLayout>
         </Route>
 
+        <Route exact path='/search/:keyword'>
+          <MainLayout>
+            <Shop />
+          </MainLayout>
+        </Route>
+
         <Route
           exact
           path='/shop/headphones'
