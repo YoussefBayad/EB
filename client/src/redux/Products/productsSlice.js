@@ -10,9 +10,10 @@ const initialState = {
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async (a, { rejectWithValue }) => {
+  async (keyword = '', { rejectWithValue }) => {
+    console.log('keyword', keyword);
     try {
-      const { data } = await axios.get('/products');
+      const { data } = await axios.get(`/products?keyword=${keyword}`);
       console.log('data', data);
       return data;
     } catch (err) {
