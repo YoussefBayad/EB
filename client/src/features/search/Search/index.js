@@ -1,54 +1,37 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import SearchInput from '../SearchInput';
-import SearchResults from '../SearchResults';
 import searchIcon from '../../../assets/icon/search.svg';
 import './index.scss';
+import Button from '../../../components/forms/Button';
+import { useHistory } from 'react-router-dom';
 
-const Search = ({ ...props }) => {
-  const products = useSelector((state) => state.products.data);
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+const Search = () => {
+  const [keyword, setKeyword] = useState(null);
+  const history = useHistory();
 
-  const handleChange = (e) => {
-    setShowSearchResults(true);
-    if (e.target.value.trim() === '') {
-      setSearchResults(products);
+  // handle search submits
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      history.push(`/search/${keyword}`);
     } else {
-      const results = products.search((product) =>
-        product.name
-          .replace(/\s/g, '')
-          .toLowerCase()
-          .includes(e.target.value.replace(/\s/g, '').toLowerCase())
-      );
-      setSearchResults(results);
+      history.push('/shop');
     }
-  };
-  const handleClick = () => {
-    setShowSearch(!showSearch);
   };
 
   return (
-    <div className='search' {...props}>
-      <div className='search-flex'>
-        <SearchInput
-          handleChange={handleChange}
-          handleClick={handleClick}
-          showSearch={showSearch}
+    <div className='search'>
+      <form onSubmit={handleSearch}>
+        <input
+          className='search-input'
+          type='text'
+          placeholder='Search ...'
+          onChange={(e) => setKeyword(e.target.value)}
+          autoFocus
         />
-        <SearchResults
-          searchResults={searchResults}
-          showSearchResults={showSearchResults}
-          setShowSearchResults={setShowSearchResults}
-        />
-      </div>
-      <img
-        className='search-icon'
-        src={searchIcon}
-        alt='search icon'
-        onClick={handleClick}
-      />
+        <Button>
+          <img className='search-icon' src={searchIcon} alt='search icon' />
+        </Button>
+      </form>
     </div>
   );
 };
