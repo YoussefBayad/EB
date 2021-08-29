@@ -20,6 +20,7 @@ import hour40 from '../../assets/icon/40hour.webp';
 import './index.scss';
 
 import AddReview from '../../features/product/AddReview';
+import Meta from '../../components/Meta';
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const ProductPage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
       className='product-showcase'>
+      <Meta title={product?.name} />
       {message && history.push('/shop')}
       {loading && (
         <div

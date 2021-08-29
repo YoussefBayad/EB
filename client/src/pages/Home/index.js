@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import downArrow from '../../assets/icon/down-arrow.svg';
 import Button from '../../components/forms/Button/index';
+import Meta from '../../components/Meta';
 import './index.scss';
 
 const HomePage = () => {
   return (
     <>
+      <Meta />
       <div className='showcase'>
         <div className='text'>
           <h1>CREATE YOUR OWN SPACE.</h1>
