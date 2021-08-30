@@ -32,7 +32,7 @@ const Registration = () => {
       .required('This field is required'),
   });
 
-  const onSubmit = async (values, onSubmitProps) => {
+  const onSubmit = (values, onSubmitProps) => {
     // register
     dispatch(register(values));
     onSubmitProps.resetForm();

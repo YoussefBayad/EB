@@ -1,0 +1,12 @@
+@import '../../default.scss';
+
+.user-profile {
+  margin: 3rem 0;
+  padding: 1rem;
+  @include flex('', 'flex-start');
+  flex-wrap: wrap;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
