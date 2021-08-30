@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import searchIcon from '../../../assets/icon/search.svg';
+import searchIcon from '../../assets/icon/search.svg';
 import './index.scss';
-import Button from '../../../components/forms/Button';
+import Button from '../forms/Button';
 import { useHistory } from 'react-router-dom';
 
 const Search = () => {

@@ -58,9 +58,7 @@ nav {
 
   .right-nav {
     width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    @include flex('', 'flex-end', 'flex-end');
     & img {
       height: 3rem;
       width: 3rem;
@@ -115,8 +113,7 @@ nav {
       }
     }
   }
-  .cart-icon,
-  .user {
+  .cart-icon {
     position: relative;
   }
 
@@ -125,16 +122,17 @@ nav {
   }
 
   .cart-icon img {
-    @include box(2.5rem);
+    @include box(3rem);
     margin-right: 0;
   }
   .notifications-count {
     position: absolute;
     text-align: center;
-    padding: 0.1rem;
     font-size: $smallest;
     font-weight: bold;
     color: $white;
+    padding-top: 0.1rem;
+    padding-left: 0.1rem;
     top: -0.2rem;
     right: -1rem;
     background-color: $accent;

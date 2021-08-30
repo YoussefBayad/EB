@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CartIcon from '../../features/cart/CartIcon';
-import Search from '../../features/search/Search';
+import Search from '../Search';
 import User from '../User';
 import './index.scss';
 import Burger from './Burger';

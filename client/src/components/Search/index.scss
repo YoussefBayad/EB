@@ -1,5 +1,6 @@
-@import '../../../default.scss';
+@import '../../default.scss';
 .search {
+  margin-right: 2rem;
   form {
     @include flex();
     margin: 0 1rem;
@@ -7,10 +8,11 @@
       height: 4rem;
 
       margin: 0;
+
       padding: 0.5rem;
-      background-color: $blue;
+      background-color: $darkgrey;
       border-radius: 0 0.5rem 0.5rem 0;
-      @include hover($blue);
+      @include hover($darkgrey);
 
       width: fit-content;
       img {

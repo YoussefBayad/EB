@@ -14,6 +14,10 @@ const Shipping = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const shippingData = useSelector((state) => state.cart.shippingData);
+  const cartItems = useSelector((state) => state.cart.data.length);
+
+  // redirect to shop if cart is empty
+  if (cartItems === 0) history.push('/shop');
 
   // get initial values from storage
   let initialValues;
