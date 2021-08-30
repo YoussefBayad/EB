@@ -29,6 +29,14 @@ const User = () => {
           {user ? (
             <>
               <h3>{user.username}</h3>
+              <Link
+                to='/profile'
+                className='btn'
+                onClick={() => {
+                  setOpen(false);
+                }}>
+                Profile
+              </Link>
               <Button
                 onClick={() => {
                   dispatch(logout());
