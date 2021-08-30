@@ -17,6 +17,8 @@ import OrderById from './pages/OrderById';
 import Admin from './pages/Admin';
 import AdminUsers from './pages/Admin/users';
 import AdminOrders from './pages/Admin/orders';
+import Shipping from './pages/Shipping';
+import Profile from './pages/Profile';
 import Earbuds from './pages/Earbuds';
 import Wireless from './pages/Earbuds/Wireless';
 import Wired from './pages/Earbuds/Wired';
@@ -35,7 +37,6 @@ import WithNoAuth from './hoc/withNoAuth';
 import './default.scss';
 import ScrollToTop from './hoc/ScrollToTop.js';
 import AdminToolBar from './features/admin/AdminToolBar/index.js';
-import Shipping from './pages/Shipping';
 
 const App = () => {
   return (
@@ -77,6 +78,12 @@ const App = () => {
             <Register />
           </MainLayout>
         </WithNoAuth>
+
+        <WithAuth exact path='/profile'>
+          <MainLayout>
+            <Profile />
+          </MainLayout>
+        </WithAuth>
 
         <Route exact path='/shop'>
           <MainLayout>
