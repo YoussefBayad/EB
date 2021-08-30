@@ -9,4 +9,11 @@
     font-weight: bold;
     font-size: $title;
   }
+  .no-product-exist {
+    margin-bottom: 30rem;
+
+    & a {
+      color: $blue;
+    }
+  }
 }
