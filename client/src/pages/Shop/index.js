@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,13 +14,10 @@ const Shop = () => {
   const { data, loading, message } = useSelector((state) => state.products);
 
   useEffect(() => {
-    let source = axios.CancelToken.source();
-    dispatch(fetchProducts({ keyword, source }));
-
-    return () => {
-      source.cancel();
-    };
-  }, [data.length, dispatch, keyword]);
+    if (!loading) {
+      dispatch(fetchProducts(keyword));
+    }
+  }, [dispatch, keyword]);
   return (
     <div className='shop'>
       <h1>Shop</h1>
