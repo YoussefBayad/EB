@@ -14,6 +14,7 @@ import { adminAuth, userAuth } from '../middleware/auth.js';
 
 router.get('/:id', userAuth, getOrder);
 router.get('/', adminAuth, getOrders);
+router.get('/', userAuth, getUserOrder);
 router.post('/', userAuth, addOrder);
 router.delete('/:id', adminAuth, deleteOrder);
 // router.get('/', userAuth, getUserOrder);
