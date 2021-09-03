@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 //style
 
 import './index.scss';
+import { getOrders } from '../../redux/orders';
+import { useEffect } from 'react';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -20,8 +22,15 @@ const Profile = () => {
     message,
   } = useSelector((state) => state.orders);
 
+  const isOrders = orders && orders.length;
+  useEffect(() => {
+    if (isOrders > 0) return;
+    dispatch(getOrders(user._id));
+  }, [dispatch, isOrders]);
+
   // formik setup
   const initialValues = {
+    id: user._id,
     username: user.username,
     email: user.email,
     password: '',
@@ -34,14 +43,10 @@ const Profile = () => {
       .email('invalid email')
       .required('This field is required'),
     password: Yup.string().required('This field is required'),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password'), ''], 'Password must match')
-      .required('This field is required'),
   });
 
   const onSubmit = (values, onSubmitProps) => {
-    // register
-    // dispatch(register(values));
+    dispatch(updateUser(values));
     onSubmitProps.resetForm();
   };
 
@@ -72,15 +77,6 @@ const Profile = () => {
               <ErrorMessage name='password' component={Message} />
             </div>
 
-            <div>
-              <h4>Confirm Password</h4>
-              <Field
-                type='text'
-                name='confirmPassword'
-                placeholder='Confirm password'
-              />
-              <ErrorMessage name='confirmPassword' component={Message} />
-            </div>
             <Button type='submit'>Update</Button>
           </Form>
         </Formik>

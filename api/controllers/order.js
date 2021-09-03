@@ -40,7 +40,7 @@ export const getOrders = async (req, res) => {
 //get user orders
 
 export const getUserOrder = async (req, res) => {
-  const orders = await Order.find({ user: req.user._id });
+  const orders = await Order.find({ user: req.params.id });
 
   if (orders) {
     res.status(200).json(orders);

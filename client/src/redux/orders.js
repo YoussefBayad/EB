@@ -11,16 +11,35 @@ const initialState = {
 // orders thunk
 export const getOrders = createAsyncThunk(
   'orders/getOrders',
-  async (order, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/order/', header);
-      console.log(data);
-      return data;
+      if (id) {
+        const { data } = await axios.get(`order/${id}/userOrders`, header);
+        console.log(data);
+        return data;
+      } else {
+        const { data } = await axios.get('/order/', header);
+        console.log(data);
+        return data;
+      }
     } catch (err) {
       return rejectWithValue(err.response.data.error);
     }
   }
 );
+
+// // user  orders thunk
+// export const getUserOrders = createAsyncThunk(
+//   'orders/getOrders',
+//   async (id, { rejectWithValue }) => {
+//     try {
+//       console.log(data);
+//       return data;
+//     } catch (err) {
+//       return rejectWithValue(err.response.data.error);
+//     }
+//   }
+// );
 
 // update Order To Delivered
 export const updateOrderToDelivered = createAsyncThunk(
