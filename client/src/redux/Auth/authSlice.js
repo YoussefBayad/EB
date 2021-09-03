@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import header from '../../utils/header';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
@@ -38,10 +39,14 @@ export const login = createAsyncThunk(
 );
 
 //edit user info thunk
-export const editUserInfo = createAsyncThunk(
-  'auth/editUserInfo',
-  async (newUserInfo, { rejectWithValue }) => {
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async (user, { rejectWithValue }) => {
     try {
+      const { data } = await axios.put('/auth/', { user }, header);
+      console.log('user', data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      console.log(data);
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -92,6 +97,14 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = null;
     },
+
+    [updateUser.fulfilled]: (state, action) => {
+      if (!action.payload) return;
+      state.user = action.payload.user;
+      state.loading = false;
+      state.message = null;
+    },
+    [updateUser.rejected]: (state, action) => {},
   },
 });
 

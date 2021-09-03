@@ -11,17 +11,8 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (keyword = '', { rejectWithValue }) => {
-    let source;
-
-    if (typeof source != typeof undefined) {
-      source.cancel('cancel keyword search');
-    }
-    source = axios.CancelToken.source();
-
     try {
-      const { data } = await axios.get(`/products?keyword=${keyword}`, {
-        cancelToken: source.token,
-      });
+      const { data } = await axios.get(`/products?keyword=${keyword}`);
 
       return data;
     } catch (err) {

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/ErrorMessage';
 import { updateUser } from '../../redux/auth/authSlice';
 import { Link } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 
 //style
 
@@ -83,7 +84,7 @@ const Profile = () => {
       </div>
       <div className='user-orders'>
         <h2>My Orders</h2>
-        {loading && <p>loading ..</p>}
+
         {message && <Message>{message}</Message>}
 
         <table>
@@ -98,6 +99,25 @@ const Profile = () => {
             </tr>
           </thead>
           <tbody>
+            {loading && (
+              <>
+                <Skeleton
+                  style={{ display: 'block', marginBottom: '1rem' }}
+                  height={20}
+                  width={600}
+                />
+                <Skeleton
+                  style={{ display: 'block', marginBottom: '1rem' }}
+                  height={20}
+                  width={600}
+                />
+                <Skeleton
+                  style={{ display: 'block', marginBottom: '1rem' }}
+                  height={20}
+                  width={600}
+                />
+              </>
+            )}
             {orders?.map((order) => (
               <tr key={order._id}>
                 <td className='user-id'>{order._id}</td>
