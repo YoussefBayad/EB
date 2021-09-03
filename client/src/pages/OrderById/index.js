@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import Product from '../../features/product/Product';
 import CheckoutSummary from '../../components/CheckoutSummary';
-import CheckoutSteps from '../../components/CheckoutSteps';
 import { getOrder, updateOrderToPaid } from '../../redux/order/orderSlice';
 import Button from '../../components/forms/Button';
 import { PayPalButton } from 'react-paypal-button-v2';
@@ -50,8 +49,7 @@ const OrderById = () => {
 
   return (
     <div className='order-page'>
-      <CheckoutSteps />
-
+      <h1>Order :</h1>
       {loading ? (
         <div
           style={{
@@ -61,11 +59,9 @@ const OrderById = () => {
           }}>
           <div>
             <Skeleton height={400} width={400} style={{ margin: 30 }} />
-            <Skeleton height={400} width={400} style={{ marginTop: 30 }} />
           </div>
           <div>
             <Skeleton height={30} width={80} style={{ marginRight: 200 }} />
-            <Skeleton height={30} width={80} />
           </div>
           <Skeleton height={300} width={600} style={{ marginTop: 30 }} />
         </div>
