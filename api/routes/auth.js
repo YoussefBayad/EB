@@ -17,7 +17,7 @@ import { adminAuth, userAuth } from '../middleware/auth.js';
 
 router.get('/', adminAuth, getUsers);
 router.delete('/:id', adminAuth, deleteUser);
-router.put('/:id', userAuth, updateUser);
+router.put('/', userAuth, updateUser);
 router.put('/:id/setAsAdmin', adminAuth, setUserAsAdmin);
 
 router.post('/register', register);

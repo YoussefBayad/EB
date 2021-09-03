@@ -30,12 +30,24 @@ export const deleteUser = async (req, res) => {
 // update user
 export const updateUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndUpdate(req.params.id, {
-      $set: req.body.user,
-    });
-    res.status(200).json({
-      user: { ...user._doc, ...req.body.user },
-    });
+    const user = await User.findById(req.user._id);
+    if (user) {
+      user.username = req.body.user.username || user.name;
+      user.email = req.body.user.email || user.email;
+      user.isAdmin = req.body.user.isAdmin || user.isAdmin;
+      const updatedUser = await user.save();
+      console.log('user', updatedUser);
+      res.status(200).json({
+        user: {
+          _id: updatedUser._id,
+          username: updatedUser.username,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin,
+        },
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
   } catch (err) {
     return res.status(500).json(err);
   }
