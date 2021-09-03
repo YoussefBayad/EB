@@ -52,7 +52,7 @@ const Profile = () => {
 
   return (
     <div className='user-profile'>
-      <div>
+      <div className='update-user'>
         <h2>User Profile</h2>
         <Formik
           initialValues={initialValues}
@@ -89,7 +89,7 @@ const Profile = () => {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th className='user-id'>ID</th>
               <th>DATE</th>
               <th>TOTAL</th>
               <th>PAID</th>
@@ -100,7 +100,7 @@ const Profile = () => {
           <tbody>
             {orders?.map((order) => (
               <tr key={order._id}>
-                <td>{order._id}</td>
+                <td className='user-id'>{order._id}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice}</td>
                 <td>
@@ -118,8 +118,8 @@ const Profile = () => {
                   )}
                 </td>
                 <td>
-                  <Link to={`/order/${order._id}`}>
-                    <Button className='btn'>Details</Button>
+                  <Link className='order-link' to={`/order/${order._id}`}>
+                    Details
                   </Link>
                 </td>
               </tr>

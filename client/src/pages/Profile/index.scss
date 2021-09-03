@@ -5,8 +5,33 @@
   padding: 1rem;
   @include flex('', 'flex-start');
   flex-wrap: wrap;
+  .update-user,
+  .user-orders {
+    padding: 1rem;
+    margin: auto;
+  }
 
   h2 {
     margin-bottom: 2rem;
+  }
+  .order-link {
+    color: $accent;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .user-orders {
+    td {
+      font-size: $smallest;
+    }
+  }
+}
+@media screen and (max-width: 650px) {
+  .user-orders {
+    table {
+      .user-id {
+        display: none;
+      }
+    }
   }
 }
