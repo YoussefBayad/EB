@@ -45,8 +45,7 @@ export const updateUser = createAsyncThunk(
     try {
       const { data } = await axios.put('/auth/', { user }, header);
       console.log('user', data.user);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      console.log(data);
+      return data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -99,8 +98,12 @@ const authSlice = createSlice({
     },
 
     [updateUser.fulfilled]: (state, action) => {
-      if (!action.payload) return;
-      state.user = action.payload.user;
+      localStorage.setItem(
+        'user',
+        JSON.stringify({ ...state.user, ...action.payload.user })
+      );
+      state.user = JSON.parse(localStorage.getItem('user'));
+
       state.loading = false;
       state.message = null;
     },
